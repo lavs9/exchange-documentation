@@ -1,0 +1,146 @@
+/**
+ * TipTap Editor Styles
+ *
+ * Custom styles for the TipTap editor and toolbar.
+ */
+
+/* Toolbar Button Styles */
+.toolbar-button {
+  @apply p-2 rounded hover:bg-gray-200 transition-colors border-none bg-transparent cursor-pointer;
+}
+
+.toolbar-button:disabled {
+  @apply opacity-50 cursor-not-allowed hover:bg-transparent;
+}
+
+.toolbar-button.is-active {
+  @apply bg-blue-100 text-blue-700;
+}
+
+/* Editor Content Styles */
+.tiptap-editor-wrapper {
+  @apply shadow-sm;
+}
+
+.editor-content {
+  @apply max-h-[600px] overflow-y-auto;
+}
+
+/* TipTap ProseMirror styles */
+.ProseMirror {
+  @apply min-h-[500px] focus:outline-none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply text-gray-400 float-left h-0 pointer-events-none;
+}
+
+/* Code block styling */
+.ProseMirror pre {
+  @apply bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto my-4;
+}
+
+.ProseMirror code {
+  @apply bg-gray-100 text-red-600 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.ProseMirror pre code {
+  @apply bg-transparent text-gray-100 p-0;
+}
+
+/* Table styling */
+.ProseMirror table {
+  @apply border-collapse w-full my-4;
+}
+
+.ProseMirror th,
+.ProseMirror td {
+  @apply border border-gray-300 px-3 py-2 text-left;
+}
+
+.ProseMirror th {
+  @apply bg-gray-100 font-semibold;
+}
+
+.ProseMirror td {
+  @apply bg-white;
+}
+
+/* Blockquote styling */
+.ProseMirror blockquote {
+  @apply border-l-4 border-gray-300 pl-4 py-2 my-4 italic text-gray-700;
+}
+
+/* Heading styles */
+.ProseMirror h1 {
+  @apply text-3xl font-bold mt-8 mb-4;
+}
+
+.ProseMirror h2 {
+  @apply text-2xl font-bold mt-6 mb-3;
+}
+
+.ProseMirror h3 {
+  @apply text-xl font-semibold mt-5 mb-2;
+}
+
+.ProseMirror h4 {
+  @apply text-lg font-semibold mt-4 mb-2;
+}
+
+/* List styles */
+.ProseMirror ul,
+.ProseMirror ol {
+  @apply pl-6 my-4 space-y-2;
+}
+
+.ProseMirror ul {
+  @apply list-disc;
+}
+
+.ProseMirror ol {
+  @apply list-decimal;
+}
+
+/* Link styles */
+.ProseMirror a {
+  @apply text-blue-600 underline hover:text-blue-800 cursor-pointer;
+}
+
+/* Selection styles */
+.ProseMirror .selectedCell {
+  @apply bg-blue-100;
+}
+
+/* Node selection */
+.ProseMirror-selectednode {
+  @apply outline outline-2 outline-blue-500 outline-offset-2;
+}
+
+/* Internal marker custom styles */
+.internal-marker-wrapper {
+  @apply my-4;
+}
+
+/* Callout custom styles */
+.callout-wrapper {
+  @apply my-4;
+}
+
+/* Drag handle (if added later) */
+.ProseMirror-gapcursor {
+  @apply pointer-events-none absolute;
+}
+
+.ProseMirror-gapcursor:after {
+  content: '';
+  @apply block absolute top-0 w-5 border-t-2 border-blue-500;
+  animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite;
+}
+
+@keyframes ProseMirror-cursor-blink {
+  to {
+    visibility: hidden;
+  }
+}

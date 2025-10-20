@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+}
+
+/* Markdown content styling */
+.markdown-content {
+  line-height: 1.75;
+}
+
+.markdown-content pre {
+  @apply rounded-lg my-4 overflow-x-auto;
+}
+
+.markdown-content code {
+  @apply text-sm;
+}
+
+.markdown-content pre code {
+  @apply block p-4;
+}
+
+.markdown-content :not(pre) > code {
+  @apply bg-gray-100 text-red-600 px-1.5 py-0.5 rounded text-sm;
+}
+
+/* Prose enhancements */
+.prose {
+  @apply text-gray-700;
+  max-width: none !important;
+}
+
+.prose h1 {
+  @apply text-gray-900 font-bold;
+}
+
+.prose h2 {
+  @apply text-gray-900 font-bold;
+}
+
+.prose h3 {
+  @apply text-gray-900 font-semibold;
+}
+
+.prose h4 {
+  @apply text-gray-900 font-semibold;
+}
+
+.prose strong {
+  @apply text-gray-900 font-semibold;
+}
+
+.prose a {
+  @apply text-blue-600 no-underline hover:underline;
+}
+
+/* Table styling */
+.prose table {
+  @apply w-full border-collapse;
+}
+
+.prose th {
+  @apply bg-gray-50 font-semibold text-left;
+}
+
+.prose td,
+.prose th {
+  @apply border border-gray-300 px-4 py-2;
+}
+
+.prose tr:hover {
+  @apply bg-gray-50;
+}
+
+/* Code block styling */
+.prose pre {
+  @apply bg-gray-900 text-gray-100 rounded-lg overflow-x-auto;
+}
+
+.prose pre code {
+  @apply bg-transparent text-gray-100;
+}
+
+.max-w-7xl {
+  max-width: 100% !important;
+}

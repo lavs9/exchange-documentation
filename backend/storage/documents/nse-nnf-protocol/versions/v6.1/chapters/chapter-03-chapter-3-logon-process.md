@@ -5,13 +5,6 @@ page_range: "23-46"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
----
-title: "Chapter 3 Logon Process"
-chapter_number: 3
-page_range: "23-46"
-document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
----
-
 # Chapter 3 Logon Process
 
 

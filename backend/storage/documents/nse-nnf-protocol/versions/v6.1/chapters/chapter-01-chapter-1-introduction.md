@@ -5,13 +5,6 @@ page_range: "12-13"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
----
-title: "Chapter 1 Introduction"
-chapter_number: 1
-page_range: "12-13"
-document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
----
-
 # Chapter 1 Introduction
 
 

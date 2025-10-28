@@ -206,11 +206,8 @@ class RichMarkdownGenerator:
         start_page = min(page_nums) if page_nums else 1
         end_page = max(page_nums) if page_nums else start_page
 
-        # Generate YAML frontmatter
-        frontmatter = self._generate_frontmatter(title, chapter_number, start_page, end_page)
-
-        # Generate chapter content
-        md_parts = [frontmatter, f"# {title}\n"]
+        # Generate chapter content (NO frontmatter - that's added by the caller if needed)
+        md_parts = [f"# {title}\n"]
 
         # Filter out page footers and merge tables
         filtered_elements = self._filter_page_footers(elements[1:])

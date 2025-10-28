@@ -5,13 +5,6 @@ page_range: "82-89"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
----
-title: "Chapter 6 Bhav Copy"
-chapter_number: 6
-page_range: "82-89"
-document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
----
-
 # Chapter 6 Bhav Copy
 
 

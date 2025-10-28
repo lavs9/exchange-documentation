@@ -5,13 +5,6 @@ page_range: "165-168"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
----
-title: "Chapter 11 Exception Handling"
-chapter_number: 11
-page_range: "165-168"
-document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
----
-
 # Chapter 11 Exception Handling
 
 

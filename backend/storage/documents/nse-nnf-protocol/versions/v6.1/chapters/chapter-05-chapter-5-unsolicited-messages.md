@@ -5,13 +5,6 @@ page_range: "74-82"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
----
-title: "Chapter 5 Unsolicited Messages"
-chapter_number: 5
-page_range: "74-82"
-document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
----
-
 # Chapter 5 Unsolicited Messages
 
 

@@ -5,13 +5,6 @@ page_range: "168-244"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
----
-title: "Chapter 12 CM-BM Functionalities"
-chapter_number: 12
-page_range: "168-244"
-document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
----
-
 # Chapter 12 CM-BM Functionalities
 
 

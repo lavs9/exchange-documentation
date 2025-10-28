@@ -5,13 +5,6 @@ page_range: "156-165"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
----
-title: "Chapter 10 Direct Interface to Exchange Trading System"
-chapter_number: 10
-page_range: "156-165"
-document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
----
-
 # Chapter 10 Direct Interface to Exchange Trading System
 
 

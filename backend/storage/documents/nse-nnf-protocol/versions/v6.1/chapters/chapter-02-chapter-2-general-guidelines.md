@@ -5,13 +5,6 @@ page_range: "13-23"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
----
-title: "Chapter 2 General Guidelines"
-chapter_number: 2
-page_range: "13-23"
-document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
----
-
 # Chapter 2 General Guidelines
 
 

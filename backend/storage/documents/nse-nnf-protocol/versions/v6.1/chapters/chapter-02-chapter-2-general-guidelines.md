@@ -1,15 +1,19 @@
---- title: "Chapter 2 General Guidelines" chapter_number: 2 page_range: "13-23" document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
+---
+title: "Chapter 2 General Guidelines"
+chapter_number: 2
+page_range: "13-23"
+document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
+---
 
+---
+title: "Chapter 2 General Guidelines"
+chapter_number: 2
+page_range: "13-23"
+document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
 # Chapter 2 General Guidelines
 
-<!-- MANUAL:START:user:2025-10-11T04:08:17.245Z:note -->
-
-> [!note]
-> **Note**: Hello world
-
-<!-- MANUAL:END -->
 
 ## Introduction
 
@@ -58,21 +62,67 @@ Twiddling is required because of the variety in endian order -big and little. A 
 
 ## Data Types Used
 
-| Data Type | Size of Bytes | Signed / Unsigned | | --- | --- | --- | | CHAR | 1 | Signed | | UINT | 2 | Unsigned | | SHORT | 2 | Signed | | LONG | 4 | Signed | | UNSIGNED LONG | 4 | Unsigned | | LONG LONG | 8 | Signed | | DOUBLE | 8 | Signed and Floating Point | | BIT | 1 bit | NA |
+| Data Type | Size of Bytes | Signed / Unsigned |
+| --- | --- | --- |
+| CHAR | 1 | Signed |
+| UINT | 2 | Unsigned |
+| SHORT | 2 | Signed |
+| LONG | 4 | Signed |
+| UNSIGNED LONG | 4 | Unsigned |
+| LONG LONG | 8 | Signed |
+| DOUBLE | 8 | Signed and Floating Point |
+| BIT | 1 bit | NA |
 
 ## Message Header
 
 Each structure is prefaced with a MESSAGE_HEADER which is an interactive header. Some data in the header are fixed whereas some data are variable and set differently for each transaction code. The structure of the Message Header is as follows:
 
-| Structure Name | MESSAGE_HEADER | | --- | --- | | Packet Length | 40 bytes | | Field Name | Data Type | | TransactionCode | SHORT | | LogTime | LONG | | AlphaChar [2] | CHAR | | TraderId | LONG | | ErrorCode | SHORT | | TimeStamp | LONG LONG | | Packet Length | 40 bytes | | Field Name | Data Type | | TimeStamp1 [8] | CHAR | | TimeStamp2 [8] | CHAR | | MessageLength | SHORT |
+| Structure Name | MESSAGE_HEADER |
+| --- | --- |
+| Packet Length | 40 bytes |
+| Field Name | Data Type |
+| TransactionCode | SHORT |
+| LogTime | LONG |
+| AlphaChar [2] | CHAR |
+| TraderId | LONG |
+| ErrorCode | SHORT |
+| TimeStamp | LONG LONG |
+| Packet Length | 40 bytes |
+| Field Name | Data Type |
+| TimeStamp1 [8] | CHAR |
+| TimeStamp2 [8] | CHAR |
+| MessageLength | SHORT |
 
-| Field Name | Brief Description | | --- | --- | | TransactionCode | Transaction message number. This describes the type of message received or sent. | | LogTime | This field should be set to zero while sending messages. | | AlphaChar [2] | This field should be set to the first two characters of Symbol if the structure contains Symbol and Series; otherwise it should be set to blank. | | TraderId | This field should contain the user ID. | | ErrorCode | This field should be set to zero while sending messages to the host. In the messages coming from the host, this field describes the type of error. Refer to List of Error Codes in Appendix. | | TimeStamp | This field should be set to numeric zero while sending to the host. This is used in host end. For transcodes listed in appendix, time in this field will be populated in nanoseconds(from 01-Jan-1980 00:00:00). This time is stamped at the matching engine in the trading system. | | TimeStamp1 | This field should be set to numeric zero while sending. This is the time the message arrives at the trading system host. In TimeStamp1, time is sent in jiffies from host end. This8 byte data needs to be typecasted as first four bytes into double variable and typecast the other four byte into another double variable. These values need to be used while requesting message area download in the same order. | | TimeStamp2 | This field should be set to numeric zero while sending to the host. For messages coming from the host, this field contains the machine number from which the packet is coming. | |  | In TimeStamp2, machine number is sent from host end. | | MessageLength | This fieldshouldbeset to the length of the entiremessage, including the length of message header while sending to host. |
+| Field Name | Brief Description |
+| --- | --- |
+| TransactionCode | Transaction message number. This describes the type of message received or sent. |
+| LogTime | This field should be set to zero while sending messages. |
+| AlphaChar [2] | This field should be set to the first two characters of Symbol if the structure contains Symbol and Series; otherwise it should be set to blank. |
+| TraderId | This field should contain the user ID. |
+| ErrorCode | This field should be set to zero while sending messages to the host. In the messages coming from the host, this field describes the type of error. Refer to List of Error Codes in Appendix. |
+| TimeStamp | This field should be set to numeric zero while sending to the host. This is used in host end. For transcodes listed in appendix, time in this field will be populated in nanoseconds(from 01-Jan-1980 00:00:00). This time is stamped at the matching engine in the trading system. |
+| TimeStamp1 | This field should be set to numeric zero while sending. This is the time the message arrives at the trading system host. In TimeStamp1, time is sent in jiffies from host end. This8 byte data needs to be typecasted as first four bytes into double variable and typecast the other four byte into another double variable. These values need to be used while requesting message area download in the same order. |
+| TimeStamp2 | This field should be set to numeric zero while sending to the host. For messages coming from the host, this field contains the machine number from which the packet is coming. |
+|  | In TimeStamp2, machine number is sent from host end. |
+| MessageLength | This fieldshouldbeset to the length of the entiremessage, including the length of message header while sending to host. |
 
 ## Inner Message Header
 
 Each structure in the Data of Update Local Database Data/Message Download Data responses is prefaced with an INNER_MESSAGE_HEADER. The structure of the Inner Message Header is as follows:
 
-| Structure Name | INNER_MESSAGE_HEADER | | --- | --- | | Packet Length | 40 bytes | | Field Name | Data Type | | TraderId | LONG | | LogTime | LONG | | AlphaChar [2] | CHAR | | TransactionCode | SHORT | | ErrorCode | SHORT | | TimeStamp | LONG LONG | | TimeStamp1 [8] | CHAR | | TimeStamp2 [8] | CHAR | | MessageLength | SHORT |
+| Structure Name | INNER_MESSAGE_HEADER |
+| --- | --- |
+| Packet Length | 40 bytes |
+| Field Name | Data Type |
+| TraderId | LONG |
+| LogTime | LONG |
+| AlphaChar [2] | CHAR |
+| TransactionCode | SHORT |
+| ErrorCode | SHORT |
+| TimeStamp | LONG LONG |
+| TimeStamp1 [8] | CHAR |
+| TimeStamp2 [8] | CHAR |
+| MessageLength | SHORT |
 
 ## Broadcast Process Header
 
@@ -80,23 +130,63 @@ The broadcast messages like market open, market close, market in pre-open are pr
 
 Table 3 BROADCAST_HEADER
 
-| Structure Name | BCAST_HEADER | | --- | --- | | Packet Length | 40 bytes | | Field Name | Data Type | | Reserved | CHAR | | LogTime | LONG | | AlphaChar | CHAR | | TransCode | SHORT | | ErrorCode | SHORT | | BCSeqNo | LONG | | Reserved | CHAR | | TimeStamp2 | CHAR | | Filler2 | CHAR | | MessageLength | SHORT |
+| Structure Name | BCAST_HEADER |
+| --- | --- |
+| Packet Length | 40 bytes |
+| Field Name | Data Type |
+| Reserved | CHAR |
+| LogTime | LONG |
+| AlphaChar | CHAR |
+| TransCode | SHORT |
+| ErrorCode | SHORT |
+| BCSeqNo | LONG |
+| Reserved | CHAR |
+| TimeStamp2 | CHAR |
+| Filler2 | CHAR |
+| MessageLength | SHORT |
 
-| Field Name | Brief Description | | --- | --- | | LogTime | This field should be set to zero while sending to host end. For messages sent from host end this field contains the time when the message was generated by the trading system host. | | AlphaChar | This field is set to the first two characters of Symbol if the structure contains Symbol and Series; otherwise it is set to blank. | | TransactionCode | This field contains the transaction message number. This describes the type of message received or sent. | | ErrorCode | This field contains the error number which describes the type of error. Refer to List of Error Codes in Appendix. | | BCSeqNo | This field contains BCAST Sequence number of the NSE host end system. The sequence number is not the unique broadcast sequence number as it has eleven set of sequence numbers for normal broadcast and six set of sequence numbers for Fast broadcast each instance of the sequence number is generated by the Individual processes in the host end. It is not an unique sequence number. | | TimeStamp2 | This field contains the time when message is sent from the host. | | Filler2 | This field contains the machine number. | | MessageLength | This field is set to the length of the entire message, including the length of the message header. |
+| Field Name | Brief Description |
+| --- | --- |
+| LogTime | This field should be set to zero while sending to host end. For messages sent from host end this field contains the time when the message was generated by the trading system host. |
+| AlphaChar | This field is set to the first two characters of Symbol if the structure contains Symbol and Series; otherwise it is set to blank. |
+| TransactionCode | This field contains the transaction message number. This describes the type of message received or sent. |
+| ErrorCode | This field contains the error number which describes the type of error. Refer to List of Error Codes in Appendix. |
+| BCSeqNo | This field contains BCAST Sequence number of the NSE host end system. The sequence number is not the unique broadcast sequence number as it has eleven set of sequence numbers for normal broadcast and six set of sequence numbers for Fast broadcast each instance of the sequence number is generated by the Individual processes in the host end. It is not an unique sequence number. |
+| TimeStamp2 | This field contains the time when message is sent from the host. |
+| Filler2 | This field contains the machine number. |
+| MessageLength | This field is set to the length of the entire message, including the length of the message header. |
 
 ## SEC_INFO
 
-| Structure Name | SEC_INFO | | --- | --- | | Packet Length | 12 bytes | | Field Name | Data Type | | Symbol | CHAR | | Series | CHAR |
+| Structure Name | SEC_INFO |
+| --- | --- |
+| Packet Length | 12 bytes |
+| Field Name | Data Type |
+| Symbol | CHAR |
+| Series | CHAR |
 
-| Field Name | Brief Description | | --- | --- | | Symbol | This field should contain the symbol of a security. | | Series | This field should contain the series of a security. |
+| Field Name | Brief Description |
+| --- | --- |
+| Symbol | This field should contain the symbol of a security. |
+| Series | This field should contain the series of a security. |
 
 ## Error Message
 
 When the Error Code in the Message Header is having nonzero value, ERROR RESPONSE is sent. The Error Message will describe the error received. The structure is as follows:
 
-| Structure Name | ERROR RESPONSE | | --- | --- | | Packet Length | 180 bytes | | Field Name | Data Type | | MESSAGE_HEADER (Refer Table 1) | STRUCT | | SEC_INFO (Refer Table 4) | STRUCT | | Error Message | CHAR |
+| Structure Name | ERROR RESPONSE |
+| --- | --- |
+| Packet Length | 180 bytes |
+| Field Name | Data Type |
+| MESSAGE_HEADER (Refer Table 1) | STRUCT |
+| SEC_INFO (Refer Table 4) | STRUCT |
+| Error Message | CHAR |
 
-| Field Name | Brief Description | | --- | --- | | Symbol | This field should contain the symbol of a security. | | Series | This field should contain the series of a security. | | ErrorMessage | Stores the error message. Refer to List of Error Codes in Appendix. |
+| Field Name | Brief Description |
+| --- | --- |
+| Symbol | This field should contain the symbol of a security. |
+| Series | This field should contain the series of a security. |
+| ErrorMessage | Stores the error message. Refer to List of Error Codes in Appendix. |
 
 ## Invalid Message Length Response Transcode
 
@@ -139,18 +229,8 @@ The gateway router will decide the gateway server for the member for each tradin
 - Once a member has been provided session key with gateway server details by gateway router server, the member is expected to connect and login to the allocated gateway server at any time during rest of the trading day.
 - If the member gets logged off from the allocated gateway server, then the member has to request the gateway router server for getting new session key and gateway server details.
 
-- `A member will be directed to the same gateway server by the gateway router server, once it has been allocated for the trading day.`
+- A member will be directed to the same gateway server by the gateway router server, once it has been allocated for the trading day.
 - Though the user will get directed to the same gateway, the user must ask the gateway router  for  getting  the  gateway  details  and  session  key  as  the  old  session  key  will  be unique for that particular session and is cleaned up from the gateway once the user gets logged off.
 - Also, if the gateway has a failure during the day, the user will be allocated a new gateway server. This will be done transparently for the user by the gateway router server.
 
 At the end of each trading day the gateway router server will clean up the used capacity, and will have the same capacity (full capacity) available for all gateway servers for the next day.
-
-## Related Notes
-
-- [Test Node](/api/notes/test-node)
-
-- [Add Test Note](/api/notes/add-test-note)
-
-- [Add A New Note](/api/notes/add-a-new-note)
-
-<!-- MANUAL:START:user:2025-10-12T08:59:26.284Z:note --> Hello Internal note 2 <!-- MANUAL:END -->

@@ -5,6 +5,13 @@ page_range: "46-74"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
+---
+title: "Chapter 4"
+chapter_number: 4
+page_range: "46-74"
+document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
+---
+
 # Chapter 4
 
 

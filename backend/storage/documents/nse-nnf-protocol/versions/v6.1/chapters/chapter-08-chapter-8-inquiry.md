@@ -5,6 +5,13 @@ page_range: "150-153"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
+---
+title: "Chapter 8 Inquiry"
+chapter_number: 8
+page_range: "150-153"
+document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
+---
+
 # Chapter 8 Inquiry
 
 

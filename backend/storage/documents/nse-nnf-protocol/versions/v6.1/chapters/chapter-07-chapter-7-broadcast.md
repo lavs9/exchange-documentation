@@ -5,6 +5,13 @@ page_range: "89-150"
 document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 ---
 
+---
+title: "Chapter 7 Broadcast"
+chapter_number: 7
+page_range: "89-150"
+document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
+---
+
 # Chapter 7 Broadcast
 
 

@@ -8,15 +8,13 @@ document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 # Chapter 10 Direct Interface to Exchange Trading System
 
 
-This chapter describes how member systems can directly connect to NSE for trading, while using existing formats of business messages from NNF API documents. `[p.156]`
+This chapter describes how member systems can directly connect to NSE for trading, while using existing formats of business messages from NNF API documents.
 
-To directly connect to NSE for trading, member systems will have carry out the changes specified herein. `[p.156]`
+To directly connect to NSE for trading, member systems will have carry out the changes specified herein.
 
-## Message Formats `[p.156]`
+## Message Formats
 
 Change to packet format
-
-*Table (p.156)*
 
 | Length | Sequence | Checksum(MD5) for | Message Data |
 | --- | --- | --- | --- |
@@ -31,7 +29,7 @@ size of sequence number field (4 bytes) +
 
 size of the checksum field (16 bytes) +
 
-size of Message data (variable number of bytes as per the transcode) `[p.156]`
+size of Message data (variable number of bytes as per the transcode)
 
 - For  members  connecting  on  encrypted  mode,  the  sequence  number  received  in  the request  message  for  Order  related  interactive  messages  will  be  echoed  back  in  the sequence number field of corresponding response messages. It is recommended to send an incremental sequence number.
 - For  members  connecting  on  non-encrypted  mode,  there  is  no  change  in  sequence number. Sequence number will be sent as 0 in all the packets.
@@ -40,11 +38,9 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 - For more details on MD5 refer: RFC 1321 (rfc1321) - The MD5 Message-Digest Algorithm ()
 - In case checksum is not matched, packet will be dropped at Exchange end
 
-## Change to structure for 'MESSAGE_HEADER' `[p.157]`
+## Change to structure for 'MESSAGE_HEADER'
 
-## MESSAGE_HEADER `[p.157]`
-
-*Table (p.157)*
+## MESSAGE_HEADER
 
 | Structure Name | MESSAGE_HEADER |
 | --- | --- |
@@ -60,9 +56,9 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | TimeStamp2 | CHAR |
 | MessageLength | SHORT |
 
-## Connecting to NSE for Trading `[p.157]`
+## Connecting to NSE for Trading
 
-## Sequence to be followed by the member for login `[p.157]`
+## Sequence to be followed by the member for login
 
 - Member to connect (TCP/IP, SSL connection) to the IP and port provided by the exchange and send the GR_REQUEST using OpenSSL (Version 1.1.1) library calls with TLS versions 1.3 (TLS1_3_VERSION). Refer annexure for Encryption/Decryption.
 - Exchange will send the GR_RESPONSE to the member containing the IP address, Port and the Session key and cryptographic key  & cryptographic IV (Initialization Vector) on SSL connection. If there is any error, then ErrorCode field in MESSAGE_HEADER will be populated with relevant error code in the GR_RESPONSE.
@@ -76,9 +72,7 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 
 - For further flow refer to existing protocol defined in [Chapter 3](#chapter-3-logon-process) of Protocol Document
 
-## Gateway Router Request `[p.159]`
-
-*Table (p.159)*
+## Gateway Router Request
 
 | Structure Name | MS_GR_REQUEST |
 | --- | --- |
@@ -90,17 +84,13 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | BrokerID | CHAR |
 | Filler | CHAR |
 
-*Table (p.159)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | Transaction Code | This field is the part of Message Header . The transaction code is 2400. |
 | Box ID | Exchange provided Box ID to be used for this connection |
 | BrokerID | This field should contain the trading member ID |
 
-## Gateway Router Response `[p.159]`
-
-*Table (p.159-160)*
+## Gateway Router Response
 
 | Structure Name | MS_GR_RESPONSE |
 | --- | --- |
@@ -120,8 +110,6 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | Cryptographic Key | CHAR |
 | Cryptographic IV (Initialization Vector) | CHAR |
 
-*Table (p.160)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | Transaction Code | This field is the part of Message Header. The transaction code is 2401 |
@@ -134,11 +122,9 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | Cryptographic Key | Cryptographic key for both the encryption and decryption of all messages betweenmemberapplicationand allocated Gateway Server. |
 | Cryptographic IV (Initialization Vector) | Cryptographic IV (Initialization Vector) for both the encryption and decryption of all messages between member application and allocated Gateway Server. |
 
-## Secure Box Registration Request `[p.160]`
+## Secure Box Registration Request
 
-## SECURE_BOX_REGISTRATION_REQUEST `[p.160]`
-
-*Table (p.160)*
+## SECURE_BOX_REGISTRATION_REQUEST
 
 | Structure Name | MS_ SECURE_BOX_REGISTRATION_REQUEST_IN |
 | --- | --- |
@@ -148,18 +134,14 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | MESSAGE HEADER (Refer Message Header | STRUCT |
 | BoxId | SHORT |
 
-*Table (p.161)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | Transcode | This field is the part of Message Header. The transaction code is 23008 |
 | BoxId | Exchange provided Box ID to be used for this connection |
 
-## Secure Box Registration Response `[p.161]`
+## Secure Box Registration Response
 
-## SECURE_BOX_REGISTRATION_RESPONSE `[p.161]`
-
-*Table (p.161)*
+## SECURE_BOX_REGISTRATION_RESPONSE
 
 | Structure Name | MS_ SECURE_BOX_REGISTRATION_RESPONSE_OUT |
 | --- | --- |
@@ -168,18 +150,14 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | Field Name | Data Type |
 | MESSAGE HEADER (Refer Message Header structure) | STRUCT |
 
-*Table (p.161)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | Transcode | This field is the part of Message Header. The transaction code is 23009 |
 | ErrorCode | This field is the part of Message Header. Error Code will be set if the query is unsuccessful. Refer to List of Error Codes in Appendix |
 
-## Box Sign on Request `[p.161]`
+## Box Sign on Request
 
-## MS_BOX_SIGN_ON_REQUEST_IN `[p.161]`
-
-*Table (p.161)*
+## MS_BOX_SIGN_ON_REQUEST_IN
 
 | Structure Name | MS_BOX_SIGN_ON_REQUEST_IN |
 | --- | --- |
@@ -192,8 +170,6 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | Reserved | CHAR |
 | SessionKey | CHAR |
 
-*Table (p.162)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | Transcode | This field is the part of Message Header.The transaction code is 23000 |
@@ -201,11 +177,9 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | BrokerID | This field should contain the trading member ID |
 | SessionKey | Session key received in GR_RESPONSE(2401) |
 
-## Box Sign on Response `[p.162]`
+## Box Sign on Response
 
-## MS_BOX_SIGN_ON_REQUEST_OUT `[p.162]`
-
-*Table (p.162)*
+## MS_BOX_SIGN_ON_REQUEST_OUT
 
 | Structure Name | MS_BOX_SIGN_ON_REQUEST_OUT |
 | --- | --- |
@@ -216,36 +190,30 @@ size of Message data (variable number of bytes as per the transcode) `[p.156]`
 | BoxId | SHORT |
 | Reserved | CHAR |
 
-*Table (p.162)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | Transaction Code | This field is the part of Message Header. The transaction code is 23001 |
 | Error Code | This field is the part of Message Header. Error Code will be set if the query is unsuccessful. Refer to List of Error Codes in Appendix. |
 | BoxId | Exchange provided Box ID used for this connection |
 
-## SignOn In `[p.162]`
+## SignOn In
 
-Members systems must send other messages immediately using existing protocol defined in [Chapter 3](#chapter-3-logon-process)  of  Protocol  Document.  A  few  fields  in  the  Logon  message  have  to  be  populated differently for direct connection: `[p.162]`
-
-*Table (p.162-163)*
+Members systems must send other messages immediately using existing protocol defined in [Chapter 3](#chapter-3-logon-process)  of  Protocol  Document.  A  few  fields  in  the  Logon  message  have  to  be  populated differently for direct connection:
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is MS_SIGNON (2300). |
 | ShowIndex | 'T' = to use Trimmed -NNF protocol with Total Traded Quantity and Value Data Type Change Note: Only Trimmed-NNF protocol is supported by Direct Interface |
 
-## How to Logoff? `[p.163]`
+## How to Logoff?
 
-To logoff from the exchange trading system, there is no change and use the existing protocol defined in [Chapter 3](#chapter-3-logon-process) of protocol document. `[p.163]`
+To logoff from the exchange trading system, there is no change and use the existing protocol defined in [Chapter 3](#chapter-3-logon-process) of protocol document.
 
-## Heartbeat exchange `[p.163]`
+## Heartbeat exchange
 
-Member systems must exchange heartbeat signals with exchange trading system during periods of  inactivity.  Trading  Host  will  consider  the  member  system  as  inactive  after  missing  two heartbeats in succession and disconnect the socket connection. Heartbeats will carry following data in MessageData segment of the message. Heartbeat is to be sent only if there is inactivity for 30 seconds. The format is MESSAGE_HEADER with following detail. `[p.163]`
+Member systems must exchange heartbeat signals with exchange trading system during periods of  inactivity.  Trading  Host  will  consider  the  member  system  as  inactive  after  missing  two heartbeats in succession and disconnect the socket connection. Heartbeats will carry following data in MessageData segment of the message. Heartbeat is to be sent only if there is inactivity for 30 seconds. The format is MESSAGE_HEADER with following detail.
 
-## HEARTBEAT `[p.163]`
-
-*Table (p.163)*
+## HEARTBEAT
 
 | Structure Name | HEARTBEAT |
 | --- | --- |
@@ -254,21 +222,19 @@ Member systems must exchange heartbeat signals with exchange trading system duri
 | Field Name | Data Type |
 | MESSAGE HEADER | STRUCT |
 
-## Recovering from disconnections `[p.164]`
+## Recovering from disconnections
 
-If member system detects a loss of TCP connection with the exchange trading system, please perform the same operations for starting a fresh login given above. `[p.164]`
+If member system detects a loss of TCP connection with the exchange trading system, please perform the same operations for starting a fresh login given above.
 
-## Performing Trading activities `[p.164]`
+## Performing Trading activities
 
-Once  authenticated  connection  is  successfully  established,  member  systems  can  send  any business message to exchange as described in NNF protocol documents. Care should be taken to use MESSAGE_HEADER described in this chapter wherever applicable in front of business messages. `[p.164]`
+Once  authenticated  connection  is  successfully  established,  member  systems  can  send  any business message to exchange as described in NNF protocol documents. Care should be taken to use MESSAGE_HEADER described in this chapter wherever applicable in front of business messages.
 
-## Connection Termination `[p.164]`
+## Connection Termination
 
-When  connection is terminated by exchange,  BOX_SIGN_OFF  (20322)  message  with appropriate error code will be sent. `[p.164]`
+When  connection is terminated by exchange,  BOX_SIGN_OFF  (20322)  message  with appropriate error code will be sent.
 
-## Box Sign Off `[p.164]`
-
-*Table (p.164)*
+## Box Sign Off
 
 | Structure Name | MS_BOX_SIGN_OFF |
 | --- | --- |
@@ -277,8 +243,6 @@ When  connection is terminated by exchange,  BOX_SIGN_OFF  (20322)  message  wit
 | Field Name | Data Type |
 | MESSAGE HEADER | STRUCT |
 | BoxId | SHORT |
-
-*Table (p.164)*
 
 | Field Name | Brief Description |
 | --- | --- |

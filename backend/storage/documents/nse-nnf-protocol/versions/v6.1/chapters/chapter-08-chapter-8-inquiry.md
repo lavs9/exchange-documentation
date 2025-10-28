@@ -8,15 +8,13 @@ document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 # Chapter 8 Inquiry
 
 
-## Introduction `[p.150]`
+## Introduction
 
-This section describes the Auction Inquiry and the system responses for the same. `[p.150]`
+This section describes the Auction Inquiry and the system responses for the same.
 
-## Auction Inquiry Request `[p.150]`
+## Auction Inquiry Request
 
-The format of the message sent in a structure is as follows: `[p.150]`
-
-*Table (p.150)*
+The format of the message sent in a structure is as follows:
 
 | Structure Name | MS_AUCTION_INQ_REQ |
 | --- | --- |
@@ -28,8 +26,6 @@ The format of the message sent in a structure is as follows: `[p.150]`
 | AuctionNo | SHORT |
 | PageIndicator | CHAR |
 
-*Table (p.150)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is AUCTION_INQUIRY_IN (18016) |
@@ -37,11 +33,9 @@ The format of the message sent in a structure is as follows: `[p.150]`
 | AuctionNo | This field should contain the auction number. It is optional to specify symbol and series. |
 | PageIndicator | This field is to help the user browse through various pages of information. It contains the values of 'U', 'D', 'H', 'E', 'F' for Up, Down, Home, End, and First respectively |
 
-## Auction Inquiry Response `[p.150]`
+## Auction Inquiry Response
 
-As  soon  as  the  auction  inquiry  request  reaches  the  system,  it  sends  back  the  structure  of response in the MESSAGE HEADER (Refer to Message Header in [Chapter 2](#chapter-2-general-guidelines)). The response can be either an error code or the requested response. `[p.150]`
-
-*Table (p.151)*
+As  soon  as  the  auction  inquiry  request  reaches  the  system,  it  sends  back  the  structure  of response in the MESSAGE HEADER (Refer to Message Header in [Chapter 2](#chapter-2-general-guidelines)). The response can be either an error code or the requested response.
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -49,8 +43,6 @@ As  soon  as  the  auction  inquiry  request  reaches  the  system,  it  sends  
 | ErrorCode | This field contains the error code. If this error code is not '0' then error has occurred, if this is zero, then auction inquiry is successful. In case of error, symbol, series or auction number may be wrong or the auction inquiry as a whole may be wrong. In this case, the same structure is sent back in which the message header is present. |
 | NumberOf Records | This field contains the number of records that are sent in the Inquiry Data structure which follows this field. |
 | InquiryData | This is an array of structure. It contains the inquiry data. Refer to Auction Activity Message in [Chapter 7](#chapter-7-broadcast) for details of fields in the Inquiry Data structure |
-
-*Table (p.151)*
 
 | Structure Name | AUCTION INQUIRY RESPONSE |
 | --- | --- |
@@ -60,8 +52,6 @@ As  soon  as  the  auction  inquiry  request  reaches  the  system,  it  sends  
 | MESSAGE HEADER (Refer Table 1) | STRUCT |
 | NumberOfRecords | SHORT |
 | InquiryData[5] (Refer Table 48.1) | STRUCT |
-
-*Table (p.151-152)*
 
 | Structure Name | INQUIRYDATA |
 | --- | --- |

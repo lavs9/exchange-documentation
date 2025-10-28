@@ -8,15 +8,13 @@ document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 # Chapter 7 Broadcast
 
 
-## Introduction `[p.89]`
+## Introduction
 
-This section describes the Compression and Decompression algorithm of Broadcast data and the various Broadcast messages with their structures. `[p.89]`
+This section describes the Compression and Decompression algorithm of Broadcast data and the various Broadcast messages with their structures.
 
-## Compression of the Broadcast Data `[p.89]`
+## Compression of the Broadcast Data
 
-The broadcast traffic from the exchange which gives the on-line quotes to the trading terminals has  been  continually  increasing,  especially  during  market  open  and  market  close.  To accommodate the increased broadcast traffic, the exchange has come up with a compression algorithm to compress some of the specific broadcast transaction codes, which are as follows: `[p.89]`
-
-*Table (p.89)*
+The broadcast traffic from the exchange which gives the on-line quotes to the trading terminals has  been  continually  increasing,  especially  during  market  open  and  market  close.  To accommodate the increased broadcast traffic, the exchange has come up with a compression algorithm to compress some of the specific broadcast transaction codes, which are as follows:
 
 | Transaction Code | Represents |
 | --- | --- |
@@ -27,68 +25,66 @@ The broadcast traffic from the exchange which gives the on-line quotes to the tr
 | 7215 | BROADCAST CALL AUCTION MARKET WATCH |
 | 7210 | Order Cancel Update |
 
-LZO  compression  algorithm  is  used  to  compress  the  above  specified  broadcast  transaction codes. The details of the LZO compression algorithm are described below. `[p.89]`
+LZO  compression  algorithm  is  used  to  compress  the  above  specified  broadcast  transaction codes. The details of the LZO compression algorithm are described below.
 
-The LZO stands for Lempel Ziv Oberhaumer. This algorithm is freely available on the internet (URL:  http://www.oberhumer.com/opensource/lzo).  It  is  made  available  by  free  software foundation. The algorithm is tested on various operating systems like UNIX and red hat Linux. `[p.89]`
+The LZO stands for Lempel Ziv Oberhaumer. This algorithm is freely available on the internet (URL:  http://www.oberhumer.com/opensource/lzo).  It  is  made  available  by  free  software foundation. The algorithm is tested on various operating systems like UNIX and red hat Linux.
 
-## Decompression Routine `[p.89]`
+## Decompression Routine
 
-## Sequential Packing `[p.89]`
+## Sequential Packing
 
-To  improve  the  effective  data  transfer,  the  idea  of  sequential  packing  along  with  the  lzo compression algorithm has been incorporated. At the host end, sequential packing algorithm packs the incoming data packets, which is then transmitted over the network. The data packets are packed in FIFO order. `[p.89]`
+To  improve  the  effective  data  transfer,  the  idea  of  sequential  packing  along  with  the  lzo compression algorithm has been incorporated. At the host end, sequential packing algorithm packs the incoming data packets, which is then transmitted over the network. The data packets are packed in FIFO order.
 
 For example,
 
-If 'n' packets are packed in a buffer, they are arranged in the following order: `[p.89]`
+If 'n' packets are packed in a buffer, they are arranged in the following order:
 
-1 st packet will be stored at the first place in the buffer, 2 nd  Packet will be stored at the second place, and so on. `[p.90]`
+1 st packet will be stored at the first place in the buffer, 2 nd  Packet will be stored at the second place, and so on.
 
-At the front end while de packing the buffer, the packets are to be segregated in the same order, that is, isolate each packet and process each packet as per the sequence viz- first packet first and last packet at the end. The packets within a buffer may be an admixture of compressed and uncompressed data packets. `[p.90]`
+At the front end while de packing the buffer, the packets are to be segregated in the same order, that is, isolate each packet and process each packet as per the sequence viz- first packet first and last packet at the end. The packets within a buffer may be an admixture of compressed and uncompressed data packets.
 
-## Calling Convention `[p.90]`
+## Calling Convention
 
-The decompression routine is a C-callable routine with the following prototype: Void Sigdec2 (char *ip, unsigned short  *ipL, `[p.90]`
+The decompression routine is a C-callable routine with the following prototype: Void Sigdec2 (char *ip, unsigned short  *ipL,
 
 char *op, unsigned short *opL,
 
 unsigned short *errorcode);
 
-## Parameters `[p.90]`
+## Parameters
 
-## Packet Format `[p.91]`
+## Packet Format
 
-Incoming packet at the front end can be interpreted by mapping onto the following structure. `[p.91]`
+Incoming packet at the front end can be interpreted by mapping onto the following structure.
 
 ```
 Struct { CHAR   cNetId [2] SHORT iNoPackets CHAR   cPackData [512] }     BcastPackData where, cNetId[2] Identifies the machine ( CM broadcast or F&O Broadcast ) Please find different values of CNetId for difference segments Equity: - 4 Equity Derivative: - 2 Currency Derivative: - 6 iNoPackets The number of packets that are sequentially packed cPackData Buffer containing all the packets. The buffer when mapped to, by the above structure, the number of packets in the buffer can be known. The next task is to segregate the packets and process the individual packets. The packets received through the broadcast traffic have to be interpreted as follows COMPRESSION_BROADCAST_DATA { SHORT CompressionLen CHAR BroadcastData [ ]
 ```
-`[p.91]`
 
 ```
 }
 ```
-`[p.91]`
 
-## Note: `[p.91]`
+## Note:
 
 - The  first  two  bytes  of  the  broadcast  packet  indicate  the  length  of  the  data  after compression.
 - If the compression length is zero, the data received is not compressed.
 - If the length is non-zero, the data following the length should be decompressed by using the decompression routine.
 - Inside the broadcast data, the first 8 bytes before the message header should be ignored. The message header starts from the 9 th  byte.
 
-## Implementation at Front End `[p.92]`
+## Implementation at Front End
 
-The lzo directory (lzo1.07) contains all the lzo source, header and library files. These files are to be included while building an application. `[p.92]`
+The lzo directory (lzo1.07) contains all the lzo source, header and library files. These files are to be included while building an application.
 
-lzo1z_decompress is used for decompression. This is a function of the lzo library. `[p.92]`
+lzo1z_decompress is used for decompression. This is a function of the lzo library.
 
-An API has to be developed to encompass the above LZO decompression function. `[p.92]`
+An API has to be developed to encompass the above LZO decompression function.
 
 The syntax of the call should be:
 
-lzo_decomp (char* inp_buff, unsigned int* inp_len, char* buffer_decomp, unsigned int *output_len, unsigned short *errorCode) `[p.92]`
+lzo_decomp (char* inp_buff, unsigned int* inp_len, char* buffer_decomp, unsigned int *output_len, unsigned short *errorCode)
 
-Where,  lzo_decomp  is  a  function  of  the  API  (to  be  developed  by  referring  to  the  examples specified in the lzo 1.07 directory) that calls the lzo function for decompression 'lzo1z_decompress' `[p.92]`
+Where,  lzo_decomp  is  a  function  of  the  API  (to  be  developed  by  referring  to  the  examples specified in the lzo 1.07 directory) that calls the lzo function for decompression 'lzo1z_decompress'
 
 The syntax of the lzo decompress function is as follows:
 
@@ -96,17 +92,15 @@ lzo1z_decompress (out, decomp_inlen, in, & decomp_outlen, NULL)
 
 Where
 
-## Note: `[p.92]`
+## Note:
 
-Inside the broadcast data, the first byte indicates the market type.  Ignore the rest of the 7 bytes before message header. If the first byte has the value of '4', it is Capital market and if it is '2' then it is futures and options market. `[p.92]`
+Inside the broadcast data, the first byte indicates the market type.  Ignore the rest of the 7 bytes before message header. If the first byte has the value of '4', it is Capital market and if it is '2' then it is futures and options market.
 
 The message header starts from 9 th  byte.
 
-## General Message Broadcast `[p.93]`
+## General Message Broadcast
 
-Any general message is broadcasted in the following structure. The structure sent is: `[p.93]`
-
-*Table (p.93)*
+Any general message is broadcasted in the following structure. The structure sent is:
 
 | Structure Name | BROADCAST MESSAGE |
 | --- | --- |
@@ -122,8 +116,6 @@ Any general message is broadcasted in the following structure. The structure sen
 | BroadcastMessageLength | SHORT |
 | BroadcastMessage | CHAR |
 
-*Table (p.93)*
-
 | Structure Name | BROADCAST DESTINATION |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -134,8 +126,6 @@ Any general message is broadcasted in the following structure. The structure sen
 
 Table 28.2 BROADCAST_DESTINATION (For Big Endian Machines)
 
-*Table (p.93-94)*
-
 | Structure Name | BROADCAST DESTINATION |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -145,8 +135,6 @@ Table 28.2 BROADCAST_DESTINATION (For Big Endian Machines)
 | Field Name | Data Type |
 | Reserved | BIT |
 | Reserved | CHAR |
-
-*Table (p.94)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -158,25 +146,21 @@ Table 28.2 BROADCAST_DESTINATION (For Big Endian Machines)
 | BroadcastMessageLength | This field contains the length of the broadcast message. |
 | BroadcastMessage | This field contains the broadcast message. |
 
-## Change in System Status / Parameters `[p.94]`
+## Change in System Status / Parameters
 
-This message is sent when any global operating parameters are changed or status of markets is changed. The structure of the message is: `[p.94]`
+This message is sent when any global operating parameters are changed or status of markets is changed. The structure of the message is:
 
-SYSTEM INFORMATION DATA (Refer to System Information Response in [Chapter 3](#chapter-3-logon-process)) `[p.94]`
-
-*Table (p.94)*
+SYSTEM INFORMATION DATA (Refer to System Information Response in [Chapter 3](#chapter-3-logon-process))
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BCAST_SYSTEM_INFORMATION_OUT (7206) No of machines received in the alphachar field is 0 not the actual no of machines. |
 
-## Change in Security Master `[p.94]`
+## Change in Security Master
 
-This is sent whenever the parameter of any security is changed. The structure is given below. `[p.94]`
+This is sent whenever the parameter of any security is changed. The structure is given below.
 
 Table 29 SECURITY UPDATE INFORMATION
-
-*Table (p.95-96)*
 
 | Structure Name | SECURITY UPDATE INFORMATION |
 | --- | --- |
@@ -225,8 +209,6 @@ Table 29 SECURITY UPDATE INFORMATION
 | MktMakerMinQty | LONG |
 | CallAuction1Flag | SHORT |
 
-*Table (p.96)*
-
 | Structure Name | SECUIRITY ELIGIBILITY PER MARKET |
 | --- | --- |
 | Packet Length | 4 bytes |
@@ -236,9 +218,7 @@ Table 29 SECURITY UPDATE INFORMATION
 | Reserved | CHAR |
 | Status | SHORT |
 
-## Table 29.2 SECUIRITY ELIGIBILITY PER MARKET (For Big Endian Machines) `[p.97]`
-
-*Table (p.97)*
+## Table 29.2 SECUIRITY ELIGIBILITY PER MARKET (For Big Endian Machines)
 
 | Structure Name | SECUIRITY ELIGIBILITY PER MARKET |
 | --- | --- |
@@ -249,9 +229,7 @@ Table 29 SECURITY UPDATE INFORMATION
 | Reserved | CHAR |
 | Status | SHORT |
 
-## Table 29.3 ELIGIBLITY INDICATORS (For Small Endian Machines) `[p.97]`
-
-*Table (p.97)*
+## Table 29.3 ELIGIBLITY INDICATORS (For Small Endian Machines)
 
 | Structure Name | ELIGIBLITY INDICATORS |
 | --- | --- |
@@ -263,9 +241,7 @@ Table 29 SECURITY UPDATE INFORMATION
 | ParticipateInMarketIndex | BIT |
 | Reserved | CHAR |
 
-## Table 29.4 ELIGIBLITY INDICATORS (For Big Endian Machines) `[p.97]`
-
-*Table (p.97)*
+## Table 29.4 ELIGIBLITY INDICATORS (For Big Endian Machines)
 
 | Structure Name | ELIGIBLITY INDICATORS |
 | --- | --- |
@@ -277,9 +253,7 @@ Table 29 SECURITY UPDATE INFORMATION
 | Reserved | BIT |
 | Reserved | CHAR |
 
-## Table 29.5 PURPOSE (For Small Endian Machines) `[p.98]`
-
-*Table (p.98)*
+## Table 29.5 PURPOSE (For Small Endian Machines)
 
 | Structure Name | PURPOSE |
 | --- | --- |
@@ -294,9 +268,7 @@ Table 29 SECURITY UPDATE INFORMATION
 | Dividend | BIT |
 | Reserved | CHAR |
 
-## Table 29.6 PURPOSE (For Big Endian Machines) `[p.98]`
-
-*Table (p.98)*
+## Table 29.6 PURPOSE (For Big Endian Machines)
 
 | Structure Name | PURPOSE |
 | --- | --- |
@@ -310,8 +282,6 @@ Table 29 SECURITY UPDATE INFORMATION
 | EGM | BIT |
 | Reserved | BIT |
 | Reserved | CHAR |
-
-*Table (p.98-101)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -355,11 +325,9 @@ Table 29 SECURITY UPDATE INFORMATION
 | MktMakerSpread | This field contains spread value of the security, used by Market maker user to place two-way quotes. |
 | MktMakerMinQty | This field contains the Minimum quantity for the security, Used by Market maker user for market maker order. |
 
-## Change Participant Status `[p.101]`
+## Change Participant Status
 
-This message is sent whenever there is any participant change. The structure sent is: `[p.101]`
-
-*Table (p.101)*
+This message is sent whenever there is any participant change. The structure sent is:
 
 | Structure Name | PARTICIPANT UPDATE INFO |
 | --- | --- |
@@ -374,8 +342,6 @@ This message is sent whenever there is any participant change. The structure sen
 | DeleteFlag | CHAR |
 | Reserved | CHAR |
 
-*Table (p.101-102)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BCAST_PART_MSTR_CHG (7306). |
@@ -385,11 +351,9 @@ This message is sent whenever there is any participant change. The structure sen
 |  | 'S' for Suspended 'A' for Active |
 | ParticipantUpdateDateTime | This field contains the time when the participant information was changed. It is in number of seconds from January 1, 1980. |
 
-## Change of Security Status `[p.102]`
+## Change of Security Status
 
-This message is sent whenever the status of any security changes. The structure sent is: `[p.102]`
-
-*Table (p.102)*
+This message is sent whenever the status of any security changes. The structure sent is:
 
 | Structure Name | SECURITY STATUS UPDATE INFORMATION |
 | --- | --- |
@@ -400,8 +364,6 @@ This message is sent whenever the status of any security changes. The structure 
 | NumberOfRecords | SHORT |
 | TOKEN AND ELIGIBILITY [25] (Refer table 31.1) | STRUCT |
 
-*Table (p.102)*
-
 | Structure Name | TOKEN AND ELIGIBILITY |
 | --- | --- |
 | Packet Length | 16 bytes |
@@ -409,17 +371,13 @@ This message is sent whenever the status of any security changes. The structure 
 | Token | LONG |
 | SECURITY STATUS PER MARKET[6] (Refer table 31.2) | STRUCT |
 
-## Table 31.2 SECURITY STATUS PER MARKET `[p.102]`
-
-*Table (p.102)*
+## Table 31.2 SECURITY STATUS PER MARKET
 
 | Structure Name | SECURITY STATUS PER MARKET |
 | --- | --- |
 | Packet Length | 2 bytes |
 | Field Name | Data Type |
 | Status | Short |
-
-*Table (p.103)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -428,11 +386,9 @@ This message is sent whenever the status of any security changes. The structure 
 | Token | This field contains the token number of the security which has been changed. |
 | Status | This field contains the new status of the security. This can take one of the following values: '1' - Preopen '2' - Open '3' - Suspended '4' - Preopen extended '6' - Price Discovery This will include Call Auction2 Market data at the 6th position. |
 
-## Turnover Limit Exceeded or Broker Reactivated `[p.103]`
+## Turnover Limit Exceeded or Broker Reactivated
 
-When a broker's turnover limit exceeds, the broker is deactivated and a message is broadcast to all workstations. The same structure is also sent when any broker is reactivated. The structure is: `[p.103]`
-
-*Table (p.103-104)*
+When a broker's turnover limit exceeds, the broker is deactivated and a message is broadcast to all workstations. The same structure is also sent when any broker is reactivated. The structure is:
 
 | Structure Name | BROADCAST LIMIT EXCEEDED |
 | --- | --- |
@@ -452,8 +408,6 @@ When a broker's turnover limit exceeds, the broker is deactivated and a message 
 | TradeVolume | LONG |
 | Final | CHAR |
 
-*Table (p.104-105)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is: BCAST_TURNOVER_EXCEEDED (9010), if the broker turnover is about to exceed or has already exceeded. BROADCAST_BROKER_REACTIVATED (9011), if the broker is reactivated after being deactivated. |
@@ -467,11 +421,9 @@ When a broker's turnover limit exceeds, the broker is deactivated and a message 
 | TradeVolume | This field is applicable only if the transaction code is BCAST_TURNOVER_EXCEEDED. This contains the trade quantity of the trade. |
 | Final | This field is applicable only if the transaction code is BCAST_TURNOVER_EXCEEDED. This indicates whether it is the final auction trade. |
 
-## Auction Activity Message `[p.105]`
+## Auction Activity Message
 
-This structure is sent whenever there is any auction related activity. This includes any change in Auction MBO. The structure is: `[p.105]`
-
-*Table (p.105)*
+This structure is sent whenever there is any auction related activity. This includes any change in Auction MBO. The structure is:
 
 | Structure Name | MS_AUCTION_INQ_DATA |
 | --- | --- |
@@ -482,8 +434,6 @@ This structure is sent whenever there is any auction related activity. This incl
 | ST_AUCTION_INQ_INFO (Refer Table 33.1) | STRUCT |
 
 Table 33.1   Auction Activity Message
-
-*Table (p.106)*
 
 | Structure Name | ST_AUCTION_INQ_INFO |
 | --- | --- |
@@ -501,8 +451,6 @@ Table 33.1   Auction Activity Message
 | AuctionQty | LONG |
 | SettlementPeriod | SHORT |
 
-*Table (p.106-107)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BCAST_AUCTION_INQUIRY_OUT (18700). |
@@ -518,11 +466,9 @@ Table 33.1   Auction Activity Message
 | AuctionQty | This field contains the quantity of securities that have been auctioned. |
 | SettlementPeriod | This field contains the period by which settlement between the parties should take place. This value is defaulted by the Exchange and cannot be modified by the user. |
 
-## Change of Auction Status `[p.107]`
+## Change of Auction Status
 
-When the status of an auction changes (from pending to active or, competitor period or solicitor period  is  ended  or  started)  a  message  is  broadcast  to  all  workstations  with  the  following structure and transaction codes: `[p.107]`
-
-*Table (p.107)*
+When the status of an auction changes (from pending to active or, competitor period or solicitor period  is  ended  or  started)  a  message  is  broadcast  to  all  workstations  with  the  following structure and transaction codes:
 
 | Structure Name | AUCTION STATUS CHANGE |
 | --- | --- |
@@ -538,8 +484,6 @@ When the status of an auction changes (from pending to active or, competitor per
 | BroadcastMessageLength | SHORT |
 | BroadcastMessage | CHAR |
 
-*Table (p.107)*
-
 | Structure Name | BROADCAST DESTINATION |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -550,8 +494,6 @@ When the status of an auction changes (from pending to active or, competitor per
 
 Table 34.2    BROADCAST_DESTINATION (For Big Endian Machines)
 
-*Table (p.108)*
-
 | Structure Name | BROADCAST DESTINATION |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -559,8 +501,6 @@ Table 34.2    BROADCAST_DESTINATION (For Big Endian Machines)
 | TraderWs | BIT |
 | Reserved | BIT |
 | Reserved | CHAR |
-
-*Table (p.108)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -574,13 +514,11 @@ Table 34.2    BROADCAST_DESTINATION (For Big Endian Machines)
 | BroadcastMessageLength | This field contains the length of the broadcast message. |
 | BroadcastMessage | This field contains the contents of the broadcast message. |
 
-## Change of Market Status `[p.108]`
+## Change of Market Status
 
-Whenever the status of the market changes, the following structure is sent: `[p.108]`
+Whenever the status of the market changes, the following structure is sent:
 
 Table 35    Change of Market Status
-
-*Table (p.109)*
 
 | Structure Name | BCAST_VCT_MESSAGES |
 | --- | --- |
@@ -594,8 +532,6 @@ Table 35    Change of Market Status
 | BroadcastMessageLength | SHORT |
 | BroadcastMessage | CHAR |
 
-*Table (p.109-110)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction codes are as follows: BC_OPEN_MESSAGE (6511). This is sent when the market is opened. BC_CLOSE_MESSAGE (6521). This is sent when the market is closed. BC_PREOPEN_SHUTDOWN_MSG (6531). This is sent when the market is preopened. BC_NORMAL_MKT_PREOPEN_ENDED (6571). This is sent when the preopen period ends. |
@@ -606,13 +542,11 @@ Table 35    Change of Market Status
 | BroadcastMessageLength | This field contains the length of the broadcast message. |
 | BroadcastMessage | This field contains the contents of the broadcast message. |
 
-## Security Level Trading/Market Status Change Message `[p.110]`
+## Security Level Trading/Market Status Change Message
 
-Security level trading/market status change messages are sent separately in following structure and transcode. `[p.110]`
+Security level trading/market status change messages are sent separately in following structure and transcode.
 
 SECURITY LEVEL TRADING STATUS CHANGE
-
-*Table (p.111)*
 
 | Structure Name | BCAST_SYMBOL_STATUS_CHANGE _ACTION |
 | --- | --- |
@@ -625,8 +559,6 @@ SECURITY LEVEL TRADING STATUS CHANGE
 | Reserved | SHORT |
 | ActionCode | SHORT |
 
-*Table (p.111)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BC_SYMBOL_STATUS_CHANGE_ACTION (7764) |
@@ -634,11 +566,9 @@ SECURITY LEVEL TRADING STATUS CHANGE
 | MarketType | This field indicates the type of market. It contains one of the following values: '1' - Normal '2' - Odd Lot '3' - Spot '4' - Auction '5' - Call auction1 '6' - Call auction2. |
 | ActionCode | It contains of the following values: 6531(BC_PREOPEN_SHUTDOWN_MSG) - This action code is set when the security is preopened. 6571(BC_NORMAL_MKT_PREOPEN_ENDED) - This action code is set when the security's preopen period ends. 6511(BC_OPEN_MESSAGE) - This action code is set when the security is opened. 6521(BC_CLOSE_MESSAGE) - This action code is set when the security is closed. 6583(BC_CLOSING_START) - This action code is set when the security's closing session is opened. 6584( BC_CLOSING_END) - This action code is set when the security's closing session is closed |
 
-## Ticker and Market Index `[p.112]`
+## Ticker and Market Index
 
-Ticker and market index information is sent in the following structure: `[p.112]`
-
-*Table (p.112)*
+Ticker and market index information is sent in the following structure:
 
 | Structure Name | TICKER TRADE DATA |
 | --- | --- |
@@ -648,8 +578,6 @@ Ticker and market index information is sent in the following structure: `[p.112]
 | BCAST_HEADER (Refer Table 3) | STRUCT |
 | NumberOfRecords | SHORT |
 | TICKER INDEX INFORMATION [28] (Refer to TABLE 36.1) | STRUCT |
-
-*Table (p.112)*
 
 | Structure Name | TICKER INDEX INFORMATION |
 | --- | --- |
@@ -661,8 +589,6 @@ Ticker and market index information is sent in the following structure: `[p.112]
 | FillVolume | LONG |
 | MarketIndexValue | LONG |
 
-*Table (p.112)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code sent is BCAST_TICKER_AND_MKT_INDEX (18703). |
@@ -671,17 +597,13 @@ Ticker and market index information is sent in the following structure: `[p.112]
 | MarketType | This field contains the market type. |
 | FillPrice | This field contains the price at which the order has been traded. |
 
-*Table (p.113)*
-
 | FillVolume | This field contains the quantity of security traded. |
 | --- | --- |
 | MarketIndexValue | This field contains the value of the market index. |
 
-## Market by Order / Market by Price Update `[p.113]`
+## Market by Order / Market by Price Update
 
-The information regarding the best buy orders and the best sell orders is given in the following format: `[p.113]`
-
-*Table (p.113)*
+The information regarding the best buy orders and the best sell orders is given in the following format:
 
 | Structure Name | BROADCASTMBOMBP |
 | --- | --- |
@@ -703,8 +625,6 @@ The information regarding the best buy orders and the best sell orders is given 
 | Reserved | CHAR |
 
 Table 37.1 INTERACTIVE MBO DATA
-
-*Table (p.114)*
 
 | Structure Name | INTERACTIVEMBODATA |
 | --- | --- |
@@ -732,8 +652,6 @@ Table 37.1 INTERACTIVE MBO DATA
 
 Table 37.2 MBO MBP INDICATOR (For Small Endian Machines)
 
-*Table (p.114-115)*
-
 | Structure Name | MBOMBPINDICATOR |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -749,8 +667,6 @@ Table 37.2 MBO MBP INDICATOR (For Small Endian Machines)
 
 Table 37.3 MBO MBP INDICATOR (For Big Endian Machines)
 
-*Table (p.115)*
-
 | Structure Name | MBOMBPINDICATOR |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -762,8 +678,6 @@ Table 37.3 MBO MBP INDICATOR (For Big Endian Machines)
 | Reserved | BIT |
 | Reserved | CHAR |
 
-*Table (p.115)*
-
 | Structure Name | MBOINFORMATION |
 | --- | --- |
 | Packet Length | 18 bytes |
@@ -773,8 +687,6 @@ Table 37.3 MBO MBP INDICATOR (For Big Endian Machines)
 | Price | LONG |
 | ST MBOMBPTERMS (Refer Table 37.5 for small endian & Table 37.6 for big endian) | STRUCT |
 | MinFillQty | LONG |
-
-*Table (p.116)*
 
 | Structure Name | ST MBOMBPTERMS |
 | --- | --- |
@@ -787,8 +699,6 @@ Table 37.3 MBO MBP INDICATOR (For Big Endian Machines)
 
 Table 37.6   ST MBO MBP TERMS (For Big Endian Machines)
 
-*Table (p.116)*
-
 | Structure Name | ST MBOMBPTERMS |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -800,8 +710,6 @@ Table 37.6   ST MBO MBP TERMS (For Big Endian Machines)
 
 Table 37.7   MBP INFORMATION
 
-*Table (p.116)*
-
 | Structure Name | MBP INFORMATION |
 | --- | --- |
 | Packet Length | 16 bytes |
@@ -810,8 +718,6 @@ Table 37.7   MBP INFORMATION
 | Price | LONG |
 | NumberOfOrders | SHORT |
 | BbBuySellFlag | SHORT |
-
-*Table (p.116-118)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -847,11 +753,9 @@ Table 37.7   MBP INFORMATION
 | MBOInformation | This field contains the quantity and price for a maximum of five best prices. |
 | MBPInformation | This field contains the quantity, price and number of orders for a maximum of five best prices. |
 
-## Only Market by Price Update `[p.119]`
+## Only Market by Price Update
 
-The information regarding the best buy orders and the best sell orders is given in the following format: `[p.119]`
-
-*Table (p.119)*
+The information regarding the best buy orders and the best sell orders is given in the following format:
 
 | Structure Name | BROADCAST ONLY MBP |
 | --- | --- |
@@ -861,8 +765,6 @@ The information regarding the best buy orders and the best sell orders is given 
 | BCAST_HEADER (Refer Table 3) | STRUCT |
 | NoOfRecords | SHORT |
 | INTERACTIVE ONLY MBP DATA [2] (Refer Table 38.1) | STRUCT |
-
-*Table (p.119-120)*
 
 | Structure Name | INTERACTIVE ONLY MBP DATA |
 | --- | --- |
@@ -900,9 +802,7 @@ The information regarding the best buy orders and the best sell orders is given 
 | LowPrice | LONG |
 | IndicativeClosePrice | LONG |
 
-## Table 38.2 MBP INDICATOR (For Small Endian Machines) `[p.120]`
-
-*Table (p.120-121)*
+## Table 38.2 MBP INDICATOR (For Small Endian Machines)
 
 | Structure Name | MBP INDICATOR |
 | --- | --- |
@@ -919,8 +819,6 @@ The information regarding the best buy orders and the best sell orders is given 
 
 Table 38.3 MBP INDICATOR (For Big Endian Machines)
 
-*Table (p.121)*
-
 | Structure Name | MBP INDICATOR |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -932,9 +830,7 @@ Table 38.3 MBP INDICATOR (For Big Endian Machines)
 | Reserved | BIT |
 | Reserved | CHAR |
 
-## Table 38.4 MBP INFORMATION `[p.121]`
-
-*Table (p.121)*
+## Table 38.4 MBP INFORMATION
 
 | Structure Name | MBP INFORMATION |
 | --- | --- |
@@ -944,8 +840,6 @@ Table 38.3 MBP INDICATOR (For Big Endian Machines)
 | Price | LONG |
 | NumberOfOrders | SHORT |
 | BbBuySellFlag | SHORT |
-
-*Table (p.121-124)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -972,8 +866,6 @@ Table 38.3 MBP INDICATOR (For Big Endian Machines)
 | Record Buffer (MBP INFORMATION ) | This field contains five best Buy prices and five best Sell prices from the order book. First five are for buy and next five for sell. During Preopen order collection period (till pre-open end), in this structure the first four rows for Buy and Sell contains the four Limit orders and the last row of both sides is reserved for ATO orders. During Preopen order collection period (till pre-open end), if ATO order exists then in Price field -1 will be sent in the last row of both sides. |
 | BbTotalbuyFlag | The field contains the values to represent buy back orders, market maker order or both.The values will be as below. '0' Non Market Maker and Non Buy back orders '1' Buy back orders '2' Market Maker Orders '3' Market Maker and Buy Back Order This is useful if the buyback order is not amongst the top five. |
 
-*Table (p.125-126)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | BbTotalsellFlag | The field contains the values to represent buy back orders; market maker order or both.The values will be as below. '0' Non Market Maker and Non Buy back orders '1' Buy back orders '2' Market Maker Orders '3' Market Maker and Buy Back Order This is useful if the buyback order is not amongst the top five. The values in this field will be according to the flag value table given below. |
@@ -990,11 +882,9 @@ Table 38.3 MBP INDICATOR (For Big Endian Machines)
 | NumberOfOrders | The number of orders at the price point. |
 | BbBuySellFlag | This field contains the values to indicate whether there is a buyback order or market maker order in the buy or sell side at the price point. The values in this field will be according to the flag value table. |
 
-## Market Watch Update `[p.127]`
+## Market Watch Update
 
-The market watch information gives the best buy order and its quantity, best sell order and its quantity and the last trade price. The structure sent for the purpose is: `[p.127]`
-
-*Table (p.127)*
+The market watch information gives the best buy order and its quantity, best sell order and its quantity and the last trade price. The structure sent for the purpose is:
 
 | Structure Name | BROADCAST INQUIRY RESPONSE |
 | --- | --- |
@@ -1005,8 +895,6 @@ The market watch information gives the best buy order and its quantity, best sel
 | NumberOfRecords | SHORT |
 | MARKETWATCHBROADCAST [4] (Refer table 39.1) | STRUCT |
 
-*Table (p.127)*
-
 | Structure Name | MARKETWATCHBROADCAST |
 | --- | --- |
 | Packet Length | 106 bytes |
@@ -1015,8 +903,6 @@ The market watch information gives the best buy order and its quantity, best sel
 | MARKET WISE INFORMATION [3] (Refer Table 39.2 ) | STRUCT |
 
 Table 39.2 MARKET WISE INFORMATION
-
-*Table (p.127-128)*
 
 | Structure Name | MARKET WISE INFORMATION |
 | --- | --- |
@@ -1032,9 +918,7 @@ Table 39.2 MARKET WISE INFORMATION
 | LastTradePrice | LONG |
 | LastTradeTime | LONG |
 
-## Table 39.3 MBO MBP INDICATOR (For Small Endian Machines) `[p.128]`
-
-*Table (p.128)*
+## Table 39.3 MBO MBP INDICATOR (For Small Endian Machines)
 
 | Structure Name | MBOMBPINDICATOR |
 | --- | --- |
@@ -1047,9 +931,7 @@ Table 39.2 MARKET WISE INFORMATION
 | LastTradeMore | BIT |
 | Reserved | CHAR |
 
-## Table 39.4 MBO MBP INDICATOR (For Big Endian Machines) `[p.128]`
-
-*Table (p.128)*
+## Table 39.4 MBO MBP INDICATOR (For Big Endian Machines)
 
 | Structure Name | MBOMBPINDICATOR |
 | --- | --- |
@@ -1061,8 +943,6 @@ Table 39.2 MARKET WISE INFORMATION
 | Sell | BIT |
 | Reserved | BIT |
 | Reserved | CHAR |
-
-*Table (p.129)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -1077,21 +957,19 @@ Table 39.2 MARKET WISE INFORMATION
 | LastTradePrice | This field contains the latest trade price of a security. During preopen it contains the indicative open price of that security. |
 | LastTradeTime | This field contains the latest trade time of a security. |
 
-## CALL AUCTION MBP Broadcast `[p.129]`
+## CALL AUCTION MBP Broadcast
 
-During Call Auction2 pre-open session, market data will b BROADCAST CALL AUCTION MBP e sent based on the order activity during the order collection period. Indicative opening price will be computed based on the order activity. When Call Auction2 pre-open session ends, order activity will be stopped and the final open price will be computed for all Call-Auction2 securities. Final open price will be available in the market data. `[p.129]`
+During Call Auction2 pre-open session, market data will b BROADCAST CALL AUCTION MBP e sent based on the order activity during the order collection period. Indicative opening price will be computed based on the order activity. When Call Auction2 pre-open session ends, order activity will be stopped and the final open price will be computed for all Call-Auction2 securities. Final open price will be available in the market data.
 
-After computation of final open price, orders will be matched based on the final open price. `[p.129]`
+After computation of final open price, orders will be matched based on the final open price.
 
-Trades related data will be available in market data once the matching is started. `[p.129]`
+Trades related data will be available in market data once the matching is started.
 
-Once the FOP is calculated and matching is over for a token, the MBP data for that token will be received in the existing MBP broadcast packet (7208). `[p.129]`
+Once the FOP is calculated and matching is over for a token, the MBP data for that token will be received in the existing MBP broadcast packet (7208).
 
-The transaction code to disseminate the Call Auction2 market data during Preopen session is BCAST_CALL AUCTION_MBP (7214). `[p.129]`
+The transaction code to disseminate the Call Auction2 market data during Preopen session is BCAST_CALL AUCTION_MBP (7214).
 
 The structure on the transcode is as show below:
-
-*Table (p.130)*
 
 | Structure Name | BROADCAST CALL AUCTIONMBP |
 | --- | --- |
@@ -1101,8 +979,6 @@ The structure on the transcode is as show below:
 | BCAST_HEADER (Refer Table 3) | STRUCT |
 | NoOfRecords | SHORT |
 | INTERACTIVE CALL AUCTION MBP DATA [2] (Refer Table 40.1) | STRUCT |
-
-*Table (p.130-131)*
 
 | Structure Name | INTERACTIVE CALL AUCTION MBP DATA |
 | --- | --- |
@@ -1134,9 +1010,7 @@ The structure on the transcode is as show below:
 | HighPrice | LONG |
 | LowPrice | LONG |
 
-## For Small Endian Machines: `[p.131]`
-
-*Table (p.131)*
+## For Small Endian Machines:
 
 | Structure Name | MBP INDICATOR |
 | --- | --- |
@@ -1149,9 +1023,7 @@ The structure on the transcode is as show below:
 | LastTradeMore | BIT |
 | Reserved | CHAR |
 
-## For Big Endian Machines: `[p.131]`
-
-*Table (p.131)*
+## For Big Endian Machines:
 
 | Structure Name | MBP INDICATOR |
 | --- | --- |
@@ -1166,8 +1038,6 @@ The structure on the transcode is as show below:
 
 Table 40.4 MBP INFORMATION
 
-*Table (p.132)*
-
 | Structure Name | MBP INFORMATION |
 | --- | --- |
 | Packet Length | 16 bytes |
@@ -1176,8 +1046,6 @@ Table 40.4 MBP INFORMATION
 | Price | LONG |
 | NumberOfOrders | SHORT |
 | BbBuySellFlag | SHORT |
-
-*Table (p.132-135)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -1214,19 +1082,15 @@ Table 40.4 MBP INFORMATION
 | Price | The price point in the MBP array. |
 | NumberOfOrders | The number of orders at the price point. |
 
-*Table (p.136)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | BbBuySellFlag | This field contains the values to indicate whether there is a buyback order or market maker order in the buy or sell side at the price point. During Preopen and matching, value will always be zero. |
 
-This transcode will be sent only for the securities which are eligible to take part in CALL AUCTION 2 sessions. `[p.136]`
+This transcode will be sent only for the securities which are eligible to take part in CALL AUCTION 2 sessions.
 
-## Flag Value Table `[p.136]`
+## Flag Value Table
 
-The values of buyback flags in MBP array and total order buyback values in both buy and sell sides will be according to the following table: `[p.136]`
-
-*Table (p.136)*
+The values of buyback flags in MBP array and total order buyback values in both buy and sell sides will be according to the following table:
 
 | Buy_back order | Market maker order | bb_buy_flag/ bb_sell_flag/ bb_total_buy_flag/ bb_total_sell_flag |
 | --- | --- | --- |
@@ -1235,11 +1099,9 @@ The values of buyback flags in MBP array and total order buyback values in both 
 | NO | YES | 2 |
 | YES | YES | 3 |
 
-## Market Watch Update `[p.136]`
+## Market Watch Update
 
-The market watch information gives the best buy order and its quantity, best sell order and its quantity and the last trade price. The market watch data for Call Auction market is sent through new transcode (7215). The structure sent for the purpose is: `[p.136]`
-
-*Table (p.136)*
+The market watch information gives the best buy order and its quantity, best sell order and its quantity and the last trade price. The market watch data for Call Auction market is sent through new transcode (7215). The structure sent for the purpose is:
 
 | Structure Name | BROADCAST CALL AUCTION MARKET WATCH |
 | --- | --- |
@@ -1251,8 +1113,6 @@ The market watch information gives the best buy order and its quantity, best sel
 | MARKETWATCHBROADCAST[11] (Refer Table 41.1) | STRUCT |
 
 Table 41.1 MARKETWATCHBROADCAST
-
-*Table (p.137)*
 
 | Structure Name | MARKETWATCHBROADCAST |
 | --- | --- |
@@ -1268,9 +1128,7 @@ Table 41.1 MARKETWATCHBROADCAST
 | LastTradePrice | LONG |
 | LastTradeTime | LONG |
 
-## For Small Endian Machines: `[p.137]`
-
-*Table (p.137)*
+## For Small Endian Machines:
 
 | Structure Name | MBOMBPINDICATOR |
 | --- | --- |
@@ -1283,9 +1141,7 @@ Table 41.1 MARKETWATCHBROADCAST
 | LastTradeMore | BIT |
 | Reserved | CHAR |
 
-## For Big Endian Machines: `[p.137]`
-
-*Table (p.137-138)*
+## For Big Endian Machines:
 
 | Structure Name | MBOMBPINDICATOR |
 | --- | --- |
@@ -1299,8 +1155,6 @@ Table 41.1 MARKETWATCHBROADCAST
 | Sell | BIT |
 | Reserved | BIT |
 | Reserved | CHAR |
-
-*Table (p.138)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -1316,16 +1170,14 @@ Table 41.1 MARKETWATCHBROADCAST
 | LastTradePrice | This field contains the latest trade price of a security. |
 | LastTradeTime | This field contains the latest trade time of a security. |
 
-## Security Open Message `[p.138]`
+## Security Open Message
 
 > [!note]
-> The Following transcode SECURITY_OPEN_PRICE 6013) will not be sent by exchange. `[p.138]`
+> The Following transcode SECURITY_OPEN_PRICE 6013) will not be sent by exchange.
 
-When the market opens the open price of the security is sent in the following structure: `[p.138]`
+When the market opens the open price of the security is sent in the following structure:
 
 Table 42 MS_SEC_OPEN_MSGS
-
-*Table (p.139)*
 
 | Structure Name | MS_SEC_OPEN_MSGS |
 | --- | --- |
@@ -1337,8 +1189,6 @@ Table 42 MS_SEC_OPEN_MSGS
 | Token | SHORT |
 | OpeningPrice | LONG |
 
-*Table (p.139)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code sent is SECURITY_OPEN_PRICE (6013). |
@@ -1346,25 +1196,21 @@ Table 42 MS_SEC_OPEN_MSGS
 | Token | This field contains a unique number that is given to a particular symbol- series combination. |
 | OpeningPrice | This field contains open price of the security. |
 
-## Broadcast Circuit Check `[p.139]`
+## Broadcast Circuit Check
 
-If there has been no data on the broadcast circuit for a stipulated time period, then a pulse is sent. This time is nine seconds now but it can be changed by NSE -Control. This is only to intimate that the circuit is still there but there is no data to send. The structure sent is: `[p.139]`
+If there has been no data on the broadcast circuit for a stipulated time period, then a pulse is sent. This time is nine seconds now but it can be changed by NSE -Control. This is only to intimate that the circuit is still there but there is no data to send. The structure sent is:
 
 BCAST_HEADER ( Refer to Broadcast Header in chapter 2 )
-
-*Table (p.139)*
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code sent is BC_CIRCUIT_CHECK (6541). |
 
-## Multiple Index Broadcast `[p.139]`
+## Multiple Index Broadcast
 
 The multiple index broadcast structure is as follows:
 
 Table 43 BROADCAST INDICES
-
-*Table (p.140)*
 
 | Structure Name | BROADCAST INDICES |
 | --- | --- |
@@ -1376,8 +1222,6 @@ Table 43 BROADCAST INDICES
 | Indices[6] (Refer Table 43.1) | STRUCT |
 
 Table 43.1 Indices
-
-*Table (p.140)*
 
 | Structure Name | INDICES |
 | --- | --- |
@@ -1397,8 +1241,6 @@ Table 43.1 Indices
 | MarketCapitalisation | DOUBLE |
 | NetChangeIndicator | CHAR |
 | FILLER | CHAR |
-
-*Table (p.140-141)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -1419,13 +1261,11 @@ Table 43.1 Indices
 | MarketCapitalization | This field contains the Market Capitalization of securities participating in the index. |
 | NetChange Indicator | This field contains one of the following values. • '+' - if the current index is greater than previous index. • ' - ' - if the current index is less than previous index. • ' ' - if the current index is equal to previous index. |
 
-## Multiple Indicative Index Broadcast `[p.141]`
+## Multiple Indicative Index Broadcast
 
-The Indicative Index Broadcast messages will start arriving half an hour before the market close.  The multiple indicative index broadcast structure is as follows: `[p.141]`
+The Indicative Index Broadcast messages will start arriving half an hour before the market close.  The multiple indicative index broadcast structure is as follows:
 
-## BROADCAST INDICATIVE INDICES `[p.141]`
-
-*Table (p.142)*
+## BROADCAST INDICATIVE INDICES
 
 | Structure Name | BROADCAST INDICATIVE INDICES |
 | --- | --- |
@@ -1436,9 +1276,7 @@ The Indicative Index Broadcast messages will start arriving half an hour before 
 | NumberOfRecords | SHORT |
 | IndicativeIndices[6] (Refer Indicative Indices Table ) | STRUCT |
 
-## Indicative Indices `[p.142]`
-
-*Table (p.142)*
+## Indicative Indices
 
 | Structure Name | INDICATIVE INDICES |
 | --- | --- |
@@ -1459,8 +1297,6 @@ The Indicative Index Broadcast messages will start arriving half an hour before 
 | NetChange Indicator | CHAR |
 | FILLER | CHAR |
 
-*Table (p.142-143)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BCAST_INDICATIVE_INDICES (8207) |
@@ -1474,11 +1310,9 @@ The Indicative Index Broadcast messages will start arriving half an hour before 
 | MarketCapitalization | This field contains the Market Capitalization of securities participating during the indicative close session. |
 | NetChange Indicator | This field contains one of the following values. • '+' - if the current index is greater than previous indicative close index. • ' - ' - if the current index is less than previous indicative close index. • ' ' - if the current index is equal to previous indicative close index. |
 
-## Multiple Index Broadcast for INDIA VIX `[p.143]`
+## Multiple Index Broadcast for INDIA VIX
 
-The multiple index broadcast structure for INDIA VIX is as follows: `[p.143]`
-
-*Table (p.143)*
+The multiple index broadcast structure for INDIA VIX is as follows:
 
 | Structure Name | BROADCAST INDICES VIX |
 | --- | --- |
@@ -1490,8 +1324,6 @@ The multiple index broadcast structure for INDIA VIX is as follows: `[p.143]`
 | Indices[6] (Refer Table 44.1) | STRUCT |
 
 Table 44.1   INDICES
-
-*Table (p.144)*
 
 | Structure Name | INDICES |
 | --- | --- |
@@ -1512,8 +1344,6 @@ Table 44.1   INDICES
 | NetChangeIndicator | CHAR |
 | FILLER | CHAR |
 
-*Table (p.144-145)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BCAST_INDICES (7216) |
@@ -1533,11 +1363,9 @@ Table 44.1   INDICES
 | MarketCapitalizat ion | This field contains the Market Capitalization of securities participating in the index. |
 | NetChange Indicator | This field contains one of the following values. '+' - if the current index is greater than previous index. ' - ' - if the current index is less than previous index. ' ' - if the current index is equal to previous index. |
 
-## Broadcast industry index `[p.145]`
+## Broadcast industry index
 
-This Packet contains the index values of 17 Indices with name. The structure is as follows: `[p.145]`
-
-*Table (p.145)*
+This Packet contains the index values of 17 Indices with name. The structure is as follows:
 
 | Structure Name | BROADCAST INDUSTRY INDICES |
 | --- | --- |
@@ -1548,8 +1376,6 @@ This Packet contains the index values of 17 Indices with name. The structure is 
 | NumberOfRecords | SHORT |
 | Indices[17] (Refer Table 45.1) | STRUCT |
 
-*Table (p.145-146)*
-
 | Structure Name | INDICES |
 | --- | --- |
 | Packet Length | 25 Bytes |
@@ -1559,8 +1385,6 @@ This Packet contains the index values of 17 Indices with name. The structure is 
 | Field Name | Data Type |
 | IndexValue | LONG |
 
-*Table (p.146)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BCAST_IND_INDICES (7203). |
@@ -1569,11 +1393,9 @@ This Packet contains the index values of 17 Indices with name. The structure is 
 | IndexName | This field contains Name of the index. For example, Defty, CNX IT |
 | IndexValue | This field contains the online market index value at that instance of broadcast. |
 
-## Broadcast buy back Information `[p.146]`
+## Broadcast buy back Information
 
-This packet will contain the buyback Information which are running on that day. This will be broadcasted for every one hour from Market open till market closes on that day. The structure is as follows: `[p.146]`
-
-*Table (p.146)*
+This packet will contain the buyback Information which are running on that day. This will be broadcasted for every one hour from Market open till market closes on that day. The structure is as follows:
 
 | Structure Name | BROADCAST BUY_BACK |
 | --- | --- |
@@ -1585,8 +1407,6 @@ This packet will contain the buyback Information which are running on that day. 
 | BuyBackData [6] (Refer Table 46.1) | STRUCT |
 
 Table 46.1 BUYBACKDATA
-
-*Table (p.147)*
 
 | Structure Name | BUYBACKDATA |
 | --- | --- |
@@ -1605,8 +1425,6 @@ Table 46.1 BUYBACKDATA
 | CdayWtAvg | LONG |
 | StartDate | LONG |
 | EndDate | LONG |
-
-*Table (p.147-148)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -1627,23 +1445,21 @@ Table 46.1 BUYBACKDATA
 | StartDate | This field contains Start Date of Buy back period |
 | EndDate | This field contains End Date of Buy back period |
 
-## CALL AUCTION Order Cancel Update `[p.148]`
+## CALL AUCTION Order Cancel Update
 
-In case of Special Preopen Session (SPOS) for IPO/Relist, order cancellation statistics will be sent to users during order collection period. `[p.148]`
+In case of Special Preopen Session (SPOS) for IPO/Relist, order cancellation statistics will be sent to users during order collection period.
 
-Order cancel statistics will be sent only for securities which are eligible to take part in Special Preopen Session. `[p.148]`
+Order cancel statistics will be sent only for securities which are eligible to take part in Special Preopen Session.
 
-The cancellation statistics will solely reflect order cancellation initiated by market participant. `[p.148]`
+The cancellation statistics will solely reflect order cancellation initiated by market participant.
 
 Order cancelled by system/exchange will be excluded from cancellation statistics.
 
-The transaction code to disseminate the order cancel statistics data during call auction session is BCAST_CALL AUCTION_ORD_CXL_UPDATE (7210). `[p.148]`
+The transaction code to disseminate the order cancel statistics data during call auction session is BCAST_CALL AUCTION_ORD_CXL_UPDATE (7210).
 
 The structure on the transcode is as show below:
 
-## BROADCAST CALL AUCTION ORD CXL UPDATE `[p.148]`
-
-*Table (p.148)*
+## BROADCAST CALL AUCTION ORD CXL UPDATE
 
 | Structure Name | BROADCAST CALL AUCTION ORD CXL UPDATE |
 | --- | --- |
@@ -1654,9 +1470,7 @@ The structure on the transcode is as show below:
 | NoOfRecords | SHORT |
 | INTERACTIVE ORD CXL DETAILS [8] (Refer Table 69.1) | STRUCT |
 
-## INTERACTIVE ORD CXL DETAILS `[p.148]`
-
-*Table (p.149)*
+## INTERACTIVE ORD CXL DETAILS
 
 | Structure Name | INTERACTIVE ORD CXL DETAILS |
 | --- | --- |
@@ -1669,8 +1483,6 @@ The structure on the transcode is as show below:
 | SellOrdCxlCount | LONG LONG |
 | SellOrdCxlVol | LONG LONG |
 | Reserved | CHAR |
-
-*Table (p.149)*
 
 | Field Name | Brief Description |
 | --- | --- |

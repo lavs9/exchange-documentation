@@ -10,7 +10,15 @@
       "Bash(cat:*)",
       "Bash(npm install:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: Exchange Documentation Manager\n\nA comprehensive documentation management system for Exchange platform docs.\n\nFeatures:\n- PDF document upload and processing using Docling\n- Chapter-based markdown generation with rich formatting\n- TipTap rich text editor for content editing\n- Version control and diff tracking\n- Internal markers for manual content preservation\n- PostgreSQL database with FastAPI backend\n- React frontend with TypeScript\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(if [ -n \"$GITHUB_TOKEN\" ])",
+      "Bash(then echo \"GitHub token found\")",
+      "Bash(else echo \"No GitHub token in environment\")",
+      "Bash(fi)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo create:*)",
+      "Bash(gh repo view:*)"
     ],
     "deny": [],
     "ask": []

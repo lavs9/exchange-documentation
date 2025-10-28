@@ -8,36 +8,32 @@ document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 # Chapter 6 Bhav Copy
 
 
-## Introduction `[p.82]`
+## Introduction
 
-This section describes the end of the trading day activities. It covers the transmission of Security Bhav Copy and Index Bhav Copy.  This takes place after the markets close for the day. Broadly, the following activities are done: `[p.82]`
+This section describes the end of the trading day activities. It covers the transmission of Security Bhav Copy and Index Bhav Copy.  This takes place after the markets close for the day. Broadly, the following activities are done:
 
 - Calculation of closing price and generation of interim bhav copy (from 3.30 PM to 3. 40 PM).
 - Generation of main bhav-copy will be after 4.00 PM.
 
-Closing Batch: In closing batch, the closing price is calculated and broadcast to the traders. The interim bhav copy is also broadcast to the traders. During closing session traders can trade at the closing price. `[p.82]`
+Closing Batch: In closing batch, the closing price is calculated and broadcast to the traders. The interim bhav copy is also broadcast to the traders. During closing session traders can trade at the closing price.
 
-Closing Session: After closing batch, the market is open for trading for 20 mins. This period is known as Closing Session . Traders can place orders at market price (closing price) only. Some of error codes have been introduced for closing session. Refer List of Error Codes for the same. `[p.82]`
+Closing Session: After closing batch, the market is open for trading for 20 mins. This period is known as Closing Session . Traders can place orders at market price (closing price) only. Some of error codes have been introduced for closing session. Refer List of Error Codes for the same.
 
-## Security Bhav Copy `[p.82]`
+## Security Bhav Copy
 
-## Message Stating the Transmission of Security Bhav Copy Will Start Now `[p.82]`
+## Message Stating the Transmission of Security Bhav Copy Will Start Now
 
-This is the first message which is broadcasted saying that the bhav copy will be started now. The structure sent is: `[p.82]`
-
-*Table (p.82)*
+This is the first message which is broadcasted saying that the bhav copy will be started now. The structure sent is:
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BCAST_JRNL_VCT_MSG (6501). Message: Security Bhav Copy is being broadcast now. |
 
-## Header of Report on Market Statistics `[p.82]`
+## Header of Report on Market Statistics
 
-A header precedes the actual bhav copy that is sent to the trader. The message structure sent is: `[p.82]`
+A header precedes the actual bhav copy that is sent to the trader. The message structure sent is:
 
 Table 24 MS_RP_HDR
-
-*Table (p.83)*
 
 | Structure Name | MS_RP_HDR |
 | --- | --- |
@@ -53,8 +49,6 @@ Table 24 MS_RP_HDR
 | TraderNumber | SHORT |
 | TraderName | CHAR |
 
-*Table (p.83)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is MARKET_STATS_REPORT_DATA (18201). |
@@ -66,13 +60,11 @@ Table 24 MS_RP_HDR
 | TraderNumber | This field contains the trader/user ID. This is set to zero. |
 | TraderName | This field contains the name of the trader. This is set to blanks. |
 
-## Report on Market Statistics `[p.83]`
+## Report on Market Statistics
 
-This is the actual data that is sent for the report. The structure is as follows: `[p.83]`
+This is the actual data that is sent for the report. The structure is as follows:
 
-## Table 25 REPORT MARKET STATISTICS `[p.83]`
-
-*Table (p.83-84)*
+## Table 25 REPORT MARKET STATISTICS
 
 | Structure Name | REPORT MARKET STATISTICS |
 | --- | --- |
@@ -90,8 +82,6 @@ This is the actual data that is sent for the report. The structure is as follows
 
 Table 25.1 MARKET STATISTICS DATA
 
-*Table (p.84)*
-
 | Structure Name | MARKET STATISTICS DATA |
 | --- | --- |
 | Packet Length | 62 bytes |
@@ -108,8 +98,6 @@ Table 25.1 MARKET STATISTICS DATA
 | FiftyTwoWeekHigh | LONG |
 | FiftyTwoWeekLow | LONG |
 | CorporateActionIndicator | CHAR |
-
-*Table (p.84-85)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -130,36 +118,30 @@ Table 25.1 MARKET STATISTICS DATA
 | FiftyTwoWeekLowPric e | This field contains the lowest trade price in a security in the immediately previous 52 weeks. |
 | CorporateActionIndica tor | This field contains the Corporate Action. The EGM, AGM, Interest, Bonus, Rights and Dividend flags are set depending on the corporate action. |
 
-## Packet Indicating Data for Depository Securities Begins `[p.85]`
+## Packet Indicating Data for Depository Securities Begins
 
-This message indicates that hereafter the bhav copy for depository securities will be broadcast. The structure sent is: `[p.85]`
+This message indicates that hereafter the bhav copy for depository securities will be broadcast. The structure sent is:
 
-REPORT MARKET STATISTICS (Refer to Report on Market Statistics discussed earlier in this chapter) `[p.85]`
-
-*Table (p.86)*
+REPORT MARKET STATISTICS (Refer to Report on Market Statistics discussed earlier in this chapter)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is MARKET_STATS_REPORT_DATA (18201). |
 | MessageType | This field is set to 'D' denoting Data. |
 
-## Data for Depository Securities `[p.86]`
+## Data for Depository Securities
 
-This is same as the data packet for non-Depository securities. The structure sent is: `[p.86]`
+This is same as the data packet for non-Depository securities. The structure sent is:
 
-REPORT MARKET STATISTICS (Refer to Report on Market Statistics discussed earlier in this chapter) `[p.86]`
-
-*Table (p.86)*
+REPORT MARKET STATISTICS (Refer to Report on Market Statistics discussed earlier in this chapter)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is MARKET_STATS_REPORT_DATA (18201). |
 
-## Trailer Record `[p.86]`
+## Trailer Record
 
-This indicates that the transmission of bhav copy ends here. The structure is: `[p.86]`
-
-*Table (p.86)*
+This indicates that the transmission of bhav copy ends here. The structure is:
 
 | Structure Name | REPORT TRAILER |
 | --- | --- |
@@ -171,41 +153,33 @@ This indicates that the transmission of bhav copy ends here. The structure is: `
 | NumberOfRecords | LONG |
 | Reserved | CHAR |
 
-*Table (p.86)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is MARKET_STATS_REPORT_DATA (18201). |
 | MessageType | This field is set as 'T' for trailer record. |
 | NumberOfRecords | This field contains the number of data packets sent in the bhav copy. |
 
-## Index Bhav Copy `[p.87]`
+## Index Bhav Copy
 
-## Message Stating the Transmission of the Index Bhav Copy Will Start Now `[p.87]`
+## Message Stating the Transmission of the Index Bhav Copy Will Start Now
 
-This is the first message which is broadcast saying the bhav copy will start now. The structure sent is: `[p.87]`
-
-*Table (p.87)*
+This is the first message which is broadcast saying the bhav copy will start now. The structure sent is:
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BCAST_JRNL_VCT_MSG (6501). Message: Index Bhav Copy is being broadcast now. |
 
-## Header of Report on Market Statistics `[p.87]`
+## Header of Report on Market Statistics
 
-Refer to Header of Report on Market Statistics (Security Bhav Copy) discussed earlier in this chapter. `[p.87]`
-
-*Table (p.87)*
+Refer to Header of Report on Market Statistics (Security Bhav Copy) discussed earlier in this chapter.
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is MKT_IDX_RPT_DATA (1836). |
 
-## Report on Index `[p.87]`
+## Report on Index
 
-This is the actual data that is sent for index data. The structure is as follows: `[p.87]`
-
-*Table (p.87)*
+This is the actual data that is sent for index data. The structure is as follows:
 
 | Structure Name | MS_RP_MARKET_INDEX |
 | --- | --- |
@@ -217,8 +191,6 @@ This is the actual data that is sent for index data. The structure is as follows
 | Reserved | CHAR |
 | NoOfIndexRecs | SHORT |
 | MKT_INDEX [7] (Refer Table 27.1) | STRUCT |
-
-*Table (p.88)*
 
 | Packet Length | 60 bytes |
 | --- | --- |
@@ -233,8 +205,6 @@ This is the actual data that is sent for index data. The structure is as follows
 | MktIndexYrHi | LONG |
 | MktIndexYrLo | LONG |
 | MktIndexStart | LONG |
-
-*Table (p.88)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -251,6 +221,6 @@ This is the actual data that is sent for index data. The structure is as follows
 | MktIndexYrHi | This field contains 52-week high index. |
 | MktIndexYrLo | This field contains 52-week low index. |
 
-## Trailer of Index Data Broadcast `[p.88]`
+## Trailer of Index Data Broadcast
 
-Refer to Trailer Record of Security Bhav Copy discussed earlier in this chapter. `[p.88]`
+Refer to Trailer Record of Security Bhav Copy discussed earlier in this chapter.

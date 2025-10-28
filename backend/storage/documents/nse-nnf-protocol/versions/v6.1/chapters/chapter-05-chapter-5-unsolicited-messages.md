@@ -8,66 +8,54 @@ document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 # Chapter 5 Unsolicited Messages
 
 
-## Introduction `[p.74]`
+## Introduction
 
-This section details the unsolicited messages that are received on the interactive connection. These messages are not received by the users in response to any request. `[p.74]`
+This section details the unsolicited messages that are received on the interactive connection. These messages are not received by the users in response to any request.
 
-Please note this section is referenced in CM_DROP_COPY_PROTOCOL document. Any change here may also impact the Order Drop Copy functionality. `[p.74]`
+Please note this section is referenced in CM_DROP_COPY_PROTOCOL document. Any change here may also impact the Order Drop Copy functionality.
 
-## Cancellation of Orders in Batch `[p.74]`
+## Cancellation of Orders in Batch
 
-GTC\GTD orders which are  valid  till  date,  if  not  traded,  are  also  removed  from  the  book.  A response for the same is sent to the user. As of now GTC and GTD facilities are not allowed hence there will be GTC and GTD orders. The structure sent is: `[p.74]`
+GTC\GTD orders which are  valid  till  date,  if  not  traded,  are  also  removed  from  the  book.  A response for the same is sent to the user. As of now GTC and GTD facilities are not allowed hence there will be GTC and GTD orders. The structure sent is:
 
-ORDER ENTRY REQUEST (Refer to Order Entry Request in [Chapter 4](#chapter-4)) `[p.74]`
-
-*Table (p.74)*
+ORDER ENTRY REQUEST (Refer to Order Entry Request in [Chapter 4](#chapter-4))
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BATCH_ORDER_CANCEL (9002). |
 
-## Stop Loss Order Triggering `[p.74]`
+## Stop Loss Order Triggering
 
-When  any  stop  loss  order  entered  is  triggered,  the  user  who  entered  the  order  is  sent  the following message: `[p.74]`
-
-*Table (p.74)*
+When  any  stop  loss  order  entered  is  triggered,  the  user  who  entered  the  order  is  sent  the following message:
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is ON_STOP_NOTIFICATION (2212). |
 
-## Freeze Approve Response `[p.74]`
+## Freeze Approve Response
 
-This  message  is  sent  when  a  previous  order,  which  resulted  in  freeze,  is  approved  by  the Exchange. The format of the message is as follows: `[p.74]`
-
-*Table (p.74)*
+This  message  is  sent  when  a  previous  order,  which  resulted  in  freeze,  is  approved  by  the Exchange. The format of the message is as follows:
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction codes are: If the entered order went for a freeze, and then got freeze approval, ORDER_CONFIRMATION (2073). |
-
-*Table (p.75)*
 
 |  | If the modified order went for a freeze, and then got freeze approval, ORDER_MOD_CONFIRMATION (2074). |
 | --- | --- |
 | LastModifiedDateTime | This field contains the time when the order was last modified. |
 | LastActivityReference | This field contains a unique value. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Freeze Reject Response `[p.75]`
+## Freeze Reject Response
 
-This  message  is  sent  when  a  previous  order,  which  resulted  in  freeze,  is  rejected  by  the Exchange. The format of the message is as follows: `[p.75]`
-
-*Table (p.75)*
+This  message  is  sent  when  a  previous  order,  which  resulted  in  freeze,  is  rejected  by  the Exchange. The format of the message is as follows:
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction codes are: If the entered order went for a freeze, then for freeze reject ORDER_ERROR_OUT (2231). If the modified order went for a freeze, then for freeze reject ORDER_MOD_REJECT_OUT (2042). |
 
-## Trade Confirmation `[p.75]`
+## Trade Confirmation
 
-Trade confirmation is an unsolicited message which is generated when any order of the trader is traded.  The  order  may  trade  completely  or  partially.  In  Trade  confirmation  message,  the ST_ORDER_FLAGS  structure  is  modified,  to  identify  Call  Auction2  session  trades.  In  this structure Preopen indicator is defined (which will be set to 1 for trades in Call Auction2 session), this is incorporated using an existing Filler bit, in the ST_ORDER_FLAGS structure as explained below: `[p.75]`
-
-*Table (p.75-76)*
+Trade confirmation is an unsolicited message which is generated when any order of the trader is traded.  The  order  may  trade  completely  or  partially.  In  Trade  confirmation  message,  the ST_ORDER_FLAGS  structure  is  modified,  to  identify  Call  Auction2  session  trades.  In  this structure Preopen indicator is defined (which will be set to 1 for trades in Call Auction2 session), this is incorporated using an existing Filler bit, in the ST_ORDER_FLAGS structure as explained below:
 
 | Structure Name | MS_TRADE_CONFIRM |
 | --- | --- |
@@ -110,8 +98,6 @@ Trade confirmation is an unsolicited message which is generated when any order o
 | LastActivityReference | LONG LONG |
 | Reserved | CHAR |
 
-*Table (p.77-78)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is TRADE_CONFIRMATION (2222). |
@@ -144,66 +130,56 @@ Trade confirmation is an unsolicited message which is generated when any order o
 | Reserved Filler | This field is reserved for future use |
 | LastActivityReference | This field contains a unique value. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Preopen `[p.78]`
+## Preopen
 
-Preopen Indicator will be set as 0 for the trades happening in Normal Market session for Normal Market orders and carried forward orders. `[p.78]`
+Preopen Indicator will be set as 0 for the trades happening in Normal Market session for Normal Market orders and carried forward orders.
 
-Preopen Indicator will be set as 1 for the Preopen Trades happening in the Opening Phase. `[p.78]`
+Preopen Indicator will be set as 1 for the Preopen Trades happening in the Opening Phase.
 
 > [!note]
-> All trades for CALL AUCTION 2 market will be sent with Book type Regular Lot (1). `[p.78]`
+> All trades for CALL AUCTION 2 market will be sent with Book type Regular Lot (1).
 
-## Trade Cancellation `[p.78]`
+## Trade Cancellation
 
-## Trade Cancellation Requested Notification `[p.78]`
+## Trade Cancellation Requested Notification
 
-This message is sent when the counter party of the trade requests a trade cancellation. The structure sent is: `[p.78]`
+This message is sent when the counter party of the trade requests a trade cancellation. The structure sent is:
 
-MS_TRADER_INT_MSG (Refer to Interactive/Broadcast Messages Sent from Control discussed later in this chapter) `[p.79]`
-
-*Table (p.79)*
+MS_TRADER_INT_MSG (Refer to Interactive/Broadcast Messages Sent from Control discussed later in this chapter)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is CTRL_MSG_TO_TRADER (5295). |
 
-## Trade Cancellation Confirmation Response `[p.79]`
+## Trade Cancellation Confirmation Response
 
-When NSE-Control approves the trade cancellation request the structure sent is: `[p.79]`
+When NSE-Control approves the trade cancellation request the structure sent is:
 
-TRADE CONFIRM (Refer to Trade Confirmation discussed earlier in this chapter) `[p.79]`
-
-*Table (p.79)*
+TRADE CONFIRM (Refer to Trade Confirmation discussed earlier in this chapter)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is TRADE_CANCEL_CONFIRM (2282). |
 
-## Trade Cancellation Rejection `[p.79]`
+## Trade Cancellation Rejection
 
-When NSE-Control rejects the trade cancellation alert the structure sent is: `[p.79]`
+When NSE-Control rejects the trade cancellation alert the structure sent is:
 
-TRADE CONFIRM (Refer to Trade Confirmation discussed earlier in this chapter) `[p.79]`
-
-*Table (p.79)*
+TRADE CONFIRM (Refer to Trade Confirmation discussed earlier in this chapter)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is TRADE_CANCEL_REJECT (2286). |
 
-## Interactive/Broadcast Messages Sent from Control `[p.79]`
+## Interactive/Broadcast Messages Sent from Control
 
-A message can be sent to the trader(s) from the NSE-Control Work Station. If it is sent to all the traders,  it  comes  as  a  broadcast  in  the  structure  BROADCAST_MESSAGE.  (Refer  to General Message Broadcast in [Chapter 7](#chapter-7-broadcast)) `[p.79]`
+A message can be sent to the trader(s) from the NSE-Control Work Station. If it is sent to all the traders,  it  comes  as  a  broadcast  in  the  structure  BROADCAST_MESSAGE.  (Refer  to General Message Broadcast in [Chapter 7](#chapter-7-broadcast))
 
-When the message is sent to a particular user, it comes as an interactive message in the following structure: `[p.79]`
-
-*Table (p.79)*
+When the message is sent to a particular user, it comes as an interactive message in the following structure:
 
 | Structure Name | MS_TRADER_INT_MSG |
 | --- | --- |
 | Packet Length | 290 bytes |
-
-*Table (p.80)*
 
 | Transaction Code | CTRL_MSG_TO_TRADER (5295) |
 | --- | --- |
@@ -215,14 +191,10 @@ When the message is sent to a particular user, it comes as an interactive messag
 | MsgLength | SHORT |
 | Msg | CHAR |
 
-*Table (p.80)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction codes are: CTRL_MSG_TO_TRADER (5295) for interactive messages |
 | ActionCode | This field contains the action code to indicate the action taken. For example, 'SYS' - System 'AUI' - Auction Initiation 'AUC' - Auction Complete 'LIS' - Listing |
-
-*Table (p.80)*
 
 | Structure Name | MS_TRADER_INT_MSG |
 | --- | --- |
@@ -238,8 +210,6 @@ When the message is sent to a particular user, it comes as an interactive messag
 | MsgLength | SHORT |
 | Msg | CHAR |
 
-*Table (p.81)*
-
 | Structure Name | BROADCAST DESTINATION |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -247,8 +217,6 @@ When the message is sent to a particular user, it comes as an interactive messag
 | Reserved | BIT |
 | TraderWs | BIT |
 | Reserved | CHAR |
-
-*Table (p.81)*
 
 | Field Name | Brief Description |
 | --- | --- |

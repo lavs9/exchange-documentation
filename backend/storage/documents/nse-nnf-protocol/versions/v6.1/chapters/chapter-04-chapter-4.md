@@ -8,93 +8,93 @@ document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 # Chapter 4
 
 
-## Introduction `[p.46]`
+## Introduction
 
-This  section  describes  about  entering  new  orders,  modifying  existing  orders,  and  canceling outstanding orders. The trader can begin entering the orders once he has logged on to the trading system and the market is in pre-open or open state. `[p.46]`
+This  section  describes  about  entering  new  orders,  modifying  existing  orders,  and  canceling outstanding orders. The trader can begin entering the orders once he has logged on to the trading system and the market is in pre-open or open state.
 
-Please note this section is referenced in CM_DROP_COPY_PROTOCOL document. Any change here may also impact the Order Drop Copy functionality `[p.46]`
+Please note this section is referenced in CM_DROP_COPY_PROTOCOL document. Any change here may also impact the Order Drop Copy functionality
 
-## Order Entry `[p.46]`
+## Order Entry
 
-Order entry allows the trader to place orders in the market. The system accepts the orders from the users and tries to match the orders with the orders in the books immediately. If the order does not match, the order is placed in the appropriate book with the price and time stamp. `[p.46]`
+Order entry allows the trader to place orders in the market. The system accepts the orders from the users and tries to match the orders with the orders in the books immediately. If the order does not match, the order is placed in the appropriate book with the price and time stamp.
 
-## NOTE: `[p.46]`
+## NOTE:
 
-When market status is pre-open, order entry request will be accepted only if pre-open indicator is set as '1', else orders will be rejected. `[p.46]`
+When market status is pre-open, order entry request will be accepted only if pre-open indicator is set as '1', else orders will be rejected.
 
-## Order Types `[p.46]`
+## Order Types
 
-## Regular Lot `[p.46]`
+## Regular Lot
 
-Regular  Lot  Orders  are  orders  in  the  normal  market  that  have  none  of  the  following  terms attached:      All Or None, Minimum Fill and Trigger Price. `[p.46]`
+Regular  Lot  Orders  are  orders  in  the  normal  market  that  have  none  of  the  following  terms attached:      All Or None, Minimum Fill and Trigger Price.
 
-Preopen Orders are Regular Lot orders placed when normal market is in Preopen. Pre-open orders will be identified by pre-open indicator. None of the following terms attached: DQ, All or None, Minimum Fill and Trigger Price. `[p.46]`
+Preopen Orders are Regular Lot orders placed when normal market is in Preopen. Pre-open orders will be identified by pre-open indicator. None of the following terms attached: DQ, All or None, Minimum Fill and Trigger Price.
 
-## Special Terms `[p.46]`
+## Special Terms
 
-Special Terms Orders are orders in the normal market which have special attribute attached to it. They must have Minimum Fill (MF) or All Or None (AON). `[p.46]`
+Special Terms Orders are orders in the normal market which have special attribute attached to it. They must have Minimum Fill (MF) or All Or None (AON).
 
-## Stop Loss Orders `[p.46]`
+## Stop Loss Orders
 
-Stop Loss Orders are orders in normal market with Trigger Price specified. They may have the Minimum Fill or AON attribute specified. `[p.46]`
+Stop Loss Orders are orders in normal market with Trigger Price specified. They may have the Minimum Fill or AON attribute specified.
 
-## Odd Lot Orders `[p.46]`
+## Odd Lot Orders
 
-## Order and Trade Management `[p.46]`
+## Order and Trade Management
 
-Odd lot orders are orders in the Odd Lot Market with the order quantity being less than the Regular lot quantity. `[p.47]`
+Odd lot orders are orders in the Odd Lot Market with the order quantity being less than the Regular lot quantity.
 
-## Spot Orders `[p.47]`
+## Spot Orders
 
-Spot Orders are orders in spot market where the settlement period is different from the normal market and is fixed by the exchange. `[p.47]`
+Spot Orders are orders in spot market where the settlement period is different from the normal market and is fixed by the exchange.
 
-## Auction Orders `[p.47]`
+## Auction Orders
 
-Auction Orders are simple day orders and can only have the 'Day' term set to 1. ATA (at Auction) Price is not allowed for auction. A valid price has to be entered. Currently, only those auctions that are initiated by the Exchange are allowed. The trader has to enter the solicitor orders after the auction is initiated and before it ends (during Solicitor Period). Auction Orders can only be cancelled. They cannot be modified. `[p.47]`
+Auction Orders are simple day orders and can only have the 'Day' term set to 1. ATA (at Auction) Price is not allowed for auction. A valid price has to be entered. Currently, only those auctions that are initiated by the Exchange are allowed. The trader has to enter the solicitor orders after the auction is initiated and before it ends (during Solicitor Period). Auction Orders can only be cancelled. They cannot be modified.
 
-## Call Auction `[p.47]`
+## Call Auction
 
-Call Auction order are orders placed in CALL AUCTION market that have none of the following terms attached: All or None, Minimum Fill and Trigger Price, Disclosed  quantity. `[p.47]`
+Call Auction order are orders placed in CALL AUCTION market that have none of the following terms attached: All or None, Minimum Fill and Trigger Price, Disclosed  quantity.
 
-Call Auction 1 orders are IOC orders and Call Auction 2 orders are DAY orders with limit price. Both Call Auction 1 and Call Auction 2 orders have settlement period same as Normal market. `[p.47]`
+Call Auction 1 orders are IOC orders and Call Auction 2 orders are DAY orders with limit price. Both Call Auction 1 and Call Auction 2 orders have settlement period same as Normal market.
 
-## Order Terms `[p.47]`
+## Order Terms
 
-Following terms and conditions can be used during order entry and order modification. `[p.47]`
+Following terms and conditions can be used during order entry and order modification.
 
-## Disclosed Quantity (DQ) `[p.47]`
+## Disclosed Quantity (DQ)
 
-This term allows the dealer to disclose only a portion of the order quantity to the market. After the initial disclosed quantity is matched, subsequent disclosed quantity is shown to the market. All the disclosures will be shown to the market with the same order number. `[p.47]`
+This term allows the dealer to disclose only a portion of the order quantity to the market. After the initial disclosed quantity is matched, subsequent disclosed quantity is shown to the market. All the disclosures will be shown to the market with the same order number.
 
-## Trigger Price (TP) `[p.47]`
+## Trigger Price (TP)
 
-The Stop Loss book type allows the broker to release an order into the system after the market price crosses a threshold price referred to as the trigger price. This facility is available for orders in Normal market only. For a stop loss buy order, the trigger price should not be greater than the limit price. For a stop loss sell order, the trigger price should not be less than the limit price. All the stop loss orders will be kept in a separate book till they are triggered. `[p.47]`
+The Stop Loss book type allows the broker to release an order into the system after the market price crosses a threshold price referred to as the trigger price. This facility is available for orders in Normal market only. For a stop loss buy order, the trigger price should not be greater than the limit price. For a stop loss sell order, the trigger price should not be less than the limit price. All the stop loss orders will be kept in a separate book till they are triggered.
 
-## Immediate or Cancel (IOC) `[p.47]`
+## Immediate or Cancel (IOC)
 
-This term forces the order to match immediately, else be cancelled. If the order trades partially, the remaining part is cancelled. `[p.48]`
+This term forces the order to match immediately, else be cancelled. If the order trades partially, the remaining part is cancelled.
 
-## Day `[p.48]`
+## Day
 
-This is the default term for an order. At the end of the trading day, all outstanding Day orders are cancelled by the system. `[p.48]`
+This is the default term for an order. At the end of the trading day, all outstanding Day orders are cancelled by the system.
 
-## Good till Date (GTD) `[p.48]`
+## Good till Date (GTD)
 
-This term allows the dealer to keep an order in the system for a certain number of days. The number of days must be greater than 1 and less than or equal to the maximum number of days allowed for GTC orders. Each day is a calendar day. This facility is disabled as of now. `[p.48]`
+This term allows the dealer to keep an order in the system for a certain number of days. The number of days must be greater than 1 and less than or equal to the maximum number of days allowed for GTC orders. Each day is a calendar day. This facility is disabled as of now.
 
-## Good till Cancelled (GTC) `[p.48]`
+## Good till Cancelled (GTC)
 
-This term allows the broker to keep an order in the system until it is canceled. However, the order  is  canceled  by  the  system  automatically  if  it  remains  outstanding  for  more  than  the maximum number of days allowed for GTC orders. This facility is disabled as of now. `[p.48]`
+This term allows the broker to keep an order in the system until it is canceled. However, the order  is  canceled  by  the  system  automatically  if  it  remains  outstanding  for  more  than  the maximum number of days allowed for GTC orders. This facility is disabled as of now.
 
-## Minimum Fill (MF) `[p.48]`
+## Minimum Fill (MF)
 
-This term allows the broker to ensure that the quantity traded is at least the Minimum Fill amount specified.  The  minimum  fill  must  be  in  multiples  of  the  market  lot  and  less  than  the  order quantity. MF quantity must be less than or equal to Disclosed Quantity when the order has both MF and Disclosed Quantity attributes. `[p.48]`
+This term allows the broker to ensure that the quantity traded is at least the Minimum Fill amount specified.  The  minimum  fill  must  be  in  multiples  of  the  market  lot  and  less  than  the  order quantity. MF quantity must be less than or equal to Disclosed Quantity when the order has both MF and Disclosed Quantity attributes.
 
-## All or None (AON) `[p.48]`
+## All or None (AON)
 
-This term allows the broker to ensure that the entire order is traded and if not, nothing is traded at all. This can result in multiple trades or a single trade. `[p.48]`
+This term allows the broker to ensure that the entire order is traded and if not, nothing is traded at all. This can result in multiple trades or a single trade.
 
-## Rules of Order Entry `[p.48]`
+## Rules of Order Entry
 
 Order entry is not allowed in the following conditions:
 
@@ -133,11 +133,9 @@ Order entry is not allowed in the following conditions:
 - IOC and Disclosed Quantity combination.
 - Difference between limit price and trigger price in stop loss limit orders is greater than permissible range.
 
-## Order Entry Request `[p.50]`
+## Order Entry Request
 
 The format of the order entry request is as follows:
-
-*Table (p.50-51)*
 
 | Structure Name | ORDER_ENTRY_REQUEST/RESPONSE |
 | --- | --- |
@@ -192,15 +190,11 @@ The format of the order entry request is as follows:
 | LastActivityReference | LONG LONG |
 | Reserved | CHAR |
 
-## For Small Endian Machines: `[p.51]`
-
-*Table (p.51)*
+## For Small Endian Machines:
 
 | Structure Name | ST_ORDER_FLAGS |
 | --- | --- |
 | Packet Length | 2 bytes |
-
-*Table (p.52)*
 
 | Field Name | Data Type | Size in Bit | Offset |
 | --- | --- | --- | --- |
@@ -221,9 +215,7 @@ The format of the order entry request is as follows:
 | Traded | BIT | 1 | 1 |
 | MatchedInd | BIT | 1 | 1 |
 
-## For Big Endian Machines: `[p.52]`
-
-*Table (p.52)*
+## For Big Endian Machines:
 
 | Structure Name | ST_ORDER_FLAGS |
 | --- | --- |
@@ -241,8 +233,6 @@ The format of the order entry request is as follows:
 | Traded | BIT |
 | Modified | BIT |
 
-*Table (p.53)*
-
 | Frozen | BIT | 1 | 1 |
 | --- | --- | --- | --- |
 | Preopen | BIT | 1 | 1 |
@@ -251,8 +241,6 @@ The format of the order entry request is as follows:
 | Reserved | BIT | 1 | 1 |
 
 The description and values of the fields are given below.
-
-*Table (p.53-56)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -283,8 +271,6 @@ The description and values of the fields are given below.
 | LastModified | If the order has been modified, this field contains the time when the order was last modified. It is the time in seconds from midnight of January 1 1980, This field should be set to zero for the order entry request (it is same as Entry Date Time.) |
 | Order_Flags | This structure specifies the attributes of an order. They are: • MF if set to 1, represents Minimum Fill attribute. • AON if set to 1, represents All Or None attribute. • IOC if set to 1, represents Immediate Or Cancel attribute. • GTC if set to 1, represents Good Till Cancel. • Day if set to 1, represents Day attribute. This is the default attribute. • SL if set to 1, represents Stop Loss attribute. • Mkt if set to 0, represents a Market order. • ATO if set to 1, represents a market order in PREOPEN or CALL AUCTION1 or CALL AUCTION 2 market. o For CALL AUCTION1 order, if it is market order, ATO bit should set to 1 & IOC bit needs to be set for mkt as well as limit orders. o For CALL AUCTION2 order,ATO& Mkt bit should set to 0 as market orders are not allowed for the same. • STPC if set to 0, represents order resulting in self-trade to be cancelled as per default action by the exchange if set to 1, represents active order resulting in self-trade to be cancelled o Order modification will be rejected if this bit is modified. In case of triggered stop loss order, bit selected during order entry will be considered. • Preopen if set to 1, represents the order is a Preopen session order and if set to 0, represents Normal Market Open order. |
 
-*Table (p.57-58)*
-
 | Field Name | Brief Description |
 | --- | --- |
 |  | o Preopen bit should be set to 1 for orders in Call Auction 2 market. • Frozen if set to 1, represents the order has gone for a freeze. • Modified if set to 1, represents the order is modified. • Traded if set to 1, represents the order is traded partially or fully. For a market order, the price should be 0. The Bit fields must be set / unset by Front end as mentioned in the description. |
@@ -302,15 +288,13 @@ The description and values of the fields are given below.
 | Reserved Filler | This field is reserved for future use. This should be set to Zero (0) while sending to the exchange trading system. |
 | LastActivityReference | This field should be set to zero while sending the order entry request. |
 
-## Order Entry Response `[p.58]`
+## Order Entry Response
 
-The response can be Order Confirmation, Order Freeze, Order Error or one of the general error responses.  Order  Freeze  response  is  not  expected  for  Auction  Order  Entry.  Order  freeze response is generated when the order placed by the trader has resulted in freeze and is waiting for the approval of the exchange. The order error response is given when the entered order is rejected by the trading system. The reason for the rejection is given by Error Code. `[p.58]`
+The response can be Order Confirmation, Order Freeze, Order Error or one of the general error responses.  Order  Freeze  response  is  not  expected  for  Auction  Order  Entry.  Order  freeze response is generated when the order placed by the trader has resulted in freeze and is waiting for the approval of the exchange. The order error response is given when the entered order is rejected by the trading system. The reason for the rejection is given by Error Code.
 
-## Order Confirmation Response `[p.58]`
+## Order Confirmation Response
 
-Successful order entry results in Order Confirmation Response. The confirmed order is returned to the user. When the entered order goes for a freeze and that freeze is approved, this same transaction code is sent. This can be an unsolicited message as well. The message sent is as follows: `[p.58]`
-
-*Table (p.58-59)*
+Successful order entry results in Order Confirmation Response. The confirmed order is returned to the user. When the entered order goes for a freeze and that freeze is approved, this same transaction code is sent. This can be an unsolicited message as well. The message sent is as follows:
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -322,37 +306,31 @@ Successful order entry results in Order Confirmation Response. The confirmed ord
 | EntryDateTime | This field contains the time at which order confirmed. |
 | LastActivityReference | This field contains a unique value. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Market Price Confirmation Response `[p.59]`
+## Market Price Confirmation Response
 
-Market Price response is generated only when the order placed by the trader is a market order and the market order entered is not fully traded at exchange. This response is not expected for the limit orders.  The response packet is sent only when there is any untraded quantity left in the order. `[p.59]`
+Market Price response is generated only when the order placed by the trader is a market order and the market order entered is not fully traded at exchange. This response is not expected for the limit orders.  The response packet is sent only when there is any untraded quantity left in the order.
 
 The message sent is:
-
-*Table (p.59)*
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is PRICE_CONFIRMATION (2012). |
 | Price | This field contains the price of the order. If a Market order was entered when market was in Open state, the 'Market' flag in Order Terms is set and price is set at the prevailing price at the trading system. If the market order is entered when the market was in preopen, this transcode is not received. For Buy order the Price will be negative but for Sell order it will be positive |
 
-## Order Freeze Response `[p.60]`
+## Order Freeze Response
 
-Order  freeze  response  is  generated  when  the  order  placed  by  the  trader  or  the  order  after modification is awaiting approval from the exchange. This response is not expected for Auction Orders. Exchange approval of the order results in a Freeze Approval Response and rejection results  in  Freeze  Reject  Response.  These  responses  are  sent  as  unsolicited  messages.  The format sent is as follows: `[p.60]`
+Order  freeze  response  is  generated  when  the  order  placed  by  the  trader  or  the  order  after modification is awaiting approval from the exchange. This response is not expected for Auction Orders. Exchange approval of the order results in a Freeze Approval Response and rejection results  in  Freeze  Reject  Response.  These  responses  are  sent  as  unsolicited  messages.  The format sent is as follows:
 
-ORDER ENTRY REQUEST (Refer to Order Entry Request in Chapter 4) `[p.60]`
-
-*Table (p.60)*
+ORDER ENTRY REQUEST (Refer to Order Entry Request in Chapter 4)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is FREEZE_TO_CONTROL (2170). |
 | Order_Flags | (Refer to Order Entry Request in Chapter 4) |
 
-## Order Error Response `[p.60]`
+## Order Error Response
 
-The order error response is sent when the entered order is rejected by the trading system. The reason for the rejection is given by the reason code and the reason string. The message sent is: `[p.60]`
-
-*Table (p.60)*
+The order error response is sent when the entered order is rejected by the trading system. The reason for the rejection is given by the reason code and the reason string. The message sent is:
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -360,11 +338,11 @@ The order error response is sent when the entered order is rejected by the tradi
 | ErrorCode | This field contains the error number. Refer to List of Error Codes in Appendix. |
 | Suspended | This field contains 'C' if the broker is in Closeout. |
 
-## Order Modification `[p.60]`
+## Order Modification
 
-Order  Modification  enables  the  trader  to  modify  unmatched  orders.  All  order  types  except Auction can be modified. `[p.60]`
+Order  Modification  enables  the  trader  to  modify  unmatched  orders.  All  order  types  except Auction can be modified.
 
-## Rules of Order Modification `[p.60]`
+## Rules of Order Modification
 
 The following modifications are not allowed:
 
@@ -387,13 +365,11 @@ The following modifications are not allowed:
 - Difference between limit price and trigger price in stop loss limit orders is greater than permissible range.
 
 > [!note]
-> RL/ST/SL book types can be toggled between themselves only.  They cannot be modified to AU or SP or OL. `[p.61]`
+> RL/ST/SL book types can be toggled between themselves only.  They cannot be modified to AU or SP or OL.
 
-## Order Modification Request `[p.61]`
+## Order Modification Request
 
-The trader  can  modify  the  quantity,  price  and  attributes  of  an  order  by  specifying  the  order number of the order to be modified. The message sent is: `[p.61]`
-
-*Table (p.61-62)*
+The trader  can  modify  the  quantity,  price  and  attributes  of  an  order  by  specifying  the  order number of the order to be modified. The message sent is:
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -402,19 +378,17 @@ The trader  can  modify  the  quantity,  price  and  attributes  of  an  order  
 | LastModifiedTime | This should contain time of last activity done on that order. Last activity could be order entry, order modification or last trade time of that order. It is in number of seconds from midnight of January 1, 1980, |
 | LastActivityReference | This field should contain LastActivityReference value received in response of last activity done on that order. Last activity could be order entry confirmation, order modification confirmation or last trade of that order. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Order Modification Confirmation Response `[p.62]`
+## Order Modification Confirmation Response
 
-Successful modification of the order results in Order Modification Confirmation. When the order modification is confirmed, the order-modified time is filled and sent back. On modification, the order can result in a freeze. If the freeze is approved, order modification will be received as an 'Unsolicited Message'. `[p.62]`
+Successful modification of the order results in Order Modification Confirmation. When the order modification is confirmed, the order-modified time is filled and sent back. On modification, the order can result in a freeze. If the freeze is approved, order modification will be received as an 'Unsolicited Message'.
 
-Unmatched ATO/ Limit Pre-open orders are carried forward to the Normal Market without any change in time priority. For unmatched ATO orders which are carried forward, derived price will be  assigned,  response for  these  orders  will  be  sent  to  traders  as  'Unsolicited'  modification response. `[p.62]`
+Unmatched ATO/ Limit Pre-open orders are carried forward to the Normal Market without any change in time priority. For unmatched ATO orders which are carried forward, derived price will be  assigned,  response for  these  orders  will  be  sent  to  traders  as  'Unsolicited'  modification response.
 
-Unmatched Limit Pre-open orders are cancelled or carried forward to the Normal Market without any change in time priority for IPO/Relisting securities. `[p.62]`
+Unmatched Limit Pre-open orders are cancelled or carried forward to the Normal Market without any change in time priority for IPO/Relisting securities.
 
-Unmatched limit Pre-open orders are carried forward to the next session without any change in time priority for illiquid securities `[p.62]`
+Unmatched limit Pre-open orders are carried forward to the next session without any change in time priority for illiquid securities
 
 The structure sent is as follows:
-
-*Table (p.62-63)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -426,11 +400,9 @@ The structure sent is as follows:
 | Order_Flags | Preopen - This bit will be set to 1 for pre-open order modification response during pre-open market session and during Normal market session (for the carried forward orders). Preopen - This bit will be set to 1 for Call Auction 2 order modification response during Call Auction2 pre-open session and during Normal market session (for the carried forward orders) for IPO/Relisting securities. It will be set to 0 for Normal Market Open order modification response |
 | LastActivityReference | This field contains a unique value. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Order Modification Error Response `[p.63]`
+## Order Modification Error Response
 
-The reason for rejection is given by the Error Code in the header. The message sent is as follows: `[p.63]`
-
-*Table (p.63)*
+The reason for rejection is given by the Error Code in the header. The message sent is as follows:
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -438,9 +410,7 @@ The reason for rejection is given by the Error Code in the header. The message s
 | Order_Flags | This bit will be set to 1 for pre-open order modification response during pre-open market session and during Normal market session (for the carried forward orders). Preopen - This bit will be set to 1 for Call Auction 2 order modification response during Call Auction2 pre-open session and during Normal market session (for the carried forward orders) for IPO/Relisting securities. It will be set to 0 for Normal Market Open order modification response |
 | Reason code | For Call Auction2, the reason code 24 will be sent. Refer to List of Reason Codes in Appendix. |
 
-## Effect of Modifying the Terms of an Order on Price-Time Priority `[p.64]`
-
-*Table (p.64-65)*
+## Effect of Modifying the Terms of an Order on Price-Time Priority
 
 | Field Name | Can Change | Comments |
 | --- | --- | --- |
@@ -464,15 +434,15 @@ The reason for rejection is given by the Error Code in the header. The message s
 | Remarks | Yes | Changing this does not change time priority. |
 | Note: When the order quantity of an ATO or 'Market' order is modified, the order loses priority irrespective of increase or decrease in the quantity. |  |  |
 
-## Order Cancellation `[p.65]`
+## Order Cancellation
 
-The trader can cancel any unmatched/partially matched order by specifying the order number. `[p.65]`
+The trader can cancel any unmatched/partially matched order by specifying the order number.
 
-In after order collection period, the call auction order matching will be done. Once matching is completed the IOC orders which were not traded will get cancelled by the system, the transcode ORDER_CANCEL_CONFIRMATION (2075) will be sent. `[p.65]`
+In after order collection period, the call auction order matching will be done. Once matching is completed the IOC orders which were not traded will get cancelled by the system, the transcode ORDER_CANCEL_CONFIRMATION (2075) will be sent.
 
-In case of circuit hit, if Order collection phase is planned, orders related to normal market which were not traded will get cancelled by the system, the transcode ORDER_CANCEL_CONFIRMATION (2075) will be sent. `[p.65]`
+In case of circuit hit, if Order collection phase is planned, orders related to normal market which were not traded will get cancelled by the system, the transcode ORDER_CANCEL_CONFIRMATION (2075) will be sent.
 
-## Rules of Order Cancellation `[p.65]`
+## Rules of Order Cancellation
 
 - CM can cancel BM's and DL's order, but BM and DL cannot cancel CM's order.
 - BM can cancel DL's order, but DL cannot cancel BM's order.
@@ -480,13 +450,11 @@ In case of circuit hit, if Order collection phase is planned, orders related to 
 - Auction orders cannot be cancelled after auction is finished.
 - In case of CALL AUCTION 2 market, it is mandatory to mention a non-zero value in the price field.
 
-## Order Cancellation Request `[p.65]`
+## Order Cancellation Request
 
 The format of the message is as follows:
 
-ORDER ENTRY REQUEST (Refer to Order Entry Request in Chapter 4) `[p.65]`
-
-*Table (p.65-66)*
+ORDER ENTRY REQUEST (Refer to Order Entry Request in Chapter 4)
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -495,21 +463,17 @@ ORDER ENTRY REQUEST (Refer to Order Entry Request in Chapter 4) `[p.65]`
 | Last ModifiedTime | This should contain time of last activity done on that order. Last activity could be order entry, order modification or last trade time of that order. It is in number of seconds from midnight of January 1, 1980, |
 | LastActivityReference | This field should contain LastActivityReference value received in response of last activity done on that order. Last activity could be order entry confirmation, order modification confirmation or last trade of that order. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Order Cancellation Response `[p.66]`
+## Order Cancellation Response
 
-The response can be Order Cancellation Confirmation, Order Cancellation Error or one of the general error responses. `[p.66]`
-
-*Table (p.66)*
+The response can be Order Cancellation Confirmation, Order Cancellation Error or one of the general error responses.
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is ORDER_CANCEL_IN (2070). |
 
-## Order Cancellation Confirmation Response `[p.66]`
+## Order Cancellation Confirmation Response
 
-Successful cancellation of order results in Order Cancellation Confirmation Response. This will be an 'Unsolicited Message ' if NSE-Control cancels the order. The message sent is as follows: `[p.66]`
-
-*Table (p.66-67)*
+Successful cancellation of order results in Order Cancellation Confirmation Response. This will be an 'Unsolicited Message ' if NSE-Control cancels the order. The message sent is as follows:
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -520,30 +484,26 @@ Successful cancellation of order results in Order Cancellation Confirmation Resp
 | Order_Flags | This bit will be set to 1 for Pre-open order cancellation response and Pre-open carried forward order cancellation response. Preopen - This bit will be set to 1 for Call Auction 2 order modification response during Call Auction2 pre-open session and during Normal market session (for the carried forward orders) session for IPO/Relisting securities. It will be set to 0 for Normal Market Open order modification response |
 | LastActivityReference | This field contains a unique value. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Order Cancellation Error Response `[p.67]`
+## Order Cancellation Error Response
 
-The order cancellation error is sent when the cancellation request is rejected by the  trading system. The reason for rejection is given by the Error Code in the header. The message sent is as follows: `[p.67]`
-
-*Table (p.67)*
+The order cancellation error is sent when the cancellation request is rejected by the  trading system. The reason for rejection is given by the Error Code in the header. The message sent is as follows:
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is ORDER_CANCEL_REJECT (2072). |
 | Order_Flags | Preopen - This bit will be set to 1 for Pre-open order cancellation response and Pre-open carried forward order cancellation response. Preopen -This bit will be set to 1 for Call Auction 2 order modification response during Call Auction2 pre-open session and during Normal market session (for the carried forward orders) for IPO/Relisting securities. And it will be set to 0 for Normal Market Open order cancellation response |
 
-## Kill Switch `[p.68]`
+## Kill Switch
 
-This functionality provides a facility to traders to cancel all of their orders at the same time. `[p.68]`
+This functionality provides a facility to traders to cancel all of their orders at the same time.
 
-Also, user can cancel all outstanding orders on particular security by specifying security information in request packet. `[p.68]`
+Also, user can cancel all outstanding orders on particular security by specifying security information in request packet.
 
-## Kill Switch Request `[p.68]`
+## Kill Switch Request
 
 The format of the message is as follows:
 
-ORDER ENTRY REQUEST       (Refer to Order Entry Request in Chapter 4) `[p.68]`
-
-*Table (p.68)*
+ORDER ENTRY REQUEST       (Refer to Order Entry Request in Chapter 4)
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -551,35 +511,31 @@ ORDER ENTRY REQUEST       (Refer to Order Entry Request in Chapter 4) `[p.68]`
 | User | This field should contain the user id for which orders should be cancelled. |
 | SEC_INFO | For cancellation of all orders, Symbol and series fields should be set as blank. For cancellation of all orders on particular security, this structure should contain the Symbol and Series of the security. |
 
-## Kill Switch Response `[p.68]`
+## Kill Switch Response
 
-The Quick cancel out response is sent when the kill switch is requested by the user. The message sent is as follows: `[p.68]`
+The Quick cancel out response is sent when the kill switch is requested by the user. The message sent is as follows:
 
-ORDER ENTRY REQUEST       (Refer to Order Entry Request in Chapter 4) `[p.68]`
-
-*Table (p.68)*
+ORDER ENTRY REQUEST       (Refer to Order Entry Request in Chapter 4)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is QUICK_CANCEL_OUT(2061) |
 
-## Kill Switch Error Response `[p.68]`
+## Kill Switch Error Response
 
-The kill switch error is sent when the request is rejected by the trading system. The reason for rejection will be given by the Error Code in the header. The message sent is as follows: `[p.68]`
+The kill switch error is sent when the request is rejected by the trading system. The reason for rejection will be given by the Error Code in the header. The message sent is as follows:
 
-ORDER ENTRY REQUEST       (Refer to Order Entry Request in Chapter 4) `[p.68]`
-
-*Table (p.68)*
+ORDER ENTRY REQUEST       (Refer to Order Entry Request in Chapter 4)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is ORDER_ERROR (2231). |
 
-## Trade Modification `[p.69]`
+## Trade Modification
 
-This  functionality  provides  facility  to  traders  to  modify  the  trades.  Only  account  number modification is allowed. `[p.69]`
+This  functionality  provides  facility  to  traders  to  modify  the  trades.  Only  account  number modification is allowed.
 
-## Following modifications are not allowed: `[p.69]`
+## Following modifications are not allowed:
 
 - Modifying Trade Quantity
 - Modifiying Pro/Cli field
@@ -590,13 +546,11 @@ This  functionality  provides  facility  to  traders  to  modify  the  trades.  
 - Modifying non existing trade.
 - Modifying Auction trades.
 
-## Trade Modification Request `[p.69]`
+## Trade Modification Request
 
 The format of the message is as follows:
 
-## Table 20 TRADE_INQUIRY_DATA `[p.69]`
-
-*Table (p.69-70)*
+## Table 20 TRADE_INQUIRY_DATA
 
 | Structure Name | TRADE_INQUIRY_DATA |
 | --- | --- |
@@ -624,8 +578,6 @@ The format of the message is as follows:
 | SellPAN | CHAR |
 | Reserved | CHAR |
 
-*Table (p.70-71)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is TRADE_MOD_IN (5445). |
@@ -643,35 +595,31 @@ The format of the message is as follows:
 | BuyPAN | This field shall contain the PAN (Permanent Account Number/PAN_EXEMPT). This field shall be mandatory for all orders (client/participant/PRO orders). |
 | SellPAN | This field shall contain the PAN (Permanent Account Number/PAN_EXEMPT). This field shall be mandatory for all orders (client/participant/PRO orders). |
 
-## Trade Modification Confirmation Response `[p.71]`
+## Trade Modification Confirmation Response
 
-This message is sent when trade modification is confirmed by exchange trading system and corresponding new trade data is sent. `[p.71]`
-
-*Table (p.71)*
+This message is sent when trade modification is confirmed by exchange trading system and corresponding new trade data is sent.
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is TRADE_MODIFY_CONFIRM (2287). |
 | LogTime (of MESSAGE_HEADER) | This will contain the activity Time i.e., the latest modified time. |
 
-## Trade Modification Error `[p.71]`
+## Trade Modification Error
 
-If trade modification request is rejected due to erroneous data, then the structure sent is: `[p.71]`
+If trade modification request is rejected due to erroneous data, then the structure sent is:
 
-MS_TRADER_INT_MSG (Refer to Interactive/Broadcast Messages Sent from Control discussed later in this chapter) `[p.71]`
-
-*Table (p.72)*
+MS_TRADER_INT_MSG (Refer to Interactive/Broadcast Messages Sent from Control discussed later in this chapter)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is CTRL_MSG_TO_TRADER (5295). |
 | ErrorCode | Refer to List of Error Codes in Appendix. |
 
-## Trade Cancellation `[p.72]`
+## Trade Cancellation
 
-To cancel a trade, both the parties of the trade must request for trade cancellation. As soon as the request reaches the trading system, a requested message is sent. If any error is encountered in the entered data, Trade Error message is sent. Otherwise, it goes to the NSE-Control as an alert. The counter party to the trade is notified of the trade cancellation request (Refer to Trade Cancel Requested Notification in [Chapter 5](#chapter-5-unsolicited-messages)). When both the parties of the trade ask for trade cancellation,  it  may  be  approved  or  rejected  by  the  Exchange  (Refer  to Trade  Cancellation Confirmation in [Chapter 5](#chapter-5-unsolicited-messages)). `[p.72]`
+To cancel a trade, both the parties of the trade must request for trade cancellation. As soon as the request reaches the trading system, a requested message is sent. If any error is encountered in the entered data, Trade Error message is sent. Otherwise, it goes to the NSE-Control as an alert. The counter party to the trade is notified of the trade cancellation request (Refer to Trade Cancel Requested Notification in [Chapter 5](#chapter-5-unsolicited-messages)). When both the parties of the trade ask for trade cancellation,  it  may  be  approved  or  rejected  by  the  Exchange  (Refer  to Trade  Cancellation Confirmation in [Chapter 5](#chapter-5-unsolicited-messages)).
 
-## Trade Cancellation Request `[p.72]`
+## Trade Cancellation Request
 
 The format of the message is as follows:
 
@@ -679,34 +627,28 @@ TRADE_INQUIRY_DATA ( Refer to Trade Modification Request in Chapter 4
 
 )
 
-*Table (p.72)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is TRADE_CANCEL_IN (5440). |
 | FillNumber | This field should contain the trade number of the trade to be cancelled. |
 
-## Trade Cancellation Requested Response `[p.72]`
+## Trade Cancellation Requested Response
 
-This is an acknowledgement signifying that the request has reached the trading system. `[p.72]`
+This is an acknowledgement signifying that the request has reached the trading system.
 
 The following structure is sent:
 
-TRADE INQUIRY DATA (Refer to Trade Modification Request in Chapter 4) `[p.72]`
-
-*Table (p.72)*
+TRADE INQUIRY DATA (Refer to Trade Modification Request in Chapter 4)
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is TRADE_CANCEL_OUT (5441). |
 
-## Trade Cancellation Error `[p.72]`
+## Trade Cancellation Error
 
-After the requested response, if any error is detected in the data, the following structure is sent: `[p.72]`
+After the requested response, if any error is detected in the data, the following structure is sent:
 
-TRADE INQUIRY DATA (Refer to Trade Modification Request in Chapter 4) `[p.73]`
-
-*Table (p.73)*
+TRADE INQUIRY DATA (Refer to Trade Modification Request in Chapter 4)
 
 | Field Name | Brief Description |
 | --- | --- |

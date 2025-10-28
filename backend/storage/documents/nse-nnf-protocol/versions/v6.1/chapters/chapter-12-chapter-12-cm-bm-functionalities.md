@@ -8,21 +8,19 @@ document: "TP_CM_Trimmed_NNF_PROTOCOL_6.1_1"
 # Chapter 12 CM-BM Functionalities
 
 
-## Introduction `[p.168]`
+## Introduction
 
-This section describes about functionalities available to corporate manager and branch manager users for risk management and admin related activities. `[p.168]`
+This section describes about functionalities available to corporate manager and branch manager users for risk management and admin related activities.
 
-## Branch Order Limit `[p.168]`
+## Branch Order Limit
 
-Corporate manager can set limits on total value of buy/sell orders entered by specific branch within trading member's firm. `[p.168]`
+Corporate manager can set limits on total value of buy/sell orders entered by specific branch within trading member's firm.
 
-Branch order value limit will be applicable to users available in the branch. `[p.168]`
+Branch order value limit will be applicable to users available in the branch.
 
-## Branch Order Value Limit Update Request `[p.168]`
+## Branch Order Value Limit Update Request
 
 The format of the message is as follows:
-
-*Table (p.168)*
 
 | Structure Name | BRANCH_ORDER_VAL_LIMIT_UPDATE |
 | --- | --- |
@@ -35,8 +33,6 @@ The format of the message is as follows:
 | Branch | SHORT |
 | BRANCH_LIMIT | STRUCT |
 
-*Table (p.168)*
-
 | Structure Name | BRANCH_LIMIT |
 | --- | --- |
 | Packet Length | 32 bytes |
@@ -46,8 +42,6 @@ The format of the message is as follows:
 | BranchSellValueLimit | DOUBLE |
 | Reserved | CHAR |
 
-*Table (p.169)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BRANCH_ORDER_VAL_LIMIT_UPDATE_IN (5716) |
@@ -56,9 +50,9 @@ The format of the message is as follows:
 | BranchBuyValueLimit | This field should contain branch buy limit to be set (in lakhs) Valid values: 0 to 9999999.99 This is to be multiplied by (100000*100) before sending to the trading system host |
 | BranchSellValueLimit | This field should contain branch sell limit to be set (in lakhs) Valid values: 0 to 9999999.99 This is to be multiplied by (100000*100) before sending to the trading system host |
 
-## Branch Order Value Limit Update Response `[p.169]`
+## Branch Order Value Limit Update Response
 
-On successful branch limit updates, exchange will send Branch Order Limit Update Response to `[p.169]`
+On successful branch limit updates, exchange will send Branch Order Limit Update Response to
 
 - -Corporate manager
 - -Branch manager(of branch id mentioned in request)
@@ -67,24 +61,20 @@ The structure is sent as follows:
 
 BRANCH_ORDER_VAL_LIMIT_UPDATE (Refer to Branch Order Value Limit Request structure)
 
-*Table (p.169)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is BRANCH_ORDER_LIMIT_UPDATE_OUT (5717) |
 | ErrorCode | This field contains error code. If error code field value is zero (0) then user order value limit update is done successfully. |
 
-If branch order value limit update request is rejected by trading system, then ERROR RESPONSE (Refer  Table  5)  packet  will  be  sent  to  user  who  has  sent  limit  update  request.  Reason  for rejection will be given by ErrorCode in the header. `[p.169]`
+If branch order value limit update request is rejected by trading system, then ERROR RESPONSE (Refer  Table  5)  packet  will  be  sent  to  user  who  has  sent  limit  update  request.  Reason  for rejection will be given by ErrorCode in the header.
 
-## User Order Limit `[p.170]`
+## User Order Limit
 
-Corporate manager can set limit on total value of buy/sell orders entered by specific user within trading member's firm. Similarly, Branch manager can set limit on total value of buy/sell orders entered by specific user within the branch. `[p.170]`
+Corporate manager can set limit on total value of buy/sell orders entered by specific user within trading member's firm. Similarly, Branch manager can set limit on total value of buy/sell orders entered by specific user within the branch.
 
-## User Order Value Limit Update Request `[p.170]`
+## User Order Value Limit Update Request
 
 The format of the message is as follows:
-
-*Table (p.170)*
 
 | Structure Name | USER_ORDER_VAL_LIMIT_UPDATE |
 | --- | --- |
@@ -99,8 +89,6 @@ The format of the message is as follows:
 | UserId | LONG |
 | USER_LIMITS | STRUCT |
 
-*Table (p.170)*
-
 | Structure Name | USER_LIMITS |
 | --- | --- |
 | Packet Length | 64 bytes |
@@ -111,8 +99,6 @@ The format of the message is as follows:
 | UserOrderSellValueLimit | DOUBLE |
 | Reserved | CHAR |
 
-*Table (p.170-171)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is USER_ORDER_LIMIT_UPDATE_IN (5719) |
@@ -122,9 +108,9 @@ The format of the message is as follows:
 | UserOrderBuyValueLimit | This field should contain user buy limit to be set (in lakhs) Valid values: 0 to 9999999.99 This is to be multiplied by (100000*100) before sending to the exchange trading system |
 | UserOrderSellValueLimit | This field should contain user sell limit to be set (in lakhs) Valid values: 0 to 9999999.99 This is to be multiplied by (100000*100) before sending to the exchange trading system |
 
-## User Order Value Limit Update Response `[p.171]`
+## User Order Value Limit Update Response
 
-On successful user limit updates, exchange will send User Order Limit Update Response to `[p.171]`
+On successful user limit updates, exchange will send User Order Limit Update Response to
 
 - -user who has sent limit update request
 - -user for which limit has been set
@@ -134,26 +120,22 @@ The structure is sent as follows:
 
 USER_ORDER_VAL_LIMIT_UPDATE (Refer to User Order Value Limit Request structure)
 
-*Table (p.171)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is USER_ORDER_LIMIT_UPDATE_OUT (5720) |
 | ErrorCode | This field contains error code. If error code field value is zero (0) then user order value limit update is done successfully. |
 
-If user order value limit update request is rejected by trading system, then ERROR RESPONSE (Refer Table 5) packet will be sent to user who has sent limit update request. Reason for rejection will be given by ErrorCode in the header. `[p.171]`
+If user order value limit update request is rejected by trading system, then ERROR RESPONSE (Refer Table 5) packet will be sent to user who has sent limit update request. Reason for rejection will be given by ErrorCode in the header.
 
-## Order Limit `[p.172]`
+## Order Limit
 
-This functionality provides facility to specify maximum quantity per order and maximum value per order that user can enter in order entry/order modification request. `[p.172]`
+This functionality provides facility to specify maximum quantity per order and maximum value per order that user can enter in order entry/order modification request.
 
-Corporate manager can set limit on order quantity and order value of an order, entered by user within trading member's firm. Similarly Branch manager can set limit on order quantity and order value of an order entered by user within the branch. `[p.172]`
+Corporate manager can set limit on order quantity and order value of an order, entered by user within trading member's firm. Similarly Branch manager can set limit on order quantity and order value of an order entered by user within the branch.
 
-## Order Limit Update Request `[p.172]`
+## Order Limit Update Request
 
 The format of the message is as follows:
-
-*Table (p.172)*
 
 | Structure Name | ORDER_LIMIT_UPDATE |
 | --- | --- |
@@ -168,8 +150,6 @@ The format of the message is as follows:
 | OrderValLimit | DOUBLE |
 | Reserved | CHAR |
 
-*Table (p.172)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is DEALER_LIMIT_UPDATE_IN (5721) |
@@ -178,9 +158,9 @@ The format of the message is as follows:
 | QuantityValLimit | This field should contain Order Quantity limit to be Set Valid values : 1 to 999999999 |
 | OrderValLimit | This field should contain Order Limit to be Set in lakhs Valid values: 0 to 9999999.99 This is to be multiplied by (100000*100) before sending to the trading system host |
 
-## Order Limit Update Response `[p.173]`
+## Order Limit Update Response
 
-On successful order limit updates, exchange will send Order Limit Update Response to `[p.173]`
+On successful order limit updates, exchange will send Order Limit Update Response to
 
 - -user who has sent limit update request
 - -user for which limit has been set
@@ -190,33 +170,29 @@ The structure is sent as follows:
 
 ORDER_LIMIT_UPDATE (Refer to Order Limit Update_Request structure)
 
-*Table (p.173)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is DEALER_LIMIT_UPDATE_IN (5722) |
 | ErrorCode | This field contains error code. If error code field value is zero (0) then order limit update is done successfully. |
 
-If order limit update request is rejected by trading system, then ERROR RESPONSE (Refer Table 5) packet will be sent to user who has sent limit update request. Reason for rejection will be given by ErrorCode in the header. `[p.173]`
+If order limit update request is rejected by trading system, then ERROR RESPONSE (Refer Table 5) packet will be sent to user who has sent limit update request. Reason for rejection will be given by ErrorCode in the header.
 
-## Reset UserId `[p.173]`
+## Reset UserId
 
-This functionality enables the Corporate Manager to terminate the active session for users within trading member's firm. Similarly, Branch Manager can terminate the active session for users within the branch. `[p.173]`
+This functionality enables the Corporate Manager to terminate the active session for users within trading member's firm. Similarly, Branch Manager can terminate the active session for users within the branch.
 
-## User Reset Request `[p.173]`
+## User Reset Request
 
 The format of the message is as follows:
-
-*Table (p.173)*
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is RESET_USERID_REQ (5723). |
 | UserId | This field should contain User ID of user to be reset. This field accepts numbers only. |
 
-## User Reset Response `[p.174]`
+## User Reset Response
 
-In below mentioned scenarios, exchange trading system will send User Reset Response to user who has sent user reset request, `[p.174]`
+In below mentioned scenarios, exchange trading system will send User Reset Response to user who has sent user reset request,
 
 - -On Successful user session reset
 
@@ -224,29 +200,25 @@ The structure is sent as follows:
 
 SIGNON IN (Refer to Logon Structure in [Chapter 3](#chapter-3-logon-process))
 
-*Table (p.174)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is RESET_USERID_RESP (5724). |
 | ErrorCode | This field contains error code. If error code field value is zero (0) then reset user is done successfully. |
 
-If User Reset request is rejected by exchange trading system, then ERROR RESPONSE (Refer Table 5) packet will be sent to user who has sent user reset request. Reason for rejection will be given by ErrorCode in the header. `[p.174]`
+If User Reset request is rejected by exchange trading system, then ERROR RESPONSE (Refer Table 5) packet will be sent to user who has sent user reset request. Reason for rejection will be given by ErrorCode in the header.
 
-## Reset Password `[p.174]`
+## Reset Password
 
-Corporate manager can reset password of users within trading member's firm. `[p.174]`
+Corporate manager can reset password of users within trading member's firm.
 
 - The user's password will reset to 'Neat@CM1' i.e. default password.
 - User whose password is to be reset should be 'Disabled' or 'Inactive'
 - On resetting the password of disabled user, status of the user will be changed to inactive.
 - The Corporate Manager will not be allowed to reset his own password.
 
-## User Password Reset Request `[p.174]`
+## User Password Reset Request
 
 The format of the message is as follows:
-
-*Table (p.175)*
 
 | Structure Name | RESET_PASSWORD |
 | --- | --- |
@@ -257,16 +229,14 @@ The format of the message is as follows:
 | UserId | LONG |
 | Reserved | CHAR |
 
-*Table (p.175)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is RESET_PASSWORD_IN (5738) |
 | UserId | This field should contain user id for which password to be reset |
 
-## User Password Reset Response `[p.175]`
+## User Password Reset Response
 
-In below mentioned scenarios, exchange trading system will send User password reset response to user who has sent user password reset request `[p.175]`
+In below mentioned scenarios, exchange trading system will send User password reset response to user who has sent user password reset request
 
 - -On Successful user password reset
 - -If user password reset request is rejected by exchange trading system (Reason for rejection will be given by ErrorCode in the header.)
@@ -275,24 +245,20 @@ The structure is sent as follows:
 
 RESET_PASSWORD (Refer to User Password Reset Request structure)
 
-*Table (p.175)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is RESET_PASSWORD_OUT (5739) |
 | ErrorCode | This field contains error code. If error code field value is zero (0) then reset password for user is done successfully. If error code field value is non-zero, then reset password request for user is rejected. Refer to List of Error Codes in Appendix. |
 
-## Cancel On Logout (COL) Status `[p.175]`
+## Cancel On Logout (COL) Status
 
-This functionality if enabled provides facility to traders to cancel all their outstanding orders when user logs off from exchange trading system. `[p.175]`
+This functionality if enabled provides facility to traders to cancel all their outstanding orders when user logs off from exchange trading system.
 
-Corporate manager can enable/disable COL status for the users within trading member's firm. `[p.176]`
+Corporate manager can enable/disable COL status for the users within trading member's firm.
 
-## User COL Status Update Request `[p.176]`
+## User COL Status Update Request
 
 The format of the message is as follows:
-
-*Table (p.176)*
 
 | Structure Name | COL_ USER_STATUS_CHANGE_REQ |
 | --- | --- |
@@ -304,24 +270,20 @@ The format of the message is as follows:
 | ColoUserBit | CHAR |
 | Reserved | CHAR |
 
-*Table (p.176)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is COL_USER_STATUS_CHANGE_IN (5790) |
 | UserId | This field should contain user id for which COL status to be set |
 | ColoUserBit | This field should contain user's COL status to be set. It should contain one of the following values. • '0' for Disable COL status • '1' for Enable COL status |
 
-## User COL Status Update Response `[p.176]`
+## User COL Status Update Response
 
-In below mentioned scenarios, exchange trading system will send User COL Status Update response to user who has sent status update request `[p.176]`
+In below mentioned scenarios, exchange trading system will send User COL Status Update response to user who has sent status update request
 
 - -On Successful COL status updates
 - -If User COL status update request is rejected by exchange trading system (Reason for rejection will be given by ErrorCode in the header.)
 
 The structure is sent as follows:
-
-*Table (p.177)*
 
 | Structure Name | COL_USER_STATUS_CHANGE_RESP |
 | --- | --- |
@@ -333,8 +295,6 @@ The structure is sent as follows:
 | ColoUserBit | CHAR |
 | Reserved | CHAR |
 
-*Table (p.177)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is COL_USER_STATUS_CHANGE_OUT (5791) |
@@ -342,7 +302,7 @@ The structure is sent as follows:
 | UserId | This field will contain user id for which COL status is set |
 | ColoUserBit | This field will contain user's COL status is set. It will contain one of the following values. • '0' for Disable COL status • '1' for Enable COL status |
 
-Also, in case of successful COL status update, trading system will send interactive message to `[p.177]`
+Also, in case of successful COL status update, trading system will send interactive message to
 
 - -user who has sent status update request
 - -user for which status has been updated
@@ -353,9 +313,7 @@ The message sent will be of the following format:
 
 MS_TRADER_INT_MSG (Refer to Interactive/Broadcast Messages Sent from Control)
 
-The following table provides the details of the various fields present in the MS_TRADER_INT_MSG Structure. `[p.177]`
-
-*Table (p.178)*
+The following table provides the details of the various fields present in the MS_TRADER_INT_MSG Structure.
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -363,17 +321,15 @@ The following table provides the details of the various fields present in the MS
 | BroadCastMessage Length | This field contains Message Length |
 | BroadCastMessage | This field contains actual Message |
 
-## Trade Cancellation Status `[p.178]`
+## Trade Cancellation Status
 
-Corporate manager can enable/disable Trade Cancellation Status for the users within trading member's firm. `[p.178]`
+Corporate manager can enable/disable Trade Cancellation Status for the users within trading member's firm.
 
-If Trade Cancellation status for user is enabled, then user will be allowed to send Trade cancellation request to exchange trading system. `[p.178]`
+If Trade Cancellation status for user is enabled, then user will be allowed to send Trade cancellation request to exchange trading system.
 
-## User TRD-CXL Status Update Request `[p.178]`
+## User TRD-CXL Status Update Request
 
 The format of the message is as follows:
-
-*Table (p.178)*
 
 | Structure Name | USER_ TRD_MOD_CXL_CHANGE_REQ |
 | --- | --- |
@@ -385,8 +341,6 @@ The format of the message is as follows:
 | TrdModCxlBit | CHAR |
 | Reserved | CHAR |
 
-*Table (p.178-179)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is USER_TRD_MOD_CXL_CHANGE_IN (5792) |
@@ -395,15 +349,13 @@ The format of the message is as follows:
 | UserId | This field should contain user id for which trade cancel status to be set. |
 | TrdModCxlBit | This field should contain user's Trade Cancellation Status to be set. It should contain one of following values, • 'Y' for Enable Trade Cancellation Status • 'N' for Disable Trade Cancellation Status |
 
-## User TRD-CXL Status Update Response `[p.179]`
+## User TRD-CXL Status Update Response
 
-On successful Trade CXL status updates, exchange trading system will send User TRD-CXL Status Update Response to the user who has sent status update request as well as to the user for which TRD-CXL status has been set. `[p.179]`
+On successful Trade CXL status updates, exchange trading system will send User TRD-CXL Status Update Response to the user who has sent status update request as well as to the user for which TRD-CXL status has been set.
 
-If User TRD-CXL status update request is rejected by exchange trading system, then status update response packet will be sent to user who has sent status update request. Reason for rejection will be given by ErrorCode in the header. `[p.179]`
+If User TRD-CXL status update request is rejected by exchange trading system, then status update response packet will be sent to user who has sent status update request. Reason for rejection will be given by ErrorCode in the header.
 
 The structure is sent as follows:
-
-*Table (p.179)*
 
 | Structure Name | USER_TRD_MOD_CXL_CHANGE_RESP |
 | --- | --- |
@@ -414,8 +366,6 @@ The structure is sent as follows:
 | UserId | LONG |
 | TrdModCxlBit | CHAR |
 | Reserved | CHAR |
-
-*Table (p.179-180)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -430,11 +380,9 @@ The structure is sent as follows:
 - -Branch manager (if the status update is done for the dealer under his branch).
 - -Other Branch managers of same branch if status update is done for Branch manager
 
-The message sent will be of the following format: MS_TRADER_INT_MSG (Refer to Interactive/Broadcast Messages Sent from Control) `[p.180]`
+The message sent will be of the following format: MS_TRADER_INT_MSG (Refer to Interactive/Broadcast Messages Sent from Control)
 
-The following table provides the details of the various fields present in the MS_TRADER_INT_MSG Structure. `[p.180]`
-
-*Table (p.180)*
+The following table provides the details of the various fields present in the MS_TRADER_INT_MSG Structure.
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -442,19 +390,17 @@ The following table provides the details of the various fields present in the MS
 | BroadCastMessage Length | This field contains Message Length |
 | BroadCastMessage | This field contains actual Message |
 
-## Trade Modification Status `[p.181]`
+## Trade Modification Status
 
-Corporate manager can enable/disable Trade Modification Status for the users within trading member's firm. `[p.181]`
+Corporate manager can enable/disable Trade Modification Status for the users within trading member's firm.
 
-If Trade Modification status for user is enabled, then user will be allowed to send Trade modification request to exchange trading system. `[p.181]`
+If Trade Modification status for user is enabled, then user will be allowed to send Trade modification request to exchange trading system.
 
-## User TRD-MOD Status Update Request `[p.181]`
+## User TRD-MOD Status Update Request
 
 The message sent will be of the following format:
 
-USER_ TRD_MOD_CXL_CHANGE_REQ ( Refer to User TRD-CXL Status Update Request structure ) `[p.181]`
-
-*Table (p.181)*
+USER_ TRD_MOD_CXL_CHANGE_REQ ( Refer to User TRD-CXL Status Update Request structure )
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -462,17 +408,15 @@ USER_ TRD_MOD_CXL_CHANGE_REQ ( Refer to User TRD-CXL Status Update Request struc
 | UserId | This field should contain user id for which trade modification status to be set. |
 | TrdCxlBit | This field should contain user's Trade Modification Status to be set. It should contain one of following values, • 'Y' for Enable Trade Modification Status • 'N' for Disable Trade Modification Status |
 
-## User TRD-MOD Status Update Response `[p.181]`
+## User TRD-MOD Status Update Response
 
-On successful Trade MOD status updates, exchange trading system will send User TRD-MOD Status Update Response to the user who has sent status update request as well as to the user for which TRD-MOD status has been set. `[p.181]`
+On successful Trade MOD status updates, exchange trading system will send User TRD-MOD Status Update Response to the user who has sent status update request as well as to the user for which TRD-MOD status has been set.
 
-If User TRD-MOD status update request is rejected by exchange trading system, then status update response packet will be sent to user who has sent status update request. Reason for rejection will be given by ErrorCode in the header. `[p.181]`
+If User TRD-MOD status update request is rejected by exchange trading system, then status update response packet will be sent to user who has sent status update request. Reason for rejection will be given by ErrorCode in the header.
 
 The message sent will be of the following format:
 
-USER_ TRD_MOD_CXL_CHANGE_RESP ( Refer to User TRD-CXL Status Update Response structure ) `[p.181]`
-
-*Table (p.182)*
+USER_ TRD_MOD_CXL_CHANGE_RESP ( Refer to User TRD-CXL Status Update Response structure )
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -481,7 +425,7 @@ USER_ TRD_MOD_CXL_CHANGE_RESP ( Refer to User TRD-CXL Status Update Response str
 | UserId | This field will contain user id for which trade modification status is set. |
 | TrdModCxlBit | This field will contain user's Trade Modification Status is set. It will contain one of following values, • 'Y' for Enable Trade Modification Status • 'N' for Disable Trade Modification Status |
 
-Also, in case of successful TRD-MOD status update, trading system will send interactive message to `[p.182]`
+Also, in case of successful TRD-MOD status update, trading system will send interactive message to
 
 - -user who has sent status update request
 - -user for which status has been updated
@@ -492,9 +436,7 @@ The message sent will be of the following format:
 
 MS_TRADER_INT_MSG (Refer to Interactive/Broadcast Messages Sent from Control)
 
-The following table provides the details of the various fields present in the MS_TRADER_INT_MSG Structure. `[p.182]`
-
-*Table (p.182)*
+The following table provides the details of the various fields present in the MS_TRADER_INT_MSG Structure.
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -502,15 +444,13 @@ The following table provides the details of the various fields present in the MS
 | BroadCastMessage Length | This field contains Message Length |
 | BroadCastMessage | This field contains actual Message |
 
-## Unlock User `[p.183]`
+## Unlock User
 
-Corporate manager can send unlock request for the users within trading member's firm. As soon as User Unlock request reaches trading system, User Unlock Requested Response message is sent to user who has sent Unlock User Request. This in turn generates alert to NSEControl user. This alert may be approved or rejected by exchange. `[p.183]`
+Corporate manager can send unlock request for the users within trading member's firm. As soon as User Unlock request reaches trading system, User Unlock Requested Response message is sent to user who has sent Unlock User Request. This in turn generates alert to NSEControl user. This alert may be approved or rejected by exchange.
 
-## User Unlock Request `[p.183]`
+## User Unlock Request
 
 The format of the message is as follows:
-
-*Table (p.183)*
 
 | Structure Name | USER_ADDR_UNLOCK_REQ |
 | --- | --- |
@@ -521,20 +461,16 @@ The format of the message is as follows:
 | UserId | LONG |
 | Reserved | CHAR |
 
-*Table (p.183)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is USER_ADDR_UNLOCK_IN (5424) |
 | UserId | This field should contain user id for which unlock request to be made |
 
-## User Unlock Requested Response `[p.183]`
+## User Unlock Requested Response
 
-This is an acknowledgement signifying that the User Unlock Request has reached the trading system. If any error is encountered in the User Unlock Request data, then appropriate error code will be set. `[p.183]`
+This is an acknowledgement signifying that the User Unlock Request has reached the trading system. If any error is encountered in the User Unlock Request data, then appropriate error code will be set.
 
 The structure is sent as follows:
-
-*Table (p.183)*
 
 | Structure Name | USER_ADDR_UNLOCK_RESP |
 | --- | --- |
@@ -544,20 +480,16 @@ The structure is sent as follows:
 | MESSAGE HEADER (Refer Table 1) | STRUCT |
 | UserId | LONG |
 
-*Table (p.184)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is USER_ADDR_UNLOCK_OUT (5425) |
 | ErrorCode | This field contains error code. If error code field value is zero (0) then user unlock request for user is made to exchange successfully. If error code field value is non-zero, then user unlock request for user is rejected. Refer to List of Error Codes in Appendix. |
 
-## User Unlock Approval/Rejection Response `[p.184]`
+## User Unlock Approval/Rejection Response
 
-On approval of user unlock request by exchange trading system, exchange trading system will send user unlock response to user who has sent user unlock request. `[p.184]`
+On approval of user unlock request by exchange trading system, exchange trading system will send user unlock response to user who has sent user unlock request.
 
 The structure is sent as follows:
-
-*Table (p.184)*
 
 | Structure Name | USER_ADDR_UNLOCK_APP_REJ_RESP |
 | --- | --- |
@@ -567,8 +499,6 @@ The structure is sent as follows:
 | MESSAGE HEADER (Refer Table 1) | STRUCT |
 | UserId | LONG |
 
-*Table (p.184-185)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is USER_ADDR_UNLOCK_APPROVE_OUT (5575) |
@@ -576,19 +506,17 @@ The structure is sent as follows:
 | TransactionCode | The transaction code is USER_ADDR_UNLOCK_REJECT_OUT (5579) |
 | ErrorCode | This field contains error code. If error code field value is non-zero, then user unlock request for user is rejected. Refer to List of Error Codes in Appendix. |
 
-## Trading Member Level Kill Switch `[p.185]`
+## Trading Member Level Kill Switch
 
-This functionality provides a facility to Corporate Manager, to cancel all pending orders of all the users under trading member's firm at the same time. `[p.185]`
+This functionality provides a facility to Corporate Manager, to cancel all pending orders of all the users under trading member's firm at the same time.
 
-Also, user can cancel all outstanding orders on particular security by specifying security information in request packet. `[p.185]`
+Also, user can cancel all outstanding orders on particular security by specifying security information in request packet.
 
-## Member Level Kill Switch Request `[p.185]`
+## Member Level Kill Switch Request
 
 The format of the message is as follows:
 
 ORDER_ENTRY_REQUEST (Refer to Order Entry Request in [Chapter 4](#chapter-4))
-
-*Table (p.185)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -596,38 +524,34 @@ ORDER_ENTRY_REQUEST (Refer to Order Entry Request in [Chapter 4](#chapter-4))
 | User | This field should contain 0 for Trading Member level kill switch request. |
 | SEC_INFO | For cancellation of all orders, Symbol and series fields should be set as blank. For cancellation of all orders on particular security, this structure should contain the Symbol and Series of the security. |
 
-## Member Level Kill Switch Response `[p.185]`
+## Member Level Kill Switch Response
 
-The Quick cancel out response is sent when the member level kill switch is requested by the corporate manager. `[p.185]`
-
-The message sent is as follows:
-
-ORDER_ENTRY_REQUEST (Refer to Order Entry Request in [Chapter 4](#chapter-4))
-
-## Member Level Kill Switch Error Response `[p.186]`
-
-The kill switch error is sent when the request is rejected by the trading system. The reason for rejection will be given by the Error Code in the header. `[p.186]`
+The Quick cancel out response is sent when the member level kill switch is requested by the corporate manager.
 
 The message sent is as follows:
 
 ORDER_ENTRY_REQUEST (Refer to Order Entry Request in [Chapter 4](#chapter-4))
 
-*Table (p.186)*
+## Member Level Kill Switch Error Response
+
+The kill switch error is sent when the request is rejected by the trading system. The reason for rejection will be given by the Error Code in the header.
+
+The message sent is as follows:
+
+ORDER_ENTRY_REQUEST (Refer to Order Entry Request in [Chapter 4](#chapter-4))
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is ORDER_ERROR (2231). |
 | ErrorCode | This field contains the error number. Refer to List of Error Codes in Appendix. |
 
-## User Level Kill Switch `[p.186]`
+## User Level Kill Switch
 
-This functionality provides a facility to Corporate Manager and Branch Manager to cancel all of their orders at the same time. `[p.186]`
+This functionality provides a facility to Corporate Manager and Branch Manager to cancel all of their orders at the same time.
 
-Also, they can cancel all of their outstanding orders on particular security by specifying security information in request packet. `[p.186]`
+Also, they can cancel all of their outstanding orders on particular security by specifying security information in request packet.
 
-## User Level Kill Switch Request `[p.186]`
-
-*Table (p.186)*
+## User Level Kill Switch Request
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -635,92 +559,84 @@ Also, they can cancel all of their outstanding orders on particular security by 
 | User | This field should contain the user id for which orders should be cancelled. |
 | SEC_INFO | For cancellation of all orders, Symbol and series fields should be set as blank. For cancellation of all orders on particular security, this structure should contain the Symbol and Series of the security. |
 
-## User Level Kill Switch Response `[p.187]`
+## User Level Kill Switch Response
 
-The Quick cancel out response is sent when the kill switch is requested by the user. The message sent is as follows: `[p.187]`
+The Quick cancel out response is sent when the kill switch is requested by the user. The message sent is as follows:
 
-ORDER ENTRY REQUEST       (Refer to Order Entry Request in [Chapter 4](#chapter-4)) `[p.187]`
-
-*Table (p.187)*
+ORDER ENTRY REQUEST       (Refer to Order Entry Request in [Chapter 4](#chapter-4))
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is QUICK_CANCEL_OUT(2061) |
 
-## User Level Kill Switch Error Response `[p.187]`
+## User Level Kill Switch Error Response
 
-The kill switch error is sent when the request is rejected by the trading system. The reason for rejection will be given by the Error Code in the header. The message sent is as follows: `[p.187]`
+The kill switch error is sent when the request is rejected by the trading system. The reason for rejection will be given by the Error Code in the header. The message sent is as follows:
 
-ORDER ENTRY REQUEST       (Refer to Order Entry Request in [Chapter 4](#chapter-4)) `[p.187]`
-
-*Table (p.187)*
+ORDER ENTRY REQUEST       (Refer to Order Entry Request in [Chapter 4](#chapter-4))
 
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is ORDER_ERROR (2231). |
 
-## Order and Trade `[p.187]`
+## Order and Trade
 
-## Order Entry `[p.187]`
+## Order Entry
 
-This functionality enables the Corporate Manager and Branch Manager to place orders in the market. `[p.187]`
+This functionality enables the Corporate Manager and Branch Manager to place orders in the market.
 
-Please  refer  Trimmed  Order  Entry  Request  Structure  from  Trimmed  Structures  section  for further details. `[p.187]`
+Please  refer  Trimmed  Order  Entry  Request  Structure  from  Trimmed  Structures  section  for further details.
 
-## Order Modification `[p.187]`
+## Order Modification
 
-This  functionality  enables  the  Corporate  Manager  and  Branch  Manager  to  modify  their unmatched orders by specifying the order number of the order to be modified. All order types except Auction can be modified. Corporate Manager can modify his own order and also for his Branch Manager and Dealers/Traders. Branch Manager can modify his own order and also for his Dealers/Traders. `[p.187]`
+This  functionality  enables  the  Corporate  Manager  and  Branch  Manager  to  modify  their unmatched orders by specifying the order number of the order to be modified. All order types except Auction can be modified. Corporate Manager can modify his own order and also for his Branch Manager and Dealers/Traders. Branch Manager can modify his own order and also for his Dealers/Traders.
 
-Please refer Trimmed Order Mod/Cxl Request Structure from Trimmed Structures section for further details. `[p.187]`
+Please refer Trimmed Order Mod/Cxl Request Structure from Trimmed Structures section for further details.
 
-## Order Cancellation `[p.187]`
+## Order Cancellation
 
-The  functionality  enables  the  Corporate  Manager  and  Branch  Manager  to  cancel  their  any unmatched/partially matched order by specifying the order number. Corporate Manager can `[p.187]`
+The  functionality  enables  the  Corporate  Manager  and  Branch  Manager  to  cancel  their  any unmatched/partially matched order by specifying the order number. Corporate Manager can
 
-cancel his own order and also for this Branch Managers and Dealers/Traders. Branch Manager can cancel his own order and also for his Dealers/Traders. `[p.188]`
+cancel his own order and also for this Branch Managers and Dealers/Traders. Branch Manager can cancel his own order and also for his Dealers/Traders.
 
-Please refer Trimmed Order Mod/Cxl Request Structure from Trimmed Structures section for further details. `[p.188]`
+Please refer Trimmed Order Mod/Cxl Request Structure from Trimmed Structures section for further details.
 
-## Trade Modification `[p.188]`
+## Trade Modification
 
-This functionality enables the Corporate Manager and Branch Manager to modify their trades. Only account number modification is allowed. Corporate Manager can modify his own trade and also for his Branch Managers and Dealers/Traders. Branch Manager can modify his own trade and also for his Dealers/Traders. `[p.188]`
+This functionality enables the Corporate Manager and Branch Manager to modify their trades. Only account number modification is allowed. Corporate Manager can modify his own trade and also for his Branch Managers and Dealers/Traders. Branch Manager can modify his own trade and also for his Dealers/Traders.
 
-Please refer Trade Modification section (in [Chapter 4](#chapter-4)) for further details. `[p.188]`
+Please refer Trade Modification section (in [Chapter 4](#chapter-4)) for further details.
 
-## Trade Cancellation `[p.188]`
+## Trade Cancellation
 
-This functionality enables the Corporate Manager and Branch Manager to cancel their trades. But to cancel a trade, both the parties of the trade must request for trade cancellation. Corporate Manager can cancel his own trade and also for his Branch Managers and Dealers/Traders. Branch Manager can cancel his own trade and also for his Dealers/Traders. `[p.188]`
+This functionality enables the Corporate Manager and Branch Manager to cancel their trades. But to cancel a trade, both the parties of the trade must request for trade cancellation. Corporate Manager can cancel his own trade and also for his Branch Managers and Dealers/Traders. Branch Manager can cancel his own trade and also for his Dealers/Traders.
 
-Please refer Trade Cancellation section (in [Chapter 4](#chapter-4)) for further details. `[p.188]`
+Please refer Trade Cancellation section (in [Chapter 4](#chapter-4)) for further details.
 
-## Close Out Order Entry `[p.188]`
+## Close Out Order Entry
 
-This facility is provided to trading members in closeout mode to place an opposite order with intent  to  reduce  the  open  positions.  Close  out  orders  entered  shall  be  Regular  Lot  (RL)  and Immediate or Cancel (IOC) orders. `[p.188]`
+This facility is provided to trading members in closeout mode to place an opposite order with intent  to  reduce  the  open  positions.  Close  out  orders  entered  shall  be  Regular  Lot  (RL)  and Immediate or Cancel (IOC) orders.
 
-Clearing members can place order entry on behalf of the linked trading members. A close out order entry can be placed by Corporate Manager of member type PCM (Professional clearing member) or PCM+TM (Professional clearing member which is also a Trading member). `[p.188]`
+Clearing members can place order entry on behalf of the linked trading members. A close out order entry can be placed by Corporate Manager of member type PCM (Professional clearing member) or PCM+TM (Professional clearing member which is also a Trading member).
 
-Order  Confirmation/Cancellation  messages  shall  be  sent  to  Corporate  Manager  of  clearing member and Corporate Manager of trading member, on whose behalf the order was placed. `[p.188]`
+Order  Confirmation/Cancellation  messages  shall  be  sent  to  Corporate  Manager  of  clearing member and Corporate Manager of trading member, on whose behalf the order was placed.
 
-If the order is rejected by the close out system, the rejection message shall be sent only to the clearing member.  If the order is matched, the trade confirmation shall be sent to the clearing member and the trading member on whose behalf order was placed. `[p.188]`
+If the order is rejected by the close out system, the rejection message shall be sent only to the clearing member.  If the order is matched, the trade confirmation shall be sent to the clearing member and the trading member on whose behalf order was placed.
 
-The format for closeout order entry please refer Trimmed Order Entry Request Structure from Trimmed Structures section for further details. `[p.188]`
+The format for closeout order entry please refer Trimmed Order Entry Request Structure from Trimmed Structures section for further details.
 
-The UserId and BrokerId field has to be the one given below in case of close out order entry. `[p.188]`
-
-*Table (p.189)*
+The UserId and BrokerId field has to be the one given below in case of close out order entry.
 
 | Field Name | Brief Description |
 | --- | --- |
 | UserId | This field should be zero. |
 | BrokerId | This field should contain the trading member ID on whose behalf the order is being placed |
 
-## Appendix `[p.190]`
+## Appendix
 
-Please note the details in appendix are also directly or indirectly referenced in CM_DROP_COPY_PROTOCOL document. Any change here may also impact the Order Drop Copy functionality. `[p.190]`
+Please note the details in appendix are also directly or indirectly referenced in CM_DROP_COPY_PROTOCOL document. Any change here may also impact the Order Drop Copy functionality.
 
-## List of Error Codes `[p.190]`
-
-*Table (p.190-193)*
+## List of Error Codes
 
 | Error Code ID | Error Code Value | Description of Error Code |
 | --- | --- | --- |
@@ -785,8 +701,6 @@ Please note the details in appendix are also directly or indirectly referenced i
 | ERR_TRG_PRICE_NOT_MULT_TICK_SI ZE | 16316 | The trigger price is not a multiple of tick size. |
 | ERR_NO_AON_IN_LIMITS | 16317 | AON attribute not allowed. |
 | ERR_NO_MF_IN_LIMITS | 16318 | MF attribute not allowed. |
-
-*Table (p.194-197)*
 
 | Error Code ID | Error Code Value | Description of Error Code |
 | --- | --- | --- |
@@ -857,8 +771,6 @@ Please note the details in appendix are also directly or indirectly referenced i
 | ERR_BR_SELL_ORD_VAL_LIMIT_EXCEE DED | 16533 | Branch sell order limit has been exceeded |
 | NO_BUY_BACK_RUNNING | 16534 | No buyback running for that security. |
 
-*Table (p.198-201)*
-
 | Error Code ID | Error Code Value | Description of Error Code |
 | --- | --- | --- |
 | PARTIAL_ORDER_REJECTED | 16535 | Order partially rejected. Remaining order quantity specified rejected due to system error. |
@@ -916,11 +828,9 @@ Please note the details in appendix are also directly or indirectly referenced i
 | ERR_ENCRYPTION_FLAG_MISMATCH | 19030 | Encryption Flag Mismatch |
 | ERR_MD5_CHECKSUM_FAILURE | 19031 | MD5 Checksum Failed |
 
-## Reason Codes `[p.201]`
+## Reason Codes
 
 The reason codes and the corresponding values are given below.
-
-*Table (p.201)*
 
 | Reason Code | Value |
 | --- | --- |
@@ -938,9 +848,7 @@ The reason codes and the corresponding values are given below.
 | Call Auction 1 | 23 |
 | Call Auction 2 | 24 |
 
-## List of Transaction Codes `[p.202]`
-
-*Table (p.202-205)*
+## List of Transaction Codes
 
 | Transaction Code | Code | Structure | Size | I/B* |
 | --- | --- | --- | --- | --- |
@@ -1055,11 +963,9 @@ The reason codes and the corresponding values are given below.
 | SECURE_BOX_REGISTRATION_RESPO NSE_OUT | 23009 | MS_SECURE_BOX_REGISTRATION_RES PONSE_OUT | 40 | I |
 | BOX_SIGN_OFF | 20322 | MS_BOX_SIGN_OFF | 42 | I |
 
-## List of Transaction Codes Containing Timestamp in Nanoseconds `[p.205]`
+## List of Transaction Codes Containing Timestamp in Nanoseconds
 
-The transaction codes that will contain timestamp in nanoseconds from 01-Jan-1980 00:00:00 are listed in following table: `[p.205]`
-
-*Table (p.205-206)*
+The transaction codes that will contain timestamp in nanoseconds from 01-Jan-1980 00:00:00 are listed in following table:
 
 | Transaction Code | Code |
 | --- | --- |
@@ -1083,13 +989,11 @@ The transaction codes that will contain timestamp in nanoseconds from 01-Jan-198
 | TRADE_CONFIRMATION_TR | 20222 |
 | ORDER_ERROR_TR | 20231 |
 
-## Quick Reference for Order Entry Parameters `[p.206]`
+## Quick Reference for Order Entry Parameters
 
 The order flags are given below.
 
-## Order Terms: `[p.206]`
-
-*Table (p.206)*
+## Order Terms:
 
 | Order Flags | Input/Output |
 | --- | --- |
@@ -1108,8 +1012,6 @@ The order flags are given below.
 | Traded | Output |
 | MatchedInd | Output |
 
-*Table (p.206-207)*
-
 | Status | Market | Book Type | Order Terms and Other Characteristic Fields |
 | --- | --- | --- | --- |
 | Preopen | Normal Market | RL** | Non-zero value of Good Till Date/DAY/GTC mandatory, mutually exclusive, input |
@@ -1123,11 +1025,9 @@ The order flags are given below.
 | Preopen | Call Auciton 2 Market | CB | Value of IOC set as 0 mandatory, mutually exclusive, input. ATO output set as 0, as Market Order Not allowed. Value of DAY set as 1 mandatory, mutually exclusive, input. |
 | Close |  |  | Order entry is not allowed. |
 
-## Market Type `[p.208]`
+## Market Type
 
 The market types are:
-
-*Table (p.208)*
 
 | Status | Market Status ID |
 | --- | --- |
@@ -1138,11 +1038,9 @@ The market types are:
 | Call auction1 Market | 5 |
 | Call auction2 Market | 6 |
 
-## Market Status `[p.208]`
+## Market Status
 
 The market can be in one of the following statuses:
-
-*Table (p.208)*
 
 | Status | Market Status ID |
 | --- | --- |
@@ -1151,11 +1049,9 @@ The market can be in one of the following statuses:
 | Closed | 2 |
 | Preopen ended | 3 |
 
-## Book Types `[p.208]`
+## Book Types
 
 There are seven books. These books fall in four markets.
-
-*Table (p.208-209)*
 
 | Book Type | Book ID | Market Type |
 | --- | --- | --- |
@@ -1168,9 +1064,7 @@ There are seven books. These books fall in four markets.
 | Call Auction1 | 11 | Call auction1 market |
 | Call Auction2 | 12 | Call auction2 market |
 
-## Auction Status `[p.209]`
-
-*Table (p.209)*
+## Auction Status
 
 | Status | Value Sent in Packet | ID | Description |
 | --- | --- | --- | --- |
@@ -1182,9 +1076,7 @@ There are seven books. These books fall in four markets.
 | AUCTION_FINISHED | 'F' | 6 | Status after matching of orders is done and auction trades are generated. |
 | AUCTION_CXLED | 'X' | 7 | Auction is cancelled by NSE-Control. |
 
-## Security Status `[p.209]`
-
-*Table (p.209)*
+## Security Status
 
 | Status | Status ID |
 | --- | --- |
@@ -1194,11 +1086,9 @@ There are seven books. These books fall in four markets.
 | Preopen Extended | 4 |
 | Price Discovery | 6 |
 
-## Activity Types `[p.210]`
+## Activity Types
 
-The activity types that are sent in reports are given below. `[p.210]`
-
-*Table (p.210)*
+The activity types that are sent in reports are given below.
 
 | Activity Type | Description | Code |
 | --- | --- | --- |
@@ -1211,15 +1101,13 @@ The activity types that are sent in reports are given below. `[p.210]`
 | ACTIVITY_TRADE_CXL_2 | Action has been taken on this request. | 7 |
 | ACTIVITY_BATCH_ORDER_CANCEL | At the end of the day, all untraded Day orders are cancelled. GTC/GTD orders due for cancellation are also cancelled. | 8 |
 
-## Pipe Delimited File Structures `[p.210]`
+## Pipe Delimited File Structures
 
-The upload files have a header record at the beginning of the file followed by the detail records. All the fields in both the header and detail records are separated by pipe ('|').The fields are not of fixed width. Any two fields are separated by a '|' sym bol. `[p.210]`
+The upload files have a header record at the beginning of the file followed by the detail records. All the fields in both the header and detail records are separated by pipe ('|').The fields are not of fixed width. Any two fields are separated by a '|' sym bol.
 
-## Security File Structure `[p.210]`
+## Security File Structure
 
 Header
-
-*Table (p.210)*
 
 | Structure Name | SECURITY_FILE_HEADER |
 | --- | --- |
@@ -1231,11 +1119,9 @@ Header
 | Reserved | CHAR |
 | DATE | LONG |
 
-## Stock Structure `[p.211]`
+## Stock Structure
 
-## Table 52 STOCK_STRUCTURE `[p.211]`
-
-*Table (p.211-213)*
+## Table 52 STOCK_STRUCTURE
 
 | Structure Name | STOCK_STRUCTURE |
 | --- | --- |
@@ -1332,22 +1218,16 @@ Header
 
 Table 52.1 ST_SEC_ELIGIBILITY_PER_MARKET
 
-*Table (p.213)*
-
 | Structure Name | ST_SEC_ELIGIBILITY_PER_MARKET |
 | --- | --- |
 | Packet Length | 6 bytes |
 | Field Name | Data Type |
 | Security Status | SHORT |
 
-*Table (p.214)*
-
 | Reserved | CHAR | 1 | 2 |
 | --- | --- | --- | --- |
 | Eligibility | CHAR | 1 | 3 |
 | Reserved | CHAR | 2 | 4 |
-
-*Table (p.214-217)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -1398,13 +1278,11 @@ Table 52.1 ST_SEC_ELIGIBILITY_PER_MARKET
 | FaceValue | This field contains face value of the security |
 | ISIN Number | This field contains the ISIN Number of the security. |
 
-## Contract File Structure `[p.217]`
+## Contract File Structure
 
 Header
 
-## Table 53 CONTRACT_FILE_HEADER `[p.217]`
-
-*Table (p.217)*
+## Table 53 CONTRACT_FILE_HEADER
 
 | Structure Name | CONTRACT_FILE_HEADER |
 | --- | --- |
@@ -1415,11 +1293,9 @@ Header
 | VersionNumber | CHAR |
 | Reserved | CHAR |
 
-## Stock Structure `[p.217]`
+## Stock Structure
 
-## Table 54 STOCK_STRUCTURE `[p.217]`
-
-*Table (p.217-220)*
+## Table 54 STOCK_STRUCTURE
 
 | Structure Name | STOCK_STRUCTURE |
 | --- | --- |
@@ -1536,8 +1412,6 @@ Header
 | Reserved | CHAR |
 | SymbolForAsset | CHAR |
 
-*Table (p.221)*
-
 | Structure Name | STOCK_STRUCTURE |
 | --- | --- |
 | Packet Length | 322 bytes |
@@ -1551,8 +1425,6 @@ Header
 
 Table 54.1 ST_SEC_ELIGIBILITY_PER_MARKET
 
-*Table (p.221)*
-
 | Structure Name | ST_SEC_ELIGIBILITY_PER_MAKRET |
 | --- | --- |
 | Packet Length | 6 bytes |
@@ -1561,8 +1433,6 @@ Table 54.1 ST_SEC_ELIGIBILITY_PER_MARKET
 | Reserved | CHAR |
 | Eligibility | CHAR |
 | Reserved | CHAR |
-
-*Table (p.221-224)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -1619,13 +1489,11 @@ Table 54.1 ST_SEC_ELIGIBILITY_PER_MARKET
 | BasePrice | Base price of the security. |
 | DeleteFlag | This flag indicates the status of the security, whether the security is deleted or not. This field can have any one of the following value: • 'N' : Active • 'Y' : Deleted |
 
-## Participant Structure `[p.224]`
+## Participant Structure
 
 Header
 
-## Table 55 PARTICIPANT_FILE_HEADER `[p.224]`
-
-*Table (p.224)*
+## Table 55 PARTICIPANT_FILE_HEADER
 
 | Structure Name | PARTICIPANT_FILE_HEADER |
 | --- | --- |
@@ -1634,19 +1502,15 @@ Header
 | NEATCM | CHAR |
 | Reserved | CHAR |
 
-*Table (p.225)*
-
 | VersionNumber | CHAR | 7 | 7 |
 | --- | --- | --- | --- |
 | Reserved | CHAR | 1 | 14 |
 | DATE | LONG | 4 | 15 |
 | Reserved | CHAR | 1 | 19 |
 
-## Structure `[p.225]`
+## Structure
 
-## Table 56 PARTICIPANT_STRUCTURE `[p.225]`
-
-*Table (p.225)*
+## Table 56 PARTICIPANT_STRUCTURE
 
 | Structure Name | PARTICIPANT_STRUCTURE |
 | --- | --- |
@@ -1662,8 +1526,6 @@ Header
 | Reserved | CHAR |
 | LastUpdateTime | LONG |
 
-*Table (p.225)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | ParticipantId | ID of the participant. |
@@ -1672,13 +1534,11 @@ Header
 | DeleteFlag | If this field is set to 'Y' then the participant is deleted from the system, else he/she is present in the system. |
 | LastUpdateTime | The last time this record was modified. |
 
-## Trimmed Structures `[p.226]`
+## Trimmed Structures
 
-## Trimmed Order Entry Request structure `[p.226]`
+## Trimmed Order Entry Request structure
 
-## Table 57 ORDER_ENTRY_REQUEST `[p.226]`
-
-*Table (p.226-227)*
+## Table 57 ORDER_ENTRY_REQUEST
 
 | Structure Name | ORDER_ENTRY_ REQUEST _TR |
 | --- | --- |
@@ -1714,9 +1574,7 @@ Header
 | Reserved Filler | SHORT |
 | Reserved | CHAR |
 
-## For Small Endian Machines: `[p.227]`
-
-*Table (p.227)*
+## For Small Endian Machines:
 
 | Structure Name | ST_ORDER_FLAGS |
 | --- | --- |
@@ -1739,12 +1597,10 @@ Header
 | Traded | BIT |
 | MatchedInd | BIT |
 
-## For Big Endian Machines: `[p.227]`
+## For Big Endian Machines:
 
 Table 57.2 ST_ORDER_FLAGS
 
-*Table (p.228)*
-
 | Structure Name | ST_ORDER_FLAGS |
 | --- | --- |
 | Packet Length | 2 bytes |
@@ -1765,8 +1621,6 @@ Table 57.2 ST_ORDER_FLAGS
 | Reserved | BIT |
 | STPC | BIT |
 | Reserved | BIT |
-
-*Table (p.228-231)*
 
 | Field Name | Brief Description |
 | --- | --- |
@@ -1793,11 +1647,9 @@ Table 57.2 ST_ORDER_FLAGS
 | Algo ID | For Algo order this field shall contain the Algo ID issued by the exchange. For Non-Algo order, this field shall be Zero(0) |
 | Reserved Filler | This field is reserved for future use. This should be set to Zero (0) while sending to the exchange trading system. |
 
-## Trimmed Order Mod/Cancel Request Structure `[p.231]`
+## Trimmed Order Mod/Cancel Request Structure
 
-## Table 58 ORDER_OM_REQUEST `[p.231]`
-
-*Table (p.231-233)*
+## Table 58 ORDER_OM_REQUEST
 
 | Structure Name | ORDER_OM_ REQUEST _TR |
 | --- | --- |
@@ -1850,11 +1702,9 @@ Table 57.2 ST_ORDER_FLAGS
 | LastActivityReference | LONG LONG |
 | Reserved | CHAR |
 
-## Trimmed Order Mod/Cancel Response Structure `[p.233]`
+## Trimmed Order Mod/Cancel Response Structure
 
-## Table 59 ORDER_OM_RESPONSE `[p.233]`
-
-*Table (p.233-235)*
+## Table 59 ORDER_OM_RESPONSE
 
 | Structure Name | ORDER_OM_ RESPONSE_TR |
 | --- | --- |
@@ -1908,8 +1758,6 @@ Table 57.2 ST_ORDER_FLAGS
 | LastActivityReference | LONG LONG |
 | Reserved | CHAR |
 
-*Table (p.235-238)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is ORDER_MOD_REJECT_TR (20042) ORDER_CANCEL_REJECT_TR (20072) ORDER_CONFIRMATION_TR (20073) ORDER_MOD_CONFIRMATION_TR (20074) ORDER_CXL_CONFIRMATION_TR (20075) ORDER_ERROR_TR (20231) PRICE_CONFIRMATION_TR (20012) |
@@ -1935,8 +1783,6 @@ Table 57.2 ST_ORDER_FLAGS
 | TraderId | In Request packet, this field should contain the ID of the user on whose behalf order is to be modified/cancelled. This field accepts only numbers. |
 | BrokerId | This field should contain the trading member ID. |
 
-*Table (p.239)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | Suspended | This field specifies whether the security is suspended or not. It should be set to blank while sending order entry request. |
@@ -1949,11 +1795,9 @@ Table 57.2 ST_ORDER_FLAGS
 | Reserved Filler | This field is reserved for future use. This should be set to Zero (0) while sending to the exchange trading system. |
 | LastActivityReference | For Order Modification/Cancellation request, this field should contains LastActivityReference value received in response of last activity done on that order. Last activity could be order entry confirmation, order modification confirmation or last trade of that order. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Trimmed Trade Confirmation Structure `[p.240]`
+## Trimmed Trade Confirmation Structure
 
-## Table 60 MS_TRADE_CONFIRM `[p.240]`
-
-*Table (p.240-241)*
+## Table 60 MS_TRADE_CONFIRM
 
 | Structure Name | MS_TRADE_CONFIRM_TR |
 | --- | --- |
@@ -1997,8 +1841,6 @@ Table 57.2 ST_ORDER_FLAGS
 | LastActivityReference | LONG LONG |
 | Reserved | CHAR |
 
-*Table (p.241)*
-
 | Field Name | Brief Description |
 | --- | --- |
 | TransactionCode | The transaction code is TRADE_CONFIRMATION_TR (20222). |
@@ -2008,16 +1850,16 @@ Table 57.2 ST_ORDER_FLAGS
 | Reserved Filler | This field is reserved for future use |
 | LastActivityReference | This field shall contain a unique value. Currently the same shall be in nanoseconds. Changes if any shall be notified. |
 
-## Annexure for Encryption/Decryption `[p.242]`
+## Annexure for Encryption/Decryption
 
-## Sr. No. The following are sample function calls of OpenSSL library in Linux (for reference) 1 Note - `[p.242]`
+## Sr. No. The following are sample function calls of OpenSSL library in Linux (for reference) 1 Note -
 
 - Openssl Library version used is OpenSSL 1.1.1.
 - TLS protocol version has been set to 1.3 (TLS1_3_VERSION).
 
 Following are the system library calls for TLS1.3-
 
-## SSL/TLS library initialization → `[p.242]`
+## SSL/TLS library initialization →
 
 - SSL_library_init () - Initialize SSL library by registering algorithms.
 - OpenSSL_add_all_algorithms ()  -  Adds  all  algorithms  to  the  table  (digests  and ciphers)
@@ -2026,7 +1868,7 @@ Following are the system library calls for TLS1.3-
 - SSL_CTX_set_min_proto_version (SSL_CTX  *ctx,  int  version)  -  Set  the  minimum protocol versions to TLS1_3_VERSION.
 - SSL_CTX_set_max_proto_version (SSL_CTX  *ctx,  int  version)  -  Set  the  maximum protocol versions to TLS1_3_VERSION.
 
-## Establishing the SSL/TLS connection → `[p.242]`
+## Establishing the SSL/TLS connection →
 
 - socket (PF_INET, SOCK_STREAM, 0) - Create TCP socket.
 - connect (int  sockfd,  const  struct  sockaddr  *addr,  socklen_t  addrlen)  -  Initiate  the TCP/IP connection with server.
@@ -2034,7 +1876,7 @@ Following are the system library calls for TLS1.3-
 - SSL_set_fd (SSL *ssl, int fd) - Attach the socket descriptor.
 - SSL_connect (SSL *ssl) - Perform the SSL connection.
 
-## Validating the Gateway Router server certificate → `[p.242]`
+## Validating the Gateway Router server certificate →
 
 - SSL_get_peer_certificate (const SSL *ssl) - Get the server's certificate.
 - X509_STORE_new () - This function returns a new X509_STORE.
@@ -2044,16 +1886,15 @@ Following are the system library calls for TLS1.3-
 - X509_STORE_CTX_init (X509_STORE_CTX  *ctx,  X509_STORE  *trust_store,  X509 *target,  STACK_OF(X509)  *untrusted)  -  This  function  returns  a  newly  initialised X509_STORE_CTX structure.
 - X509_verify_cert (X509_STORE_CTX  *ctx)  -  This  function  builds  and  verify  X509 certificate chain.
 
-## Send and Receive messages on SSL/TLS connection → `[p.243]`
+## Send and Receive messages on SSL/TLS connection →
 
 - SSL_write (SSL *ssl, const void *buf, int num) - Send message on SSL.
 - SSL_read (SSL *ssl, void *buf, int num) - Receive message from SSL.
 
-## 2 For symmetric encryption/decryption methodology - `[p.243]`
+## 2 For symmetric encryption/decryption methodology -
 
 ```c
 Encryption: Initialization → void encrypt_EVP_aes_256_cbc_init(EVP_CIPHER_CTX **ctx, unsigned char *key, unsigned char *iv) { if(!(*ctx = EVP_CIPHER_CTX_new() )) handleErrors(); if(1 != EVP_EncryptInit_ex (*ctx , EVP_aes_256_gcm() , NULL, key, iv)) handleErrors(); } Encryption → void encrypt(EVP_CIPHER_CTX *ctx, unsigned char *plaintext, int plaintext_len, unsigned char *ciphertext, int *ciphertext_len) { int len;
 ```
-`[p.243]`
 
 - if(1 != EVP_EncryptUpdate (ctx, ciphertext, &len, plaintext, plaintext_len)) handleErrors(); *ciphertext_len = len; } Decryption: Initialization → void decrypt_EVP_aes_256_cbc_init(EVP_CIPHER_CTX **ctx, unsigned char *key, unsigned char *iv) { if(!(*ctx = EVP_CIPHER_CTX_new ())) handleErrors(); if(1 != EVP_DecryptInit_ex (*ctx, EVP_aes_256_gcm (), NULL, key, iv)) handleErrors(); } Decryption → int decrypt(EVP_CIPHER_CTX *ctx, unsigned char *ciphertext, int ciphertext_len, unsigned char *plaintext, int *plaintext_len) { int len; if(1 != EVP_DecryptUpdate (ctx, plaintext, &len, ciphertext, ciphertext_len)) handleErrors(); *plaintext_len = len; } Note -· The ones highlighted in bold are OpenSSL library functions. · plaintext is the actual message buffer. · ciphertext is the encrypted message buffer.

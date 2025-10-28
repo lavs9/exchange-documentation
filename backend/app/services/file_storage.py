@@ -84,7 +84,7 @@ class FileStorageService:
             file_path: Relative path from base_path
 
         Returns:
-            Markdown content
+            Markdown content with frontmatter stripped
 
         Raises:
             FileStorageError: If file not found or read fails
@@ -97,11 +97,35 @@ class FileStorageService:
                 raise FileStorageError(f"Chapter file not found: {file_path}")
 
             content = full_path.read_text(encoding="utf-8")
+
+            # Strip YAML frontmatter if present
+            content = self._strip_frontmatter(content)
+
             logger.debug(f"Read chapter from {file_path}")
             return content
 
         except (OSError, IOError) as e:
             raise FileStorageError(f"Failed to read chapter from {file_path}: {e}") from e
+
+    def _strip_frontmatter(self, content: str) -> str:
+        """
+        Strip YAML frontmatter from markdown content.
+
+        Frontmatter is metadata between --- delimiters at the start of the file.
+
+        Args:
+            content: Raw markdown content
+
+        Returns:
+            Markdown content without frontmatter
+        """
+        if content.startswith("---"):
+            # Find the closing ---
+            parts = content.split("---", 2)
+            if len(parts) >= 3:
+                # parts[0] is empty, parts[1] is frontmatter, parts[2] is content
+                return parts[2].lstrip()
+        return content
 
     def save_metadata(
         self,

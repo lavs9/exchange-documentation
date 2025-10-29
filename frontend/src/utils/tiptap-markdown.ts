@@ -326,6 +326,17 @@ const serializeNode = (node: JSONContent, indent = ''): string => {
     case 'table':
       return serializeTable(node);
 
+    case 'tableRow':
+      // Table rows are handled by serializeTable
+      // Should not be called directly
+      return '';
+
+    case 'tableCell':
+    case 'tableHeader':
+      // Table cells are handled by serializeTable
+      // Should not be called directly
+      return '';
+
     case 'horizontalRule':
       return '---';
 
@@ -396,8 +407,20 @@ const serializeTable = (table: JSONContent): string => {
   rows.forEach((row, rowIndex) => {
     const cells = row.content || [];
     const cellTexts = cells.map(cell => {
-      const content = cell.content || [];
-      return serializeContent(content).trim();
+      // Handle both tableCell and tableHeader
+      if (!cell.content || cell.content.length === 0) {
+        return '';
+      }
+
+      // If the cell contains paragraphs, serialize each paragraph
+      const content = cell.content.map(item => {
+        if (item.type === 'paragraph') {
+          return serializeContent(item.content || []);
+        }
+        return serializeContent([item]);
+      }).join(' ');
+
+      return content.trim();
     });
 
     lines.push('| ' + cellTexts.join(' | ') + ' |');

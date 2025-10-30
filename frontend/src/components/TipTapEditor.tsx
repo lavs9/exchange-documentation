@@ -63,10 +63,14 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({
   documentId,
   version
 }) => {
+  console.log('[TipTapEditor] Initializing with content length:', initialContent?.length);
+  console.log('[TipTapEditor] First 200 chars:', initialContent?.substring(0, 200));
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
         codeBlock: false, // We're using CodeBlockLowlight instead
+        link: false, // We're configuring Link separately below
       }),
       Link.configure({
         openOnClick: false,
@@ -96,6 +100,7 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({
       },
     },
     onUpdate: ({ editor }) => {
+      // Use custom markdown serialization
       const markdown = serializeToMarkdown(editor.getJSON());
       onChange(markdown);
     },

@@ -45,6 +45,9 @@ export const extractManualMarkers = (markdown: string): ManualMarker[] => {
  * This is a simplified parser - for production, consider using a library like remark
  */
 export const parseMarkdown = (markdown: string): JSONContent => {
+  console.log('[parseMarkdown] Input length:', markdown?.length);
+  console.log('[parseMarkdown] Has tables?', markdown?.includes('|'));
+
   const lines = markdown.split('\n');
   const content: JSONContent[] = [];
   let i = 0;
@@ -202,6 +205,74 @@ export const parseMarkdown = (markdown: string): JSONContent => {
       continue;
     }
 
+    // Tables (GitHub Flavored Markdown)
+    if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
+      console.log('[parseMarkdown] Found table at line', i);
+      const tableLines: string[] = [];
+
+      // Collect all table lines
+      while (i < lines.length && lines[i].trim().startsWith('|') && lines[i].trim().endsWith('|')) {
+        tableLines.push(lines[i]);
+        i++;
+      }
+      console.log('[parseMarkdown] Collected', tableLines.length, 'table lines');
+
+      if (tableLines.length >= 2) {
+        // Parse table into rows
+        const rows: JSONContent[] = [];
+        let isFirstRow = true;
+
+        for (let rowIndex = 0; rowIndex < tableLines.length; rowIndex++) {
+          const rowLine = tableLines[rowIndex];
+
+          // Skip separator row (| --- | --- |)
+          if (rowLine.match(/^\|[\s\-:|]+\|$/)) {
+            continue;
+          }
+
+          // Parse cells
+          const cellTexts = rowLine
+            .split('|')
+            .slice(1, -1) // Remove empty strings from leading/trailing |
+            .map(cell => cell.trim());
+
+          const cells: JSONContent[] = cellTexts.map(cellText => {
+            const inlineContent = parseInlineContent(cellText);
+            // If cell is empty, add a space to prevent empty paragraph
+            const content = inlineContent.length > 0 ? inlineContent : [{ type: 'text', text: ' ' }];
+
+            return {
+              type: isFirstRow ? 'tableHeader' : 'tableCell',
+              content: [
+                {
+                  type: 'paragraph',
+                  content: content
+                }
+              ]
+            };
+          });
+
+          rows.push({
+            type: 'tableRow',
+            content: cells
+          });
+
+          isFirstRow = false;
+        }
+
+        if (rows.length > 0) {
+          console.log('[parseMarkdown] Created table with', rows.length, 'rows');
+          content.push({
+            type: 'table',
+            content: rows
+          });
+        } else {
+          console.log('[parseMarkdown] WARNING: No rows created from table');
+        }
+      }
+      continue;
+    }
+
     // Paragraphs
     if (line.trim()) {
       const paragraphLines: string[] = [line];
@@ -212,15 +283,24 @@ export const parseMarkdown = (markdown: string): JSONContent => {
         i++;
       }
 
-      content.push({
-        type: 'paragraph',
-        content: parseInlineContent(paragraphLines.join(' '))
-      });
+      const paragraphText = paragraphLines.join(' ');
+      const inlineContent = parseInlineContent(paragraphText);
+
+      // Only add paragraph if it has content
+      if (inlineContent.length > 0) {
+        content.push({
+          type: 'paragraph',
+          content: inlineContent
+        });
+      }
       continue;
     }
 
     i++;
   }
+
+  console.log('[parseMarkdown] Result: content blocks:', content.length);
+  console.log('[parseMarkdown] Content types:', content.map(c => c.type).join(', '));
 
   return {
     type: 'doc',
@@ -232,7 +312,8 @@ export const parseMarkdown = (markdown: string): JSONContent => {
  * Parse inline content (bold, italic, links, wikilinks, code)
  */
 const parseInlineContent = (text: string): JSONContent[] => {
-  if (!text) return [{ type: 'text', text: '' }];
+  // TipTap doesn't allow empty text nodes
+  if (!text || text.trim() === '') return [];
 
   const content: JSONContent[] = [];
   let remaining = text;
@@ -260,9 +341,22 @@ const parseInlineContent = (text: string): JSONContent[] => {
  * Serialize TipTap JSON to markdown
  */
 export const serializeToMarkdown = (json: JSONContent): string => {
-  if (!json.content) return '';
+  console.log('[serializeToMarkdown] Starting serialization');
+  console.log('[serializeToMarkdown] Input has content?', !!json.content);
 
-  return json.content.map(node => serializeNode(node)).join('\n\n');
+  if (!json.content) {
+    console.log('[serializeToMarkdown] WARNING: No content to serialize');
+    return '';
+  }
+
+  const contentTypes = json.content.map(n => n.type).join(', ');
+  console.log('[serializeToMarkdown] Content types:', contentTypes);
+
+  const result = json.content.map(node => serializeNode(node)).join('\n\n');
+  console.log('[serializeToMarkdown] Result length:', result.length);
+  console.log('[serializeToMarkdown] Has tables?', result.includes('|'));
+
+  return result;
 };
 
 /**
